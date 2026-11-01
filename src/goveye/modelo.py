@@ -65,6 +65,7 @@ def publicavel(status: StatusRevisao) -> bool:
 class Mandato:
     id: str
     presidente: str
+    nome_curto: str  # como o presidente é conhecido ("Lula", "Bolsonaro")
     partido_na_posse: str
     inicio: date
     fim: date

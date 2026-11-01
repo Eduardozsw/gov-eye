@@ -115,13 +115,22 @@ def links_do_mes(cliente: httpx.Client, ano: int, mes: int) -> list[str]:
     return sorted({l for l in links if f"/{prefixo}" in l and ".zip" in l})
 
 
-def _baixar(cliente: httpx.Client, url: str, destino: Path) -> None:
+def _baixar(cliente: httpx.Client, url: str, destino: Path, tentativas: int = 3) -> None:
+    """Baixa o ZIP inteiro. O servidor não aceita Range, então uma queda recomeça do zero."""
     temporario = destino.with_suffix(".parcial")
-    with cliente.stream("GET", url) as resp, temporario.open("wb") as arquivo:
-        resp.raise_for_status()
-        for bloco in resp.iter_bytes(2**20):
-            arquivo.write(bloco)
-    temporario.replace(destino)
+    for tentativa in range(1, tentativas + 1):
+        try:
+            with cliente.stream("GET", url) as resp, temporario.open("wb") as arquivo:
+                resp.raise_for_status()
+                for bloco in resp.iter_bytes(2**20):
+                    arquivo.write(bloco)
+            temporario.replace(destino)
+            return
+        except (httpx.RemoteProtocolError, httpx.ReadError, httpx.ReadTimeout):
+            temporario.unlink(missing_ok=True)
+            if tentativa == tentativas:
+                raise
+            time.sleep(PAUSA_ENTRE_REQUISICOES * 15 * tentativa)
 
 
 def coletar_mes(cliente: httpx.Client, ano: int, mes: int, manter_zip: bool = False) -> Path:

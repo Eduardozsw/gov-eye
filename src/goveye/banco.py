@@ -16,7 +16,7 @@ from .modelo import TEXTO_CAUSA, Revisao, status_revisao
 
 ESQUEMA = """
 CREATE TABLE mandato (
-    id TEXT PRIMARY KEY, presidente TEXT, partido_na_posse TEXT, inicio TEXT, fim TEXT
+    id TEXT PRIMARY KEY, presidente TEXT, nome_curto TEXT, partido_na_posse TEXT, inicio TEXT, fim TEXT
 );
 CREATE TABLE tema (
     id TEXT PRIMARY KEY, nome TEXT, categoria TEXT, descricao TEXT
@@ -93,8 +93,8 @@ def construir(
     db.executescript(ESQUEMA)
 
     db.executemany(
-        "INSERT INTO mandato VALUES (?, ?, ?, ?, ?)",
-        [(m.id, m.presidente, m.partido_na_posse, _iso(m.inicio), _iso(m.fim)) for m in c.mandatos],
+        "INSERT INTO mandato VALUES (?, ?, ?, ?, ?, ?)",
+        [(m.id, m.presidente, m.nome_curto, m.partido_na_posse, _iso(m.inicio), _iso(m.fim)) for m in c.mandatos],
     )
     for t in c.temas:
         db.execute("INSERT INTO tema VALUES (?, ?, ?, ?)", (t.id, t.nome, t.categoria.value, t.descricao))

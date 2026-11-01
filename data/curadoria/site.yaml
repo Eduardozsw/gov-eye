@@ -1,0 +1,7 @@
+# Dados do responsável pelo site (página "Quem faz").
+# O build de publicação é recusado enquanto algum campo contiver PREENCHER.
+responsavel:
+  nome: "PREENCHER"
+  apresentacao: "PREENCHER: uma ou duas frases sobre quem mantém o projeto"
+  contato: "PREENCHER: e-mail público para correções"
+endereco_site: "PREENCHER: endereço do site, por exemplo https://goveye.com.br"

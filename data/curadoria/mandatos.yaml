@@ -3,16 +3,19 @@
 mandatos:
   - id: temer
     presidente: Michel Temer
+    nome_curto: Temer
     partido_na_posse: MDB
     inicio: 2016-08-31
     fim: 2018-12-31
   - id: bolsonaro
     presidente: Jair Bolsonaro
+    nome_curto: Bolsonaro
     partido_na_posse: PSL
     inicio: 2019-01-01
     fim: 2022-12-31
   - id: lula-3
     presidente: Luiz Inácio Lula da Silva
+    nome_curto: Lula
     partido_na_posse: PT
     inicio: 2023-01-01
     # A Emenda Constitucional 111/2021 moveu a posse presidencial para 5 de janeiro a partir de 2027.

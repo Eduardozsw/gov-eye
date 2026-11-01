@@ -10,6 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
+goveye = "goveye.cli:main"
 fase0 = "goveye.fase0:main"
 
 [build-system]
@@ -20,3 +21,7 @@ build-backend = "hatchling.build"
 dev = [
     "pytest>=9.2.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]

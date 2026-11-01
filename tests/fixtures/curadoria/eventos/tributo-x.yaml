@@ -1,0 +1,27 @@
+eventos:
+  - id: tributo-x-inicial
+    indicador: tributo-x
+    data_efeito: 2019-02-02
+    valor_depois: 0.5
+    ato: decreto-teste-1
+    trecho: "Art. 1º O tributo X fica fixado em R$ 0,50 por litro."
+    revisoes:
+      - {revisor: Curador, data: 2026-01-10}
+      - {revisor: Curador, data: 2026-01-12}
+  - id: tributo-x-zerado
+    indicador: tributo-x
+    data_efeito: 2022-06-01
+    valor_antes: 0.5
+    valor_depois: 0.0
+    causa: ATO_NOVO
+    ato: mp-teste-2
+    trecho: "Art. 1º Ficam reduzidas a zero, até 31 de dezembro de 2022, as alíquotas do tributo X."
+  - id: tributo-x-volta
+    indicador: tributo-x
+    data_efeito: 2023-01-01
+    valor_antes: 0.0
+    valor_depois: 0.5
+    causa: EXPIRACAO_PREVISTA
+    ato: mp-teste-2
+    ato_origem: mp-teste-2
+    trecho: "Art. 1º Ficam reduzidas a zero, até 31 de dezembro de 2022, as alíquotas do tributo X."

@@ -1,0 +1,13 @@
+id: mp-teste-2
+tipo: Medida Provisória
+numero: "2.000/2022"
+ementa: Zera o tributo X até 31 de dezembro de 2022 (ato fictício de teste).
+data_assinatura: 2022-06-01
+data_publicacao: 2022-06-01
+vigencia_fim_prevista: 2022-12-31
+signatarios:
+  - nome: Presidente A de Teste
+    cargo: Presidente da República
+  - nome: Ministro de Teste
+    cargo: Ministro da Economia
+url_oficial: https://www.in.gov.br/teste/mp-teste-2

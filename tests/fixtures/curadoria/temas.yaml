@@ -1,0 +1,19 @@
+temas:
+  - id: combustiveis
+    nome: Combustíveis
+    categoria: tributo
+    descricao: Tema tributário de teste.
+    indicadores:
+      - id: tributo-x
+        nome: Tributo X sobre a gasolina
+        unidade: R$/litro
+        tipo: aliquota
+  - id: politica-y
+    nome: Política Y
+    categoria: politica
+    descricao: Tema de política de teste.
+    indicadores:
+      - id: orcamento-politica-y
+        nome: Orçamento da política Y
+        unidade: R$
+        tipo: orcamento

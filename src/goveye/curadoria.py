@@ -27,6 +27,8 @@ from .modelo import (
     Tema,
 )
 
+ARQUIVO_REVISOES = "revisoes.yaml"
+OBJETOS_REVISAVEIS = ("ato", "evento", "acao")
 DOMINIOS_OFICIAIS = ("https://www.in.gov.br/", "http://pesquisa.in.gov.br/", "https://www.planalto.gov.br/")
 TOLERANCIA_VALOR = 1e-6
 
@@ -138,8 +140,54 @@ def carregar(pasta: Path = CURADORIA) -> Curadoria:
     ]
 
     curadoria = Curadoria(mandatos, temas, atos, eventos, acoes, excluidas)
+    erros = _aplicar_registro(curadoria, pasta / ARQUIVO_REVISOES)
+    if erros:
+        raise ErroCuradoria("\n".join(erros))
     validar(curadoria)
     return curadoria
+
+
+def revisaveis(c: Curadoria) -> dict[tuple[str, str], Ato | Evento | AcaoMapeada]:
+    """Objetos que o curador pode revisar, pela chave usada em revisoes.yaml."""
+    return {
+        **{("ato", a.id): a for a in c.atos.values()},
+        **{("evento", e.id): e for e in c.eventos},
+        **{("acao", f"{a.tema_id}:{a.codigo}"): a for a in c.acoes},
+    }
+
+
+def _aplicar_registro(c: Curadoria, caminho: Path) -> list[str]:
+    """Junta as revisões do registro (revisoes.yaml) às revisões escritas nos próprios arquivos."""
+    if not caminho.exists():
+        return []
+    objetos = revisaveis(c)
+    erros = []
+    for r in _ler(caminho).get("revisoes") or []:
+        alvo = objetos.get((r["objeto"], str(r["id"])))
+        if alvo is None:
+            erros.append(f"Revisão de {r['objeto']} inexistente: {r['id']}")
+            continue
+        alvo.revisoes.append(Revisao(revisor=r["revisor"], data=r["data"]))
+    return erros
+
+
+def registrar_revisao(objeto: str, id_: str, revisor: str, dia: date, pasta: Path = CURADORIA) -> None:
+    """Acrescenta uma revisão ao registro. Só o curador deve chamar isto (comando `goveye revisar`)."""
+    if objeto not in OBJETOS_REVISAVEIS:
+        raise ErroCuradoria(f"Objeto não revisável: {objeto}")
+    if (objeto, id_) not in revisaveis(carregar(pasta)):
+        raise ErroCuradoria(f"{objeto} inexistente: {id_}")
+    caminho = pasta / ARQUIVO_REVISOES
+    if not caminho.exists():
+        caminho.write_text(
+            "# Registro de revisões do curador. Uma linha por revisão; não apagar linhas.\nrevisoes:\n",
+            encoding="utf-8",
+        )
+    item = yaml.safe_dump(
+        [{"objeto": objeto, "id": id_, "revisor": revisor, "data": dia}], allow_unicode=True, default_flow_style=None
+    )
+    with caminho.open("a", encoding="utf-8") as f:
+        f.write("  " + item)
 
 
 def validar(c: Curadoria) -> None:

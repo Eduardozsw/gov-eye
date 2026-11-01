@@ -1,0 +1,13 @@
+mandatos:
+  - id: governo-a
+    presidente: Presidente A de Teste
+    nome_curto: A
+    partido_na_posse: PA
+    inicio: 2019-01-01
+    fim: 2022-12-31
+  - id: governo-b
+    presidente: Presidente B de Teste
+    nome_curto: B
+    partido_na_posse: PB
+    inicio: 2023-01-01
+    fim: 2026-12-31

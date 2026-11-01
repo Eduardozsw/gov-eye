@@ -1,5 +1,8 @@
 """Etapas do pipeline (seção 7): coleta, carga no banco e geração do site."""
 
+from pathlib import Path
+
+from . import banco
 from . import curadoria as cur
 from .coleta import dou, orcamento
 from .config import ANO_FINAL, ANO_INICIAL
@@ -32,3 +35,10 @@ def coletar_dou(meses: list[tuple[int, int]], manter_zip: bool = False) -> None:
             caminho = dou.coletar_mes(cliente, ano, mes, manter_zip=manter_zip)
             total = sum(1 for _ in caminho.open(encoding="utf-8"))
             print(f"{ano}-{mes:02d}: {total} atos candidatos em {caminho}", flush=True)
+
+
+def carregar() -> Path:
+    """Monta o banco SQLite a partir da curadoria e das coletas já feitas."""
+    c = cur.carregar()
+    portal = {int(ano): v for ano, v in orcamento.ler("portal.json").items()}
+    return banco.construir(c, orcamento.ler("siop.json"), portal, orcamento.ler("ipca.json"))

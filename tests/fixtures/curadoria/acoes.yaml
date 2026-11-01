@@ -1,0 +1,9 @@
+acoes:
+  - tema: politica-y
+    acao: AAAA
+    subfuncao: "423"
+    justificativa: Ação de teste da política Y.
+excluidas:
+  - tema: politica-y
+    acao: BBBB
+    motivo: Ação genérica de teste.
