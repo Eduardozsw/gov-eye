@@ -12,3 +12,33 @@ eventos:
       trinta centavos) por metro cúbico de óleo diesel e suas correntes;
     nota: >-
       R$ 82,20 (PIS/Pasep) + R$ 379,30 (Cofins) = R$ 461,50 por metro cúbico, ou R$ 0,4615 por litro.
+
+# RASCUNHOS (comentados porque a série ainda tem lacuna entre maio de 2018 e 2023).
+# Quando os atos de 2018 a 2022 forem lidos, estes eventos entram na sequência, com valor_antes
+# igual ao valor em vigor no dia anterior. Trechos literais do DOU.
+#
+#  - id: pis-cofins-diesel-2023-09
+#    indicador: pis-cofins-diesel
+#    data_efeito: 2023-09-05   # 91º dia após a publicação em 06/06/2023 (art. 24, I); conferir a contagem
+#    valor_antes: ???          # depende da MP 1.157/2023 (zero até 31/12/2023) e da Lei 14.592/2023
+#    valor_depois: 0.11
+#    causa: ATO_NOVO
+#    ato: mp-1175-2023
+#    trecho: >-
+#      Art. 19. Até 31 de dezembro de 2023, as alíquotas da Contribuição para o PIS/Pasep e da Cofins incidentes
+#      sobre operações realizadas com óleo diesel e suas correntes, [...] ficam reduzidas para: I - R$ 19,59
+#      (dezenove reais e cinquenta e nove centavos) por metro cúbico para a Contribuição para o PIS/Pasep; e
+#      II - R$ 90,41 (noventa reais e quarenta e um centavos) por metro cúbico para a Cofins.
+#    nota: R$ 19,59 + R$ 90,41 = R$ 110,00 por metro cúbico, ou R$ 0,11 por litro.
+#
+#  - id: pis-cofins-diesel-2023-10
+#    indicador: pis-cofins-diesel
+#    data_efeito: 2023-10-01
+#    valor_antes: 0.11
+#    valor_depois: 0.13
+#    causa: ATO_NOVO
+#    ato: mp-1178-2023
+#    trecho: >-
+#      I - R$ 23,19 (vinte e três reais e dezenove centavos) por metro cúbico para a Contribuição para o
+#      PIS/Pasep; e II - R$ 106,81 (cento e seis reais e oitenta e um centavos) por metro cúbico para a Cofins.
+#    nota: R$ 23,19 + R$ 106,81 = R$ 130,00 por metro cúbico, ou R$ 0,13 por litro. Efeitos em 1º/10/2023 (art. 2º, I).

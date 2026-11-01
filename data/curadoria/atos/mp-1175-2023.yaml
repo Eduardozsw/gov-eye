@@ -1,0 +1,21 @@
+# PROPOSTA AUTOMÁTICA, PENDENTE DE REVISÃO.
+# Fonte: DOU, edição 107, pág. 6 (S01062023.zip:S01062023/515_20230606_20662303.xml.xml).
+# Nomes dos signatários conforme o texto publicado; cargos a conferir.
+# Art. 19 (diesel) produz efeitos no 91º dia após a publicação (art. 24, I): 05/09/2023 pela contagem a conferir. Prazo da redução: 31/12/2023.
+id: mp-1175-2023
+tipo: Medida Provisória
+numero: 1.175/2023
+ementa: Dispõe sobre mecanismo de desconto patrocinado na aquisição de veículos sustentáveis.
+data_assinatura: 2023-06-05
+data_publicacao: 2023-06-06
+signatarios:
+- nome: Luiz Inácio Lula da Silva
+  cargo: Presidente da República
+- nome: Fernando Haddad
+  cargo: Ministro da Fazenda
+- nome: Geraldo José Rodrigues Alckmin Filho
+  cargo: Ministro do Desenvolvimento, Indústria, Comércio e Serviços
+url_oficial: http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=06/06/2023&jornal=515&pagina=6
+id_materia_dou: '20662303'
+sha256_xml: 58f2834d6b00eddea39f73f5036e538a16d9443d8d712e0e56b7d9904fa76087
+vigencia_fim_prevista: 2023-12-31
