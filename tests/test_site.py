@@ -2,6 +2,7 @@ from datetime import date
 
 import pytest
 
+from conftest import escrever_yaml
 from goveye import banco
 from goveye import curadoria as cur
 from goveye.site import formato, svg, textos
@@ -101,3 +102,16 @@ def test_topo_do_eixo():
     assert svg.topo_eixo(0.3) == 0.5
     assert svg.topo_eixo(1.6e11) == 2e11
     assert svg.topo_eixo(0) == 1.0
+
+
+def test_serie_nao_passa_da_data_de_levantamento(tmp_path, pasta_curadoria, orcamento_sintetico):
+    temas = cur._ler(pasta_curadoria / "temas.yaml")
+    temas["temas"][0]["indicadores"][0]["levantado_ate"] = date(2023, 6, 30)
+    escrever_yaml(pasta_curadoria / "temas.yaml", temas)
+    siop, portal, ipca = orcamento_sintetico
+    caminho = banco.construir(cur.carregar(pasta_curadoria), siop, portal, ipca, tmp_path / "b.sqlite")
+    saida = _gerar("previa", caminho, pasta_curadoria, tmp_path)
+    html = (saida / "tema" / "combustiveis.html").read_text(encoding="utf-8")
+    assert "Série levantada até 30/06/2023" in html
+    inicio = (saida / "index.html").read_text(encoding="utf-8")
+    assert "série levantada até 30/06/2023" in inicio

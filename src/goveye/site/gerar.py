@@ -153,8 +153,9 @@ class Montagem:
             (date.fromisoformat(a["vigencia_fim_prevista"]), f"Prazo previsto no {a['titulo']}")
             for a in atos_da_serie.values() if a["vigencia_fim_prevista"]
         ]
+        fim = min(self.hoje, date.fromisoformat(indicador["levantado_ate"])) if indicador["levantado_ate"] else self.hoje
         grafico = (
-            svg.degraus(pontos, faixas, inicio, self.hoje, formato.aliquota,
+            svg.degraus(pontos, faixas, inicio, fim, formato.aliquota,
                         f"{indicador['nome']}: valor por litro ao longo do tempo", prazos)
             if eventos else ""
         )
@@ -163,7 +164,9 @@ class Montagem:
             "eventos": eventos,
             "grafico": grafico,
             "interrompida": indicador["id"] in self.series_interrompidas,
-            "valor_atual": eventos[-1]["valor_depois"] if eventos else None,
+            "levantado_ate": fim if fim < self.hoje else None,
+            # Sem levantamento até hoje, não dá para afirmar qual é o valor atual.
+            "valor_atual": eventos[-1]["valor_depois"] if eventos and fim >= self.hoje else None,
         }
 
     # ------------------------------------------------------------------ orçamento

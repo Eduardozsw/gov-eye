@@ -22,7 +22,8 @@ CREATE TABLE tema (
     id TEXT PRIMARY KEY, nome TEXT, categoria TEXT, descricao TEXT
 );
 CREATE TABLE indicador (
-    id TEXT PRIMARY KEY, tema_id TEXT REFERENCES tema(id), nome TEXT, unidade TEXT, tipo TEXT, descricao TEXT
+    id TEXT PRIMARY KEY, tema_id TEXT REFERENCES tema(id), nome TEXT, unidade TEXT, tipo TEXT, descricao TEXT,
+    levantado_ate TEXT
 );
 CREATE TABLE ato (
     id TEXT PRIMARY KEY, tipo TEXT, numero TEXT, titulo TEXT, ementa TEXT,
@@ -99,8 +100,8 @@ def construir(
     for t in c.temas:
         db.execute("INSERT INTO tema VALUES (?, ?, ?, ?)", (t.id, t.nome, t.categoria.value, t.descricao))
         db.executemany(
-            "INSERT INTO indicador VALUES (?, ?, ?, ?, ?, ?)",
-            [(i.id, t.id, i.nome, i.unidade, i.tipo, i.descricao) for i in t.indicadores],
+            "INSERT INTO indicador VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [(i.id, t.id, i.nome, i.unidade, i.tipo, i.descricao, _iso(i.levantado_ate)) for i in t.indicadores],
         )
 
     for a in c.atos.values():

@@ -79,6 +79,9 @@ class Indicador:
     unidade: str
     tipo: str  # "aliquota" ou "orcamento"
     descricao: str = ""
+    # Até quando a série de eventos foi levantada. Depois dessa data o gráfico não
+    # estende o último valor, porque pode haver mudança ainda não registrada.
+    levantado_ate: date | None = None
 
 
 @dataclass

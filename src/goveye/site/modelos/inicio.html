@@ -16,7 +16,7 @@
       {% if r.series is defined %}
         <ul class="valores">
         {% for s in r.series %}
-          <li>{{ s.indicador.nome }}: {% if s.valor_atual is not none %}<strong>{{ s.valor_atual | aliquota }}</strong>/litro{% else %}<em>em levantamento</em>{% endif %}</li>
+          <li>{{ s.indicador.nome }}: {% if s.valor_atual is not none %}<strong>{{ s.valor_atual | aliquota }}</strong>/litro{% elif s.eventos %}<em>série levantada até {{ s.levantado_ate | data }}</em>{% else %}<em>em levantamento</em>{% endif %}</li>
         {% endfor %}
         </ul>
       {% elif r.orcamento.liberado and r.orcamento.anos %}
