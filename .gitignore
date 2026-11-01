@@ -1,0 +1,23 @@
+# Credenciais
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Dados brutos baixados (grandes e reproduzíveis)
+data/raw/
+
+# Estado local de IDEs
+.cate/
+.vscode/
+.idea/
+
+# Configuração local de agentes e hooks da IDE
+.claude/
+.codex/
+.cursor/
+.grok/
+.opencode/
+.pi/

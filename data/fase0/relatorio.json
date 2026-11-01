@@ -1,0 +1,134 @@
+{
+  "executado_em": "2026-11-01T17:28:00",
+  "resultados": [
+    {
+      "fonte": "IBGE (IPCA)",
+      "status": "OK",
+      "resumo": "API pública, sem chave, JSON",
+      "detalhes": [
+        "105 meses disponíveis, de 201801 a 202609",
+        "Referência 202401: esperado 6801.72, obtido 6801.72"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "SIOP (SPARQL)",
+      "status": "OK",
+      "resumo": "SPARQL público, sem chave",
+      "detalhes": [
+        "Anos 2018–2026 disponíveis",
+        "Ação 20YP em 2023: inicial R$ 1,593,692,313.00, pago R$ 1,962,523,594.31",
+        "Tem todos os estágios: projeto de lei, dotação inicial, atualizada, empenhado, liquidado e pago"
+      ],
+      "amostra": {
+        "inicial": 1593692313.0,
+        "atualizada": 2144903072.0,
+        "empenhado": 2141166874.35,
+        "liquidado": 1984506529.06,
+        "pago": 1962523594.31
+      }
+    },
+    {
+      "fonte": "Portal da Transparência (arquivos)",
+      "status": "OK",
+      "resumo": "CSV anual por ação, sem chave, mas sem o estágio 'liquidado'",
+      "detalhes": [
+        "733 KB compactado, 25268 linhas em 2023",
+        "Ação 20YP em 2023: pago R$ 1,962,523,594.31",
+        "A coluna 'realizado' corresponde ao valor pago (conferido contra o SIOP)"
+      ],
+      "amostra": {
+        "acao": "20YP",
+        "ano": 2023,
+        "inicial": 1593692312.9999998,
+        "atualizada": 2144903071.9999995,
+        "empenhado": 2141166874.35,
+        "pago": 1962523594.3099997
+      }
+    },
+    {
+      "fonte": "Portal da Transparência (API)",
+      "status": "PENDENTE",
+      "resumo": "Exige chave gratuita",
+      "detalhes": [
+        "Cadastro: https://portaldatransparencia.gov.br/api-de-dados/cadastrar-email",
+        "Depois, defina PORTAL_TRANSPARENCIA_API_KEY no arquivo .env"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "Diário Oficial da União",
+      "status": "OK",
+      "resumo": "XML estruturado com tipo, órgão, ementa e texto de cada ato",
+      "detalhes": [
+        "4855 atos na Seção 1 de Janeiro/2023",
+        "Encontrado: MEDIDA PROVISÓRIA nº 1.157, de 1º de janeiro de 2023 (publicado em 02/01/2023)",
+        "Ementa: Reduz as alíquotas da Contribuição para o Programa de Integração Social e o Programa de Formação do Patrimônio do Servidor Público - PIS/Pasep e da Contribuição…"
+      ],
+      "amostra": {
+        "identifica": "MEDIDA PROVISÓRIA nº 1.157, de 1º de janeiro de 2023",
+        "data": "02/01/2023",
+        "ementa": "Reduz as alíquotas da Contribuição para o Programa de Integração Social e o Programa de Formação do Patrimônio do Servidor Público - PIS/Pasep e da Contribuição para o Financiamento da Seguridade Social - Cofins incidentes sobre operações realizadas com óleo diesel, biodiesel, gás liquefeito de petróleo, álcool, querosene de aviação, gás natural veicular e gasolina.",
+        "pdf": "http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=02/01/2023&jornal=601&pagina=1"
+      }
+    },
+    {
+      "fonte": "Planalto (legislação)",
+      "status": "BLOQUEADO",
+      "resumo": "Servidor derruba a conexão",
+      "detalhes": [
+        "3 tentativas com 10s de intervalo: [WinError 10054] Foi forçado o cancelamento de uma conexão existente pelo host remoto",
+        "Respondeu normalmente no primeiro acesso: indica limite de acessos por IP",
+        "Alternativa: o XML do DOU traz o texto original de cada ato"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "Câmara dos Deputados",
+      "status": "OK",
+      "resumo": "API REST pública, sem chave, JSON",
+      "detalhes": [
+        "5 votações na amostra; exemplo: 2275687-34 em 2023-03-03"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "Senado Federal",
+      "status": "OK",
+      "resumo": "API nova (/votacao), sem chave, JSON",
+      "detalhes": [
+        "27 votações nominais em maio/2023; exemplo: PL 1825/2022 (Substitutivo-CD)"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "LexML (SRU)",
+      "status": "BLOQUEADO",
+      "resumo": "Devolve página anti-robô em vez de XML",
+      "detalhes": [
+        "Dispensável no MVP: a URN pode ser montada a partir do tipo, data e número do ato"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "Receita Federal (normas)",
+      "status": "PARCIAL",
+      "resumo": "API interna sem documentação",
+      "detalhes": [
+        "/api/tipoAto/ativo responde: 44 tipos de ato",
+        "A busca (POST /api/indexacao/ato/pesquisar) responde, mas o formato da consulta não é público",
+        "Dispensável no MVP: leis, MPs e decretos de combustíveis saem no DOU e no Planalto"
+      ],
+      "amostra": {}
+    },
+    {
+      "fonte": "Cruzamento SIOP × Portal da Transparência",
+      "status": "OK",
+      "resumo": "Ação 20YP em 2023: os quatro estágios batem",
+      "detalhes": [
+        "Confirma que 'realizado' no Portal é o valor pago"
+      ],
+      "amostra": {}
+    }
+  ]
+}
