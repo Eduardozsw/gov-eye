@@ -25,4 +25,4 @@ data/raw/
 # Produtos derivados (reconstruídos pelo pipeline)
 data/goveye.sqlite
 data/goveye.tmp
-site/
+/site/

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}{% endblock %} · gov-eye</title>
+<meta name="description" content="{% block descricao %}Linha do tempo verificável de tributos e políticas públicas federais, com base em atos oficiais.{% endblock %}">
+{% if previa %}<meta name="robots" content="noindex, nofollow">{% endif %}
+<link rel="stylesheet" href="{{ raiz }}estilo.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+{% if previa %}
+<div class="faixa-previa" role="note">PRÉVIA INTERNA: inclui itens ainda não revisados, marcados com <span class="selo">pendente de revisão</span>. Não divulgue esta versão.</div>
+{% endif %}
+<header class="topo">
+  <a class="marca" href="{{ raiz }}index.html">gov-eye</a>
+  <nav aria-label="Principal">
+    <ul>
+      {% for t in temas %}<li><a href="{{ raiz }}tema/{{ t.id }}.html">{{ t.nome }}</a></li>{% endfor %}
+      <li><a href="{{ raiz }}metodologia.html">Metodologia</a></li>
+      <li><a href="{{ raiz }}dados.html">Dados</a></li>
+    </ul>
+  </nav>
+</header>
+<main id="conteudo">
+{% block conteudo %}{% endblock %}
+</main>
+<footer class="rodape">
+  <p>Todos os números vêm de fontes oficiais do governo federal, com link para o ato ou a base de origem.
+  Dados sob licença <a href="{{ url_licenca }}" rel="license">{{ licenca }}</a>.</p>
+  <p><a href="{{ raiz }}quem-faz.html">Quem faz</a> · <a href="{{ raiz }}metodologia.html">Como verificamos</a> · Gerado em {{ gerado_em | data }}.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "_macros.html" import selo %}
+{% block titulo %}{{ tema.nome }}{% endblock %}
+{% block descricao %}{{ tema.descricao }}{% endblock %}
+{% block conteudo %}
+<h1>{{ tema.nome }}</h1>
+<p class="lede">{{ tema.descricao }}</p>
+
+{% for s in series %}
+<section class="serie" aria-labelledby="s-{{ s.indicador.id }}">
+  <h2 id="s-{{ s.indicador.id }}">{{ s.indicador.nome }}</h2>
+  {% if s.indicador.descricao %}<p>{{ s.indicador.descricao }}</p>{% endif %}
+  {% if not s.eventos %}
+    <p class="aviso">Série em levantamento: nenhum valor revisado ainda.</p>
+  {% else %}
+    <figure>
+      {{ s.grafico | safe }}
+      <figcaption>Valor em {{ s.indicador.unidade }}. As faixas de fundo mostram cada governo. Os pontos são as mudanças, listadas abaixo.</figcaption>
+    </figure>
+    {% if s.interrompida %}<p class="aviso">A série continua depois do último item mostrado, mas os eventos seguintes ainda estão em revisão.</p>{% endif %}
+    <ol class="linha-tempo">
+    {% for e in s.eventos | reverse %}
+      <li class="evento{% if e.causa == 'EXPIRACAO_PREVISTA' %} expiracao{% endif %}">
+        <p class="quando"><time datetime="{{ e.data_efeito }}">{{ e.data_efeito | data }}</time>
+          {% if e.mandato %}<span class="governo">governo {{ e.mandato.nome_curto }}</span>{% endif %}
+          <span class="causa">{{ e.texto_causa }}</span> {{ selo(e) }}</p>
+        <p>{{ e.frase }}</p>
+        <details>
+          <summary>Trecho do ato</summary>
+          <blockquote>{{ e.trecho }}</blockquote>
+          <p><a href="{{ raiz }}ato/{{ e.ato.id }}.html">Ver {{ e.ato.titulo }}</a>{% if e.origem %} · <a href="{{ raiz }}ato/{{ e.origem.id }}.html">Ver o ato que fixou o prazo ({{ e.origem.titulo }})</a>{% endif %}</p>
+          {% if e.nota %}<p class="nota">{{ e.nota }}</p>{% endif %}
+        </details>
+      </li>
+    {% endfor %}
+    </ol>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block titulo %}Quem mudou o quê, e quando{% endblock %}
+{% block conteudo %}
+<section class="abertura">
+  <h1>Quem mudou o quê, e quando</h1>
+  <p class="lede">Imposto zerado, imposto de volta, programa ampliado, programa cortado. Cada mudança aqui aparece ligada ao ato oficial que a causou, com data, quem assinou e em qual governo.</p>
+  <p>Às vezes um imposto volta a subir sem que ninguém assine nada: o prazo da redução já estava escrito no ato do governo anterior. Mostramos isso também.</p>
+</section>
+
+<section aria-labelledby="t-temas">
+  <h2 id="t-temas">Temas</h2>
+  <ul class="cartoes">
+  {% for r in resumo %}
+    <li class="cartao">
+      <h3><a href="{{ raiz }}tema/{{ r.tema.id }}.html">{{ r.tema.nome }}</a></h3>
+      {% if r.series is defined %}
+        <ul class="valores">
+        {% for s in r.series %}
+          <li>{{ s.indicador.nome }}: {% if s.valor_atual is not none %}<strong>{{ s.valor_atual | aliquota }}</strong>/litro{% else %}<em>em levantamento</em>{% endif %}</li>
+        {% endfor %}
+        </ul>
+      {% elif r.orcamento.liberado and r.orcamento.anos %}
+        {% set fechados = r.orcamento.anos | rejectattr("em_andamento") | rejectattr("bloqueado") | list %}
+        {% if fechados %}<p>Pago em {{ fechados[-1].ano }}: <strong>{{ fechados[-1].nominal.pago | moeda_curta }}</strong></p>{% endif %}
+      {% else %}
+        <p><em>Mapeamento do orçamento em revisão.</em></p>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+
+<section aria-labelledby="t-mandatos">
+  <h2 id="t-mandatos">Governos cobertos</h2>
+  <ul>
+  {% for m in mandatos %}<li>{{ m.presidente }} ({{ m.partido_na_posse }} na posse): {{ m.inicio | data }} a {{ m.fim | data }}</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}
