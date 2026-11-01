@@ -30,6 +30,11 @@ def test_filtro_de_relevancia():
     assert not dou.e_relevante(dou.ler_artigo(sem_combustivel.encode(), "x"))
 
 
+def test_formato_antigo_com_tipo_em_caixa_alta():
+    antigo = XML_ATO.replace('artType="Decreto numerado"', 'artType="DECRETO"').replace('idMateria="123" ', "")
+    assert dou.e_relevante(dou.ler_artigo(antigo.encode(), "x"))
+
+
 def test_ler_zip_ignora_arquivos_invalidos(tmp_path):
     caminho = tmp_path / "S01012023.zip"
     with zipfile.ZipFile(caminho, "w") as zf:

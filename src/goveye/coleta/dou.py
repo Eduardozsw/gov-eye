@@ -27,7 +27,8 @@ MESES = [
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
 ]
 
-TIPOS_NORMATIVOS = {"Lei", "Lei Complementar", "Medida Provisória", "Decreto", "Decreto numerado"}
+# Comparados sem diferenciar maiúsculas: até 2018 o DOU publicava o tipo em caixa alta ("DECRETO").
+TIPOS_NORMATIVOS = {"lei", "lei complementar", "medida provisória", "decreto", "decreto numerado"}
 RE_TRIBUTO = re.compile(r"PIS|Cofins|CIDE|Contribui[çc][ãa]o de Interven[çc][ãa]o no Dom[íi]nio Econ[ôo]mico", re.I)
 RE_COMBUSTIVEL = re.compile(r"gasolina|diesel|combust[íi]ve|[áa]lcool|etanol|g[áa]s liquefeito|querosene", re.I)
 
@@ -88,7 +89,7 @@ def ler_artigo(conteudo: bytes, arquivo_origem: str) -> AtoDOU | None:
 
 def e_relevante(ato: AtoDOU) -> bool:
     """Atos normativos que tratam de tributos federais sobre combustíveis."""
-    if ato.tipo not in TIPOS_NORMATIVOS:
+    if ato.tipo.casefold() not in TIPOS_NORMATIVOS:
         return False
     alvo = f"{ato.ementa}\n{ato.texto}"
     return bool(RE_TRIBUTO.search(alvo) and RE_COMBUSTIVEL.search(alvo))

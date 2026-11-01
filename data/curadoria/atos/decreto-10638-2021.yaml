@@ -1,0 +1,22 @@
+# PROPOSTA AUTOMÁTICA, PENDENTE DE REVISÃO.
+# Fonte: DOU, edição 39-A, pág. 2 (S01032021.zip:S01032021/600_20210301_13325799.xml).
+# Nomes dos signatários conforme o texto publicado; cargos a conferir.
+# O prazo de 30/04/2021 vale só para o diesel (parágrafo único do art. 1º do Decreto 5.059, na redação dada por este decreto).
+id: decreto-10638-2021
+tipo: Decreto
+numero: 10.638/2021
+ementa: Altera o Decreto nº 5.059, de 30 de abril de 2004, que reduz as alíquotas da Contribuição para os Programas
+  de Integração Social e de Formação do Patrimônio do Servidor Público e da Contribuição para o Financiamento da
+  Seguridade Social incidentes sobre a importação e a comercialização de gasolina, óleo diesel, gás liquefeito de
+  petróleo e querosene de aviação.
+data_assinatura: 2021-03-01
+data_publicacao: 2021-03-01
+signatarios:
+- nome: Jair Messias Bolsonaro
+  cargo: Presidente da República
+- nome: Paulo Guedes
+  cargo: Ministro da Economia
+url_oficial: http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=01/03/2021&jornal=600&pagina=2
+id_materia_dou: '13325799'
+sha256_xml: 568564202855271419cebb79fcb45141cfe272f1daf9cd99e0afc8a5f53ff1e5
+vigencia_fim_prevista: 2021-04-30

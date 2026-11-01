@@ -1,0 +1,22 @@
+# PROPOSTA AUTOMÁTICA, PENDENTE DE REVISÃO.
+# Fonte: DOU, edição 1-B, pág. 1 (S01012023.zip:S01012023/601_20230102_20225559.xml.xml).
+# Nomes dos signatários conforme o texto publicado; cargos a conferir.
+# A MP tem dois prazos: gasolina e álcool até 28/02/2023 (arts. 2º e 6º) e diesel, biodiesel e GLP até 31/12/2023 (art. 1º). O campo de vigência guarda o primeiro.
+id: mp-1157-2023
+tipo: Medida Provisória
+numero: 1.157/2023
+ementa: Reduz as alíquotas da Contribuição para o Programa de Integração Social e o Programa de Formação do Patrimônio
+  do Servidor Público - PIS/Pasep e da Contribuição para o Financiamento da Seguridade Social - Cofins incidentes
+  sobre operações realizadas com óleo diesel, biodiesel, gás liquefeito de petróleo, álcool, querosene de aviação,
+  gás natural veicular e gasolina.
+data_assinatura: 2023-01-01
+data_publicacao: 2023-01-02
+signatarios:
+- nome: Luiz Inácio Lula da Silva
+  cargo: Presidente da República
+- nome: Fernando Haddad
+  cargo: Ministro da Fazenda
+url_oficial: http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=02/01/2023&jornal=601&pagina=1
+id_materia_dou: '20225559'
+sha256_xml: 115203d335503ea24d6f0b9b817a1ffff2244e33e3d60efdb07b0b4aa17026e1
+vigencia_fim_prevista: 2023-02-28
