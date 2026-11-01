@@ -148,9 +148,14 @@ class Montagem:
                        f"{formato.aliquota(e['valor_depois'])} ({e['texto_causa'].lower()})", e["pendente"])
             for e in eventos
         ]
+        atos_da_serie = {e["ato_id"]: e["ato"] for e in eventos}
+        prazos = [
+            (date.fromisoformat(a["vigencia_fim_prevista"]), f"Prazo previsto no {a['titulo']}")
+            for a in atos_da_serie.values() if a["vigencia_fim_prevista"]
+        ]
         grafico = (
             svg.degraus(pontos, faixas, inicio, self.hoje, formato.aliquota,
-                        f"{indicador['nome']}: valor por litro ao longo do tempo")
+                        f"{indicador['nome']}: valor por litro ao longo do tempo", prazos)
             if eventos else ""
         )
         return {

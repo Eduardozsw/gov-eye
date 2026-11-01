@@ -15,7 +15,7 @@
   {% else %}
     <figure>
       {{ s.grafico | safe }}
-      <figcaption>Valor em {{ s.indicador.unidade }}. As faixas de fundo mostram cada governo. Os pontos são as mudanças, listadas abaixo.</figcaption>
+      <figcaption>Valor em {{ s.indicador.unidade }}. As faixas de fundo mostram cada governo. Os pontos são as mudanças, listadas abaixo. A linha tracejada marca o fim de um prazo que já estava escrito no ato.</figcaption>
     </figure>
     {% if s.interrompida %}<p class="aviso">A série continua depois do último item mostrado, mas os eventos seguintes ainda estão em revisão.</p>{% endif %}
     <ol class="linha-tempo">

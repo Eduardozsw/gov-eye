@@ -58,9 +58,13 @@ def degraus(
     fim: date,
     formatar,
     titulo: str,
+    prazos: list[tuple[date, str]] = (),
     altura: int = 260,
 ) -> str:
-    """Série em degraus (alíquotas): o valor vale até a próxima mudança."""
+    """Série em degraus (alíquotas): o valor vale até a próxima mudança.
+
+    `prazos` marca, com linha tracejada, o fim de vigência previsto em atos da série (seção 8.2).
+    """
     x = _escala(inicio.toordinal(), fim.toordinal(), MARGEM_ESQ, LARGURA - MARGEM_DIR)
     topo = topo_eixo(max(p.valor for p in pontos) * 1.1) if pontos else 1.0
     y = _escala(0, topo, altura - MARGEM_BASE, MARGEM_TOPO)
@@ -93,6 +97,15 @@ def degraus(
         xa = x(date(ano, 1, 1).toordinal())
         partes.append(
             f'<text class="eixo" x="{xa:.1f}" y="{altura - MARGEM_BASE + 18}" text-anchor="middle">{ano}</text>'
+        )
+
+    for dia, rotulo in prazos:
+        if not inicio <= dia <= fim:
+            continue
+        xp = x(dia.toordinal())
+        partes.append(
+            f'<line class="prazo" x1="{xp:.1f}" x2="{xp:.1f}" y1="{MARGEM_TOPO}" y2="{altura - MARGEM_BASE}">'
+            f"<title>{escape(rotulo)}: {escape(data_br(dia))}</title></line>"
         )
 
     if pontos:

@@ -10,7 +10,7 @@ from pathlib import Path
 
 import httpx
 
-from ..config import BRUTOS, PAUSA_ENTRE_REQUISICOES
+from ..config import BRUTOS, COLETAS, PAUSA_ENTRE_REQUISICOES
 
 PASTA = BRUTOS / "orcamento"
 SIOP_URL = "https://www1.siop.planejamento.gov.br/sparql/"
@@ -134,11 +134,11 @@ def ipca(cliente: httpx.Client, ano_inicio: int, ano_fim: int) -> dict[str, floa
 
 
 def salvar(nome: str, conteudo) -> Path:
-    PASTA.mkdir(parents=True, exist_ok=True)
-    caminho = PASTA / nome
+    COLETAS.mkdir(parents=True, exist_ok=True)
+    caminho = COLETAS / nome
     caminho.write_text(json.dumps(conteudo, ensure_ascii=False, indent=1), encoding="utf-8")
     return caminho
 
 
 def ler(nome: str):
-    return json.loads((PASTA / nome).read_text(encoding="utf-8"))
+    return json.loads((COLETAS / nome).read_text(encoding="utf-8"))

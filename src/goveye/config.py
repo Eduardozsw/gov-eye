@@ -5,6 +5,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[2]
 DADOS = RAIZ / "data"
 BRUTOS = DADOS / "raw"
+# Resultados processados das coletas (pequenos, versionados): permitem refazer o site sem rede.
+COLETAS = DADOS / "coletas"
 CURADORIA = DADOS / "curadoria"
 BANCO = DADOS / "goveye.sqlite"
 SITE_SAIDA = RAIZ / "site"
