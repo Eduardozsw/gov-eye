@@ -109,9 +109,10 @@ def cmd_carregar(_: argparse.Namespace) -> int:
 
 
 def cmd_site(args: argparse.Namespace) -> int:
-    from .site.gerar import gerar
+    from .site.gerar import exportar
 
-    print(f"Site ({args.modo}) gerado em {gerar(args.modo)}")
+    print(f"Dados do site ({args.modo}) exportados para {exportar(args.modo)}")
+    print("Para ver: cd web && npm run dev (ou npm run build para gerar web/out/)")
     return 0
 
 
@@ -158,7 +159,7 @@ def main() -> None:
         f=cmd_carregar
     )
 
-    p = sub.add_parser("site", help="gera o site estático em site/")
+    p = sub.add_parser("site", help="exporta os dados do site para web/ (Next.js)")
     p.add_argument("--modo", choices=("previa", "publicacao"), default="previa")
     p.set_defaults(f=cmd_site)
 

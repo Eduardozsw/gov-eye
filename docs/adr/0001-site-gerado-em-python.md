@@ -1,6 +1,6 @@
 # ADR 0001: Site estático gerado em Python, sem Astro
 
-- Status: proposto (aguardando aprovação do responsável)
+- Status: substituído em parte pelo ADR 0002 (itens 1 e 2: o site passou a ser desenhado em Next.js; os itens 3 e 4 continuam valendo)
 - Data: 2026-11-01
 
 ## Contexto

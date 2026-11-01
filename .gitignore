@@ -26,3 +26,12 @@ data/raw/
 data/goveye.sqlite
 data/goveye.tmp
 /site/
+
+# Front-end: dependências, build e dados exportados pelo Python
+web/node_modules/
+web/.next/
+web/out/
+web/next-env.d.ts
+web/tsconfig.tsbuildinfo
+web/dados/
+web/public/dados/

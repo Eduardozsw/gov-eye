@@ -7,7 +7,8 @@ Estado da branch `Claude-auto-pilot`. Nada foi marcado como revisado: todos os a
 ```sh
 uv run goveye pendentes              # lista tudo o que falta revisar
 uv run goveye conferir-trechos       # confere os trechos dos eventos com o texto do DOU
-uv run goveye site                   # prévia em site/index.html, com selos "pendente de revisão"
+uv run goveye site                   # exporta a prévia, com selos "pendente de revisão"
+(cd web && npm run dev)              # abre a prévia em http://localhost:3000
 uv run goveye revisar <objeto> <id> --revisor "Seu Nome"
 ```
 
@@ -52,7 +53,8 @@ Achados sobre o DOU que afetam a coleta:
 ## 5. Fora do alcance desta etapa
 
 - **`data/curadoria/site.yaml`:** preencher nome, apresentação, contato e endereço. O build de publicação recusa enquanto houver `PREENCHER`.
-- **Cards de compartilhamento (OG/WhatsApp):** exigem renderizar PNG no servidor. A dependência ainda não foi escolhida (ADR 0001).
+- **Cards de compartilhamento (OG/WhatsApp):** com Next.js dá para gerar o PNG no build (rota `opengraph-image`), sem dependência nova. Ainda não implementado.
 - **Assinatura dos dados:** o manifesto SHA-256 já é gerado. A assinatura criptográfica precisa de uma chave sua.
 - **Deploy na Cloudflare Pages e agendamento da coleta:** envolvem credenciais; ficaram de fora.
-- **ADR 0001:** está como "proposto"; aprove ou peça mudança.
+- **ADR 0002 (Next.js):** está como "proposto"; aprove ou peça mudança. Substitui a parte do ADR 0001 sobre o gerador em Jinja2.
+- **Front-end:** as frases de exemplo da busca ficam em `SUGESTOES_BUSCA` (`src/goveye/site/gerar.py`); troque à vontade, o teste `npm test` avisa se alguma ficar sem resultado.

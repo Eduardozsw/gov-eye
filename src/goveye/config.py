@@ -9,7 +9,8 @@ BRUTOS = DADOS / "raw"
 COLETAS = DADOS / "coletas"
 CURADORIA = DADOS / "curadoria"
 BANCO = DADOS / "goveye.sqlite"
-SITE_SAIDA = RAIZ / "site"
+# Front-end em Next.js; recebe web/dados/site.json e os dados abertos em web/public/dados/.
+WEB = RAIZ / "web"
 
 ANO_INICIAL = 2018
 ANO_FINAL = 2026

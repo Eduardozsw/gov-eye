@@ -82,8 +82,12 @@ def degraus(
             f'<rect class="faixa faixa-{n % 2}" x="{xa:.1f}" y="{MARGEM_TOPO - 18}" '
             f'width="{xb - xa:.1f}" height="{altura - MARGEM_BASE - MARGEM_TOPO + 18}"/>'
         )
+        # Faixa estreita no fim do gráfico (governo em curso): o rótulo é empurrado para dentro,
+        # para não ser cortado na borda. Largura estimada de 7 px por caractere a 12 px.
+        meia = len(f.rotulo) * 3.5
+        centro = min(max((xa + xb) / 2, meia + 2), LARGURA - meia - 2)
         partes.append(
-            f'<text class="rotulo-faixa" x="{(xa + xb) / 2:.1f}" y="{MARGEM_TOPO - 6}" '
+            f'<text class="rotulo-faixa" x="{centro:.1f}" y="{MARGEM_TOPO - 6}" '
             f'text-anchor="middle">{escape(f.rotulo)}</text>'
         )
 

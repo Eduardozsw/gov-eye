@@ -1,4 +1,8 @@
-"""Gera o site estático a partir do banco SQLite.
+"""Exporta os dados do site para o front-end em Next.js (pasta web/).
+
+O Python continua sendo o lugar das regras: decide o que é publicável, monta as
+frases e os gráficos SVG e grava tudo, já formatado, em web/dados/site.json. O
+Next.js só desenha a interface a partir desse arquivo.
 
 Dois modos (seção 7):
 - "previa": mostra tudo, com selo nos itens ainda não revisados. Uso interno do curador.
@@ -18,19 +22,34 @@ from datetime import date
 from pathlib import Path
 
 import yaml
-from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .. import orcamento as orc
 from ..banco import conectar
-from ..config import BANCO, CURADORIA, SITE_SAIDA
-from ..modelo import StatusRevisao, publicavel
+from ..config import BANCO, CURADORIA, WEB
+from ..modelo import Causa, StatusRevisao, publicavel
 from . import formato, svg, textos
 
-AQUI = Path(__file__).parent
 MODOS = ("previa", "publicacao")
 MARCADOR_A_PREENCHER = "PREENCHER"
 LICENCA_DADOS = "CC BY-NC 4.0"
 URL_LICENCA = "https://creativecommons.org/licenses/by-nc/4.0/deed.pt-br"
+
+# Frases que o campo de busca da página inicial escreve e apaga, como exemplo.
+SUGESTOES_BUSCA = (
+    "Quem zerou o imposto da gasolina?",
+    "Quanto foi pago no Bolsa Família em 2024?",
+    "Orçamento para povos indígenas",
+    "Imposto sobre o diesel",
+    "Minha Casa Minha Vida por ano",
+    "Casa da Mulher Brasileira",
+    "Medida Provisória 1.157",
+)
+
+# Palavras que o leitor usa e que não aparecem no texto oficial.
+SINONIMOS_CATEGORIA = {
+    "tributo": "imposto impostos tributo tributos aliquota taxa combustivel combustiveis preco",
+    "politica": "orcamento gasto gastos verba dinheiro investimento pago programa politica publica",
+}
 
 
 class ErroPublicacao(RuntimeError):
@@ -43,25 +62,6 @@ def _publicavel(status: str) -> bool:
 
 def _linhas(db: sqlite3.Connection, sql: str, *args) -> list[dict]:
     return [dict(r) for r in db.execute(sql, args)]
-
-
-def _ambiente() -> Environment:
-    env = Environment(
-        loader=FileSystemLoader(AQUI / "modelos"),
-        autoescape=True,
-        undefined=StrictUndefined,
-        trim_blocks=True,
-        lstrip_blocks=True,
-    )
-    env.filters.update(
-        data=formato.data_br,
-        data_extenso=formato.data_extenso,
-        moeda=formato.moeda,
-        moeda_curta=formato.moeda_curta,
-        aliquota=formato.aliquota,
-        percentual=formato.percentual,
-    )
-    return env
 
 
 def _config_site(pasta: Path) -> dict:
@@ -296,10 +296,177 @@ def _dados_abertos(m: Montagem, pasta: Path) -> list[dict]:
     return manifesto
 
 
-# ---------------------------------------------------------------------- geração
 
-def gerar(modo: str, banco: Path = BANCO, saida: Path = SITE_SAIDA, curadoria: Path = CURADORIA,
-          hoje: date | None = None) -> Path:
+
+# ---------------------------------------------------------------------- exportação
+
+def _ref_ato(ato: dict | None) -> dict | None:
+    return {"id": ato["id"], "titulo": ato["titulo"]} if ato else None
+
+
+def _mes_referencia(aaaamm: str) -> str:
+    return f"{aaaamm[4:]}/{aaaamm[:4]}"
+
+
+def _serie_web(m: Montagem, indicador: dict) -> dict:
+    s = m.serie(indicador)
+    return {
+        "id": indicador["id"],
+        "nome": indicador["nome"],
+        "descricao": indicador["descricao"],
+        "unidade": indicador["unidade"],
+        "grafico": s["grafico"],
+        "interrompida": s["interrompida"],
+        "levantado_ate": formato.data_br(s["levantado_ate"]) if s["levantado_ate"] else None,
+        "valor_atual": formato.aliquota(s["valor_atual"]) if s["valor_atual"] is not None else None,
+        "eventos": [
+            {
+                "id": e["id"],
+                "data_iso": e["data_efeito"],
+                "data": formato.data_br(e["data_efeito"]),
+                "governo": e["mandato"]["nome_curto"] if e["mandato"] else None,
+                "causa": e["texto_causa"],
+                "expiracao": e["causa"] == Causa.EXPIRACAO_PREVISTA.name,
+                "pendente": e["pendente"],
+                "frase": e["frase"],
+                "valor": formato.aliquota(e["valor_depois"]),
+                "trecho": e["trecho"],
+                "nota": e["nota"] or None,
+                "ato": _ref_ato(e["ato"]),
+                "origem": _ref_ato(e["origem"]),
+            }
+            for e in reversed(s["eventos"])
+        ],
+    }
+
+
+def _orcamento_web(m: Montagem, tema: dict) -> dict:
+    o = m.orcamento_do_tema(tema)
+    liberado = bool(o["liberado"])
+    anos = o["anos"]
+    fechados = [a for a in anos if not a["em_andamento"] and not a["bloqueado"]]
+
+    def valor(a: dict, estagio: str) -> str:
+        return "—" if a["bloqueado"] else formato.moeda_curta(a["nominal"][estagio])
+
+    def pago_da_acao(g: dict, a: dict) -> str:
+        if a["bloqueado"]:
+            return "—"
+        return formato.moeda_curta(g["anos"][a["ano"]]["pago"]) if a["ano"] in g["anos"] else ""
+
+    return {
+        "liberado": liberado,
+        "destaque": (
+            {"ano": fechados[-1]["ano"], "pago": formato.moeda_curta(fechados[-1]["nominal"]["pago"])}
+            if liberado and fechados else None
+        ),
+        "ipca_referencia": _mes_referencia(m.ipca_referencia),
+        "grafico_nominal": o["grafico_nominal"],
+        "grafico_corrigido": o["grafico_corrigido"],
+        "frases": [
+            {
+                "ano": a["ano"],
+                "texto": (
+                    f"{a['ano']}: valores em conferência (as fontes oficiais divergem)."
+                    if a["bloqueado"]
+                    else a["frase"] + (" Ano em andamento." if a["em_andamento"] else "")
+                ),
+                "divergente": a["divergente"] and not a["bloqueado"],
+            }
+            for a in reversed(anos)
+        ] if liberado else [],
+        "estagios": [orc.NOMES_ESTAGIOS[e] for e in orc.ESTAGIOS],
+        "tabela": [
+            {"ano": f"{a['ano']}{'*' if a['em_andamento'] else ''}", "valores": [valor(a, e) for e in orc.ESTAGIOS]}
+            for a in anos
+        ] if liberado else [],
+        "acoes": [
+            {"codigo": a["codigo"], "subfuncao": a["subfuncao"], "justificativa": a["justificativa"],
+             "pendente": a["pendente"]}
+            for a in o["acoes"]
+        ],
+        "excluidas": [{"codigo": x["codigo"], "motivo": x["motivo"]} for x in o["excluidas"]],
+        "detalhe": {
+            "anos": [a["ano"] for a in anos],
+            "linhas": [
+                {"acao": g["acao"], "nome": g["nome"], "valores": [pago_da_acao(g, a) for a in anos]}
+                for g in o["detalhe"]
+            ],
+        } if liberado else None,
+        "divergencias": [
+            {"ano": d["ano"], "chave": d["chave"], "estagio": d["estagio"],
+             "siop": formato.moeda(d["siop"]), "portal": formato.moeda(d["portal"])}
+            for d in o["divergencias"]
+        ] if m.previa else [],
+    }
+
+
+def _atos_web(m: Montagem) -> list[dict]:
+    indicadores = {i["id"]: i for i in m.indicadores}
+    saida = []
+    for ato in m.atos_visiveis():
+        mandato = m.mandato_por_id(ato["mandato_id"])
+        eventos = [e for e in m.eventos if ato["id"] in (e["ato_id"], e["ato_origem_id"])]
+        saida.append({
+            "id": ato["id"],
+            "titulo": ato["titulo"],
+            "tipo": ato["tipo"],
+            "ementa": ato["ementa"],
+            "pendente": ato["pendente"],
+            "assinatura": formato.data_extenso(ato["data_assinatura"]),
+            "publicacao": formato.data_extenso(ato["data_publicacao"]),
+            "governo": f"{mandato['presidente']} ({mandato['partido_na_posse']} na posse)" if mandato else None,
+            "signatarios": [f"{s['nome']}, {s['cargo']}" for s in ato["signatarios"]],
+            "vigencia_fim": (
+                formato.data_extenso(ato["vigencia_fim_prevista"]) if ato["vigencia_fim_prevista"] else None
+            ),
+            "url_oficial": ato["url_oficial"],
+            "sha256": ato["sha256_xml"] or None,
+            "eventos": [
+                {
+                    "id": e["id"],
+                    "frase": e["frase"],
+                    "pendente": e["pendente"],
+                    "indicador": indicadores[e["indicador_id"]]["nome"],
+                    "tema_id": indicadores[e["indicador_id"]]["tema_id"],
+                }
+                for e in eventos
+            ],
+        })
+    return saida
+
+
+def _busca(temas: list[dict], atos: list[dict]) -> list[dict]:
+    """Índice da caixa de busca: cada item traz o texto onde procurar e o link de destino."""
+    itens = []
+
+    def item(tipo: str, titulo: str, resumo: str, href: str, *texto: str) -> None:
+        itens.append({"tipo": tipo, "titulo": titulo, "resumo": resumo, "href": href,
+                      "texto": " ".join(x for x in (titulo, resumo, *texto) if x)})
+
+    for t in temas:
+        extra = SINONIMOS_CATEGORIA[t["categoria"]]
+        base = f"/tema/{t['id']}/"
+        item("Tema", t["nome"], t["descricao"], base, extra)
+        for s in t.get("series", []):
+            item("Imposto", s["nome"], s["descricao"], f"{base}#{s['id']}", t["nome"], extra)
+            for e in s["eventos"]:
+                item("Mudança", f"{s['nome']}, {e['data']}", e["frase"], f"{base}#{e['id']}",
+                     e["causa"], e["governo"] or "", extra)
+        o = t.get("orcamento")
+        if o:
+            for f in o["frases"]:
+                item("Orçamento", f"{t['nome']} em {f['ano']}", f["texto"], base, extra)
+            for a in o["acoes"]:
+                item("Ação do orçamento", f"{a['codigo']} · {t['nome']}", a["justificativa"], f"{base}#acoes", extra)
+    for a in atos:
+        item("Ato oficial", a["titulo"], a["ementa"], f"/ato/{a['id']}/", a["governo"] or "")
+    return itens
+
+
+def exportar(modo: str, banco: Path = BANCO, saida: Path = WEB, curadoria: Path = CURADORIA,
+             hoje: date | None = None) -> Path:
+    """Grava saida/dados/site.json e os dados abertos em saida/public/dados/."""
     config = _config_site(curadoria)
     if modo == "publicacao" and _a_preencher(config):
         raise ErroPublicacao(f"Preencha os campos marcados com {MARCADOR_A_PREENCHER} em {curadoria / 'site.yaml'}")
@@ -308,52 +475,48 @@ def gerar(modo: str, banco: Path = BANCO, saida: Path = SITE_SAIDA, curadoria: P
     m = Montagem(db, modo, hoje or date.today())
     db.close()
 
-    if saida.exists():
-        shutil.rmtree(saida)
-    (saida / "tema").mkdir(parents=True)
-    (saida / "ato").mkdir()
-    shutil.copy(AQUI / "estatico" / "estilo.css", saida / "estilo.css")
+    pasta_abertos = saida / "public" / "dados"
+    if pasta_abertos.exists():
+        shutil.rmtree(pasta_abertos)
+    manifesto = _dados_abertos(m, pasta_abertos)
 
-    env = _ambiente()
-    comum = {
+    temas = []
+    for tema in m.temas:
+        t = {"id": tema["id"], "nome": tema["nome"], "categoria": tema["categoria"],
+             "descricao": " ".join(tema["descricao"].split())}
+        if tema["categoria"] == "tributo":
+            t["series"] = [_serie_web(m, i) for i in m.indicadores if i["tema_id"] == tema["id"]]
+        else:
+            t["orcamento"] = _orcamento_web(m, tema)
+        temas.append(t)
+    atos = _atos_web(m)
+
+    dados = {
         "modo": modo,
         "previa": m.previa,
-        "config": config,
-        "temas": m.temas,
-        "gerado_em": m.hoje,
+        "gerado_em": formato.data_br(m.hoje),
         "licenca": LICENCA_DADOS,
         "url_licenca": URL_LICENCA,
+        "config": {"responsavel": config.get("responsavel", {}), "endereco_site": config.get("endereco_site")},
+        "mandatos": [
+            {"id": x["id"], "presidente": x["presidente"], "nome_curto": x["nome_curto"],
+             "partido": x["partido_na_posse"], "inicio": formato.data_br(x["inicio"]),
+             "fim": formato.data_br(x["fim"])}
+            for x in m.mandatos
+        ],
+        "temas": temas,
+        "atos": atos,
+        "metodologia": {
+            "tolerancia": formato.moeda(orc.TOLERANCIA_CONFERENCIA),
+            "ipca_referencia": _mes_referencia(m.ipca_referencia),
+            "estagios": [orc.NOMES_ESTAGIOS[e] for e in orc.ESTAGIOS],
+            "excluidas": [{"tema": x["tema_id"], "codigo": x["codigo"], "motivo": x["motivo"]} for x in m.excluidas],
+        },
+        "manifesto": [{"nome": a["nome"], "kb": round(a["bytes"] / 1024, 1), "sha256": a["sha256"]} for a in manifesto],
+        "busca": _busca(temas, atos),
+        "sugestoes": list(SUGESTOES_BUSCA),
     }
-
-    def escrever(caminho: str, modelo: str, **contexto) -> None:
-        raiz = "../" * caminho.count("/")
-        html = env.get_template(modelo).render(**comum, raiz=raiz, **contexto)
-        (saida / caminho).write_text(html, encoding="utf-8")
-
-    resumo_temas = []
-    for tema in m.temas:
-        if tema["categoria"] == "tributo":
-            series = [m.serie(i) for i in m.indicadores if i["tema_id"] == tema["id"]]
-            escrever(f"tema/{tema['id']}.html", "tema_tributo.html", tema=tema, series=series)
-            resumo_temas.append({"tema": tema, "series": series})
-        else:
-            dados = m.orcamento_do_tema(tema)
-            escrever(f"tema/{tema['id']}.html", "tema_politica.html", tema=tema, orcamento=dados,
-                     ipca_referencia=m.ipca_referencia, nomes_estagios=orc.NOMES_ESTAGIOS,
-                     estagios=orc.ESTAGIOS)
-            resumo_temas.append({"tema": tema, "orcamento": dados})
-
-    for ato in m.atos_visiveis():
-        eventos = [e for e in m.eventos if ato["id"] in (e["ato_id"], e["ato_origem_id"])]
-        escrever(f"ato/{ato['id']}.html", "ato.html", ato=ato, eventos=eventos,
-                 mandato=m.mandato_por_id(ato["mandato_id"]), indicadores={i["id"]: i for i in m.indicadores})
-
-    manifesto = _dados_abertos(m, saida / "dados")
-    escrever("index.html", "inicio.html", resumo=resumo_temas, mandatos=m.mandatos)
-    escrever("metodologia.html", "metodologia.html", excluidas=m.excluidas, acoes=m.acoes,
-             ipca_referencia=m.ipca_referencia, nomes_estagios=orc.NOMES_ESTAGIOS,
-             tolerancia=orc.TOLERANCIA_CONFERENCIA)
-    escrever("quem-faz.html", "quem_faz.html")
-    escrever("dados.html", "dados.html", manifesto=manifesto)
-    escrever("404.html", "404.html")
-    return saida
+    destino = saida / "dados" / "site.json"
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text(json.dumps(dados, ensure_ascii=False, indent=1), encoding="utf-8")
+    return destino

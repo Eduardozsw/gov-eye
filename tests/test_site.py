@@ -1,3 +1,4 @@
+import json
 from datetime import date
 
 import pytest
@@ -6,7 +7,7 @@ from conftest import escrever_yaml
 from goveye import banco
 from goveye import curadoria as cur
 from goveye.site import formato, svg, textos
-from goveye.site.gerar import ErroPublicacao, gerar
+from goveye.site.gerar import ErroPublicacao, exportar
 
 HOJE = date(2026, 6, 30)
 
@@ -17,36 +18,38 @@ def banco_teste(tmp_path, pasta_curadoria, orcamento_sintetico):
     return banco.construir(cur.carregar(pasta_curadoria), siop, portal, ipca, tmp_path / "teste.sqlite")
 
 
-def _gerar(modo, banco_teste, pasta_curadoria, tmp_path):
-    return gerar(modo, banco=banco_teste, saida=tmp_path / modo, curadoria=pasta_curadoria, hoje=HOJE)
+def _exportar(modo, banco_teste, pasta_curadoria, tmp_path) -> dict:
+    caminho = exportar(modo, banco=banco_teste, saida=tmp_path / modo, curadoria=pasta_curadoria, hoje=HOJE)
+    return json.loads(caminho.read_text(encoding="utf-8"))
 
 
-def test_previa_mostra_pendentes_com_selo(banco_teste, pasta_curadoria, tmp_path):
-    saida = _gerar("previa", banco_teste, pasta_curadoria, tmp_path)
-    html = (saida / "tema" / "combustiveis.html").read_text(encoding="utf-8")
-    assert "PRÉVIA INTERNA" in html
-    assert "pendente de revisão" in html
-    assert "Prazo previsto no ato original terminou" in html
-    assert 'name="robots" content="noindex' in html
-    assert (saida / "ato" / "mp-teste-2.html").exists()
+def _tema(dados: dict, id_: str) -> dict:
+    return next(t for t in dados["temas"] if t["id"] == id_)
+
+
+def test_previa_mostra_pendentes_marcados(banco_teste, pasta_curadoria, tmp_path):
+    dados = _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
+    assert dados["previa"]
+    eventos = _tema(dados, "combustiveis")["series"][0]["eventos"]
+    assert any(e["pendente"] for e in eventos)
+    assert any(e["causa"] == "Prazo previsto no ato original terminou" and e["expiracao"] for e in eventos)
+    assert "mp-teste-2" in {a["id"] for a in dados["atos"]}
 
 
 def test_publicacao_para_no_primeiro_evento_pendente(banco_teste, pasta_curadoria, tmp_path):
-    saida = _gerar("publicacao", banco_teste, pasta_curadoria, tmp_path)
-    html = (saida / "tema" / "combustiveis.html").read_text(encoding="utf-8")
-    assert "PRÉVIA" not in html
-    assert "pendente de revisão" not in html
-    assert "R$ 0,5000" in html  # valor inicial, revisado duas vezes
-    assert "Medida Provisória nº 2.000/2022" not in html  # eventos seguintes ainda pendentes
-    assert "eventos seguintes ainda estão em revisão" in html
-    assert not (saida / "ato" / "mp-teste-2.html").exists()
+    dados = _exportar("publicacao", banco_teste, pasta_curadoria, tmp_path)
+    serie = _tema(dados, "combustiveis")["series"][0]
+    assert not dados["previa"]
+    assert [e["valor"] for e in serie["eventos"]] == ["R$ 0,5000"]  # valor inicial, revisado duas vezes
+    assert serie["interrompida"]  # eventos seguintes ainda pendentes
+    assert "mp-teste-2" not in {a["id"] for a in dados["atos"]}
+    assert "Medida Provisória nº 2.000/2022" not in json.dumps(dados, ensure_ascii=False)
 
 
 def test_publicacao_esconde_orcamento_com_mapeamento_pendente(banco_teste, pasta_curadoria, tmp_path):
-    saida = _gerar("publicacao", banco_teste, pasta_curadoria, tmp_path)
-    html = (saida / "tema" / "politica-y.html").read_text(encoding="utf-8")
-    assert "ainda está em revisão" in html
-    assert "<svg" not in html
+    o = _tema(_exportar("publicacao", banco_teste, pasta_curadoria, tmp_path), "politica-y")["orcamento"]
+    assert not o["liberado"]
+    assert o["grafico_corrigido"] == "" and o["tabela"] == [] and o["frases"] == []
 
 
 def test_publicacao_bloqueia_ano_com_divergencia(tmp_path, pasta_curadoria, orcamento_sintetico):
@@ -54,26 +57,40 @@ def test_publicacao_bloqueia_ano_com_divergencia(tmp_path, pasta_curadoria, orca
     cur.registrar_revisao("acao", "politica-y:AAAA", "Curador", date(2026, 1, 2), pasta_curadoria)
     siop, portal, ipca = orcamento_sintetico
     caminho = banco.construir(cur.carregar(pasta_curadoria), siop, portal, ipca, tmp_path / "b.sqlite")
-    saida = _gerar("publicacao", caminho, pasta_curadoria, tmp_path)
-    html = (saida / "tema" / "politica-y.html").read_text(encoding="utf-8")
-    assert "<svg" in html
-    assert "2022: valores em conferência" in html  # SIOP e Portal divergem no pago de 2022
-    assert "Em 2021, o orçamento autorizou" in html
+    o = _tema(_exportar("publicacao", caminho, pasta_curadoria, tmp_path), "politica-y")["orcamento"]
+    assert "<svg" in o["grafico_corrigido"]
+    textos_ = [f["texto"] for f in o["frases"]]
+    assert "2022: valores em conferência (as fontes oficiais divergem)." in textos_  # pago de 2022 diverge
+    assert any(t.startswith("Em 2021, o orçamento autorizou") for t in textos_)
+    assert o["divergencias"] == []  # a lista detalhada só aparece na prévia
 
 
 def test_publicacao_recusa_campos_a_preencher(banco_teste, pasta_curadoria, tmp_path):
     (pasta_curadoria / "site.yaml").write_text("responsavel:\n  nome: PREENCHER\n", encoding="utf-8")
     with pytest.raises(ErroPublicacao):
-        _gerar("publicacao", banco_teste, pasta_curadoria, tmp_path)
+        _exportar("publicacao", banco_teste, pasta_curadoria, tmp_path)
 
 
 def test_manifesto_dos_dados(banco_teste, pasta_curadoria, tmp_path):
     import hashlib
 
-    saida = _gerar("previa", banco_teste, pasta_curadoria, tmp_path)
-    for linha in (saida / "dados" / "SHA256SUMS.txt").read_text(encoding="utf-8").splitlines():
+    dados = _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
+    pasta = tmp_path / "previa" / "public" / "dados"
+    for linha in (pasta / "SHA256SUMS.txt").read_text(encoding="utf-8").splitlines():
         soma, nome = linha.split("  ")
-        assert hashlib.sha256((saida / "dados" / nome).read_bytes()).hexdigest() == soma
+        assert hashlib.sha256((pasta / nome).read_bytes()).hexdigest() == soma
+    assert {a["nome"] for a in dados["manifesto"]} >= {"eventos.csv", "goveye.json"}
+
+
+def test_indice_de_busca_aponta_para_paginas_existentes(banco_teste, pasta_curadoria, tmp_path):
+    dados = _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
+    temas = {t["id"] for t in dados["temas"]}
+    atos = {a["id"] for a in dados["atos"]}
+    assert dados["sugestoes"]
+    for item in dados["busca"]:
+        partes = item["href"].strip("/").split("/")
+        assert (partes[0] == "tema" and partes[1] in temas) or (partes[0] == "ato" and partes[1] in atos), item
+    assert any(i["tipo"] == "Ato oficial" for i in dados["busca"])
 
 
 def test_formatos_brasileiros():
@@ -110,8 +127,6 @@ def test_serie_nao_passa_da_data_de_levantamento(tmp_path, pasta_curadoria, orca
     escrever_yaml(pasta_curadoria / "temas.yaml", temas)
     siop, portal, ipca = orcamento_sintetico
     caminho = banco.construir(cur.carregar(pasta_curadoria), siop, portal, ipca, tmp_path / "b.sqlite")
-    saida = _gerar("previa", caminho, pasta_curadoria, tmp_path)
-    html = (saida / "tema" / "combustiveis.html").read_text(encoding="utf-8")
-    assert "Série levantada até 30/06/2023" in html
-    inicio = (saida / "index.html").read_text(encoding="utf-8")
-    assert "série levantada até 30/06/2023" in inicio
+    serie = _tema(_exportar("previa", caminho, pasta_curadoria, tmp_path), "combustiveis")["series"][0]
+    assert serie["levantado_ate"] == "30/06/2023"
+    assert serie["valor_atual"] is None  # sem levantamento até hoje, não há valor atual

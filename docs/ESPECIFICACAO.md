@@ -187,7 +187,7 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Agendamento | GitHub Actions (cron) | Gratuito dentro da cota mensal de minutos para repositórios privados; a coleta diária do MVP cabe nela |
 | Armazenamento | YAML de curadoria e instantâneos JSON das coletas, versionados; SQLite derivado, reconstruído a cada carga (ADR 0001) | Simples, auditável, histórico via git |
 | Revisão humana | Fila de eventos pendentes em arquivos YAML revisados via pull request | Toda aprovação fica registrada; o histórico de revisão de cada evento é publicado junto com os dados |
-| Site | Gerador em Python (Jinja2) com gráficos SVG feitos no servidor (ADR 0001) | Rápido em celular, sem JavaScript, uma linguagem só |
+| Site | Next.js com exportação estática; regras, frases e gráficos SVG continuam no Python, que exporta `site.json` (ADR 0002) | Identidade visual e busca no navegador sem perder as regras num lugar só; hospedagem sem servidor |
 | Hospedagem | Cloudflare Pages | Custo zero com repositório privado (o GitHub Pages exige plano pago nesse caso) e permite uso comercial (o plano gratuito da Vercel é só para uso não comercial) |
 | Dados abertos | CSV e JSON publicados junto com o site, licença CC BY-NC 4.0 | Princípio P6 |
 

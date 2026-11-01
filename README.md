@@ -13,8 +13,10 @@ Requer [uv](https://docs.astral.sh/uv/).
 ```sh
 uv run goveye validar               # confere a curadoria e mostra quantos itens faltam revisar
 uv run goveye carregar              # monta data/goveye.sqlite a partir da curadoria e de data/coletas
-uv run goveye site                  # gera a prévia em site/ (com itens pendentes marcados)
+uv run goveye site                  # exporta a prévia para web/dados/site.json (itens pendentes marcados)
 uv run goveye site --modo publicacao  # só itens revisados; recusa se site.yaml tiver PREENCHER
+cd web && npm install && npm run dev  # abre o site em http://localhost:3000
+cd web && npm run build             # site estático em web/out/
 uv run pytest                       # testes (sem rede)
 ```
 
@@ -50,7 +52,8 @@ src/goveye/fontes/   verificação de cada fonte oficial (Fase 0)
 src/goveye/coleta/   coletores: DOU e orçamento
 src/goveye/curadoria.py  leitura e validação dos YAML
 src/goveye/banco.py  banco SQLite (derivado, reconstruído a cada carga)
-src/goveye/site/     gerador do site estático (Jinja2 + SVG)
+src/goveye/site/     regras de publicação, frases, gráficos SVG e exportação para o front-end
+web/                 front-end em Next.js (ADR 0002)
 tests/               testes com fixtures fictícias
 ```
 
