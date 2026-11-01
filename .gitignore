@@ -21,3 +21,8 @@ data/raw/
 .grok/
 .opencode/
 .pi/
+
+# Produtos derivados (reconstruídos pelo pipeline)
+data/goveye.sqlite
+data/goveye.tmp
+site/

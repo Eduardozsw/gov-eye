@@ -1,0 +1,454 @@
+ano,acao,nome_acao,programa,nome_programa,subfuncao,atualizada,pago
+2018,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,858225190.0,232530390.0
+2018,00AF,Integralização de Cotas ao Fundo de Arrendamento Residencial - FAR,2049,Moradia Digna,845,2634937105.0,2634937105.0
+2018,00CW,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Urbanas (Lei nº 11.977, de 2009)",2049,Moradia Digna,846,1010354626.0,1010354626.0
+2018,00CX,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Rurais (Lei nº 11.977, de 2009)",2049,Moradia Digna,846,412293299.0,412293299.0
+2018,00CY,"Transferências ao Fundo de Desenvolvimento Social - FDS (Lei nº 11.977, de 2009)",2049,Moradia Digna,845,519075963.0,438466354.0
+2018,00QI,Seguros Habitacionais de Financiamento Imobiliário para Pessoal da Marinha,2108,Programa de Gestão e Manutenção do Ministério da Defesa,482,3440000.0,1359764.0
+2018,0E64,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com menos de 50.000 Habitantes (Lei n 11.977, de 2009)",2049,Moradia Digna,846,121244825.0,2575479.0
+2018,0EB3,"Concessão de Subvenção Econômica para a Aquisição de Materiais de Construção destinados à reforma, ampliação ou à conclusão de Unidades Habitacionais – Cartão Reforma (Lei nº 13.439 de 27 de abril de 2017)",2049,Moradia Digna,845,0.0,0.0
+2018,10S3,Apoio à Urbanização de Assentamentos Precários,2049,Moradia Digna,451,37327967.0,24013058.0
+2018,10S6,Apoio à Melhoria das Condições de Habitabilidade de Assentamentos Precários,2049,Moradia Digna,451,9701655.0,4687638.0
+2018,10SJ,Apoio à Produção ou Melhoria Habitacional de Interesse Social,2049,Moradia Digna,482,9414112.0,988086.0
+2018,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0553,Atuação Legislativa da Câmara dos Deputados,122,10500000.0,366.0
+2018,147J,Construção dos Institutos de Saúde da Mulher e da Criança e de Infectologia,2015,Fortalecimento do Sistema Único de Saúde (SUS),572,0.0,0.0
+2018,14XS,Construção da Casa da Mulher Brasileira e de Centros de Atendimento às Mulheres nas Regiões de Fronteira Seca,2016,Políticas para as Mulheres: Promoção da Igualdade e Enfrentamento à Violência,422,1750000.0,1325754.0
+2018,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,2112,Programa de Gestão e Manutenção do Ministério da Justiça e Segurança Pública,122,635680.0,32627.0
+2018,15Q1,Aquisição de Imóvel Rural para Estabelecimento de Reserva Indígena no Município de Tuntum/MA,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,14155920.0,0.0
+2018,15QT,Aquisição de Imóvel Rural no Estado da Bahia/BA,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,1730000.0,0.0
+2018,20GG,Promoção da Inclusão Produtiva de Famílias em Situação de Pobreza,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,15353448.0,1118355.0
+2018,20IT,Aperfeiçoamento da disseminação de informações do PBF e do Cadastro Único.,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,7681733.0,6286110.0
+2018,20UF,Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,125,49707323.0,12123215.0
+2018,20VQ,Gestão Socioambiental em Territórios de Povos e Comunidades Tradicionais e Agricultores Familiares e em Terras Indígenas,2078,Conservação e Uso Sustentável da Biodiversidade,541,796175.0,530491.0
+2018,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,1495915405.0,1370885068.0
+2018,210W,Apoio à Organização Econômica e Promoção da Cidadania de Mulheres Rurais,2012,Fortalecimento e Dinamização da Agricultura Familiar,606,3584000.0,162829.0
+2018,215O,Gestão Ambiental e Etnodesenvolvimento,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,15205681.0,6720498.0
+2018,215Q,Promoção dos Direitos dos Povos Indígenas de Recente Contato,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,1268731.0,668084.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2106,"Programa de Gestão e Manutenção do Ministério da Ciência, Tecnologia, Inovações e Comunicações",122,2106621.0,1394716.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2110,Programa de Gestão e Manutenção do Ministério da Fazenda,122,2324246.0,1929923.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2108,Programa de Gestão e Manutenção do Ministério da Defesa,122,111406551.0,117805166.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0566,Prestação Jurisdicional Militar,122,2020800.0,1815763.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0553,Atuação Legislativa da Câmara dos Deputados,122,10546513.0,7791653.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0570,Gestão do Processo Eleitoral,122,495245.0,192750.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0550,Controle Externo,122,1740883.0,1248547.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2125,"Programa de Gestão e Manutenção do Ministério do Planejamento, Desenvolvimento e Gestão",122,4967213.0,4559515.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0569,Prestação Jurisdicional na Justiça Federal,122,107609180.0,104945297.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,1389,Controle da Atuação Administrativa e Financeira no Poder Judiciário,122,1050000.0,242976.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2115,Programa de Gestão e Manutenção do Ministério da Saúde,122,2845000.0,2179644.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2126,"Programa de Gestão e Manutenção do Ministério dos Transportes, Portos e Aviação Civil",122,3259388.0,2431464.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2130,Programa de Gestão e Manutenção da Advocacia-Geral da União,122,800000.0,342634.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2133,Programa de Gestão e Manutenção do Ministério da Transparência e Controladoria-Geral da União,122,610278.0,345796.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2129,Prestação de Assistência Jurídica Gratuita pela Defensoria Pública da União,122,150000.0,74134.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2123,Programa de Gestão e Manutenção do Ministério do Esporte,122,1226598.0,994762.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0581,Defesa da Ordem Jurídica,122,118557949.0,118042451.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2124,Programa de Gestão e Manutenção do Ministério do Meio Ambiente,122,1483856.0,937484.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2101,Programa de Gestão e Manutenção da Presidência da República,122,8971952.0,6982585.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0567,Prestação Jurisdicional no Distrito Federal,122,19215221.0,19215221.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0568,Prestação Jurisdicional no Superior Tribunal de Justiça,122,2153805.0,2061542.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2134,Programa de Gestão e Manutenção do Ministério dos Direitos Humanos,122,1300000.0,824001.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2100,Aprimoramento do Ministério Público,122,450000.0,179938.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2118,Programa de Gestão e Manutenção do Ministério das Relações Exteriores,122,283142033.0,279174278.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2107,Programa de Gestão e Manutenção do Ministério da Cultura,122,1476452.0,1302130.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2131,Programa de Gestão e Manutenção do Ministério do Trabalho,122,1055299.0,1030266.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2121,"Programa de Gestão e Manutenção do Ministério da Indústria, Comércio Exterior e Serviços",122,323275.0,233550.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2122,Programa de Gestão e Manutenção do Ministério do Desenvolvimento Social,122,1583696.0,1064738.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2105,"Programa de Gestão e Manutenção do Ministério da Agricultura, Pecuária e Abastecimento",122,1472355.0,858359.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2112,Programa de Gestão e Manutenção do Ministério da Justiça e Segurança Pública,122,10119513.0,7807609.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0571,Prestação Jurisdicional Trabalhista,122,190551400.0,187597936.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2111,Programa de Gestão e Manutenção do Ministério da Integração Nacional,122,1422896.0,857628.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2109,Programa de Gestão e Manutenção do Ministério da Educação,122,10369426.0,7195961.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0565,Prestação Jurisdicional do Supremo Tribunal Federal,122,1400000.0,923619.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2119,Programa de Gestão e Manutenção do Ministério de Minas e Energia,122,1957425.0,1355051.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0551,Atuação Legislativa do Senado Federal,122,1122000.0,1118859.0
+2018,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2128,Programa de Gestão e Manutenção do Ministério do Turismo,122,716284.0,402417.0
+2018,218B,Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres,2016,Políticas para as Mulheres: Promoção da Igualdade e Enfrentamento à Violência,422,46124605.0,23249243.0
+2018,218Z,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos - FCDF,2110,Programa de Gestão e Manutenção do Ministério da Fazenda,122,627853939.0,627844543.0
+2018,2384,Direitos Sociais e Culturais e à Cidadania,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,14952975.0,8368222.0
+2018,3921,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,2015,Fortalecimento do Sistema Único de Saúde (SUS),511,28546680.0,2565861.0
+2018,6414,Sistema Nacional para Identificação e Seleção de Público-Alvo para os Programas Sociais do Governo Federal - Cadastro Único,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",126,16002206.0,11342524.0
+2018,7684,Saneamento Básico em Aldeias Indígenas para Prevenção e Controle de Agravos,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,511,51527000.0,28783373.0
+2018,8305,"Atenção de Referência e Pesquisa Clínica em Patologias de Alta Complexidade da Mulher, da Criança e do Adolescente e em Doenças Infecciosas",2015,Fortalecimento do Sistema Único de Saúde (SUS),571,70968993.0,64491984.0
+2018,8442,"Transferência de Renda Diretamente às Famílias em Condição de Pobreza e Extrema Pobreza (Lei nº 10.836, de 2004)",2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,29425690000.0,29425690000.0
+2018,8446,Serviço de Apoio à Gestão Descentralizada do Programa Bolsa Família,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,510000000.0,470733472.0
+2018,8635,Preservação Cultural dos Povos Indígenas,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,391,3680243.0,2367551.0
+2018,8873,Apoio ao Fortalecimento Institucional dos Agentes Integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2049,Moradia Digna,482,70000.0,0.0
+2018,8875,Apoio à Prestação de Serviços de Assistência Técnica para Habitação de Interesse Social,2049,Moradia Digna,482,73619.0,0.0
+2019,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,925213394.0,358979278.0
+2019,00AF,Integralização de Cotas ao Fundo de Arrendamento Residencial - FAR,2049,Moradia Digna,845,3429184664.0,3429184664.0
+2019,00CW,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Urbanas (Lei nº 11.977, de 2009)",2049,Moradia Digna,846,450000001.0,450000000.0
+2019,00CX,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Rurais (Lei nº 11.977, de 2009)",2049,Moradia Digna,846,413645053.0,413645053.0
+2019,00CY,"Transferências ao Fundo de Desenvolvimento Social - FDS (Lei nº 11.977, de 2009)",2049,Moradia Digna,845,268228362.0,268228362.0
+2019,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,2108,Programa de Gestão e Manutenção do Ministério da Defesa,482,8070000.0,46085.0
+2019,00QI,Seguros Habitacionais de Financiamento Imobiliário para Pessoal da Marinha,2108,Programa de Gestão e Manutenção do Ministério da Defesa,482,1405023.0,1337586.0
+2019,00RH,"Auxílio Emergencial Pecuniário Assistencial aos Beneficiários do Bolsa Família, do BPC e da RMV Afetados por Calamidade em Brumadinho-MG",2037,Consolidação do Sistema Único de Assistência Social (SUAS),244,1368600.0,1250531.0
+2019,09HB,"Contribuição da União, de suas Autarquias e Fundações para o Custeio do Regime de Previdência dos Servidores Públicos Federais",2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",846,2929165.0,971742.0
+2019,0E64,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com menos de 50.000 Habitantes (Lei n 11.977, de 2009)",2049,Moradia Digna,846,2000000.0,0.0
+2019,10S3,Apoio à Urbanização de Assentamentos Precários,2049,Moradia Digna,451,53020162.0,33178059.0
+2019,10S6,Apoio à Melhoria das Condições de Habitabilidade de Assentamentos Precários,2049,Moradia Digna,451,18900000.0,4925414.0
+2019,10SJ,Apoio à Produção ou Melhoria Habitacional de Interesse Social,2049,Moradia Digna,482,3500000.0,0.0
+2019,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0553,Atuação Legislativa da Câmara dos Deputados,122,14418663.0,315000.0
+2019,14XS,Construção da Casa da Mulher Brasileira e de Centros de Atendimento às Mulheres nas Regiões de Fronteira Seca,2016,Políticas para as Mulheres: Promoção da Igualdade e Enfrentamento à Violência,422,19231462.0,0.0
+2019,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,2112,Programa de Gestão e Manutenção do Ministério da Justiça e Segurança Pública,122,1590000.0,161095.0
+2019,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",122,0.0,0.0
+2019,2000,Administração da Unidade,2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",122,75740000.0,44968462.0
+2019,2004,"Assistência Médica e Odontológica aos Servidores Civis, Empregados, Militares e seus Dependentes",2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",301,645312.0,510490.0
+2019,20GG,Promoção da Inclusão Produtiva de Famílias em Situação de Pobreza,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,13352313.0,36040.0
+2019,20IT,Aperfeiçoamento da disseminação de informações do PBF e do Cadastro Único.,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,11454400.0,6768548.0
+2019,20TP,Ativos Civis da União,2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",122,54523148.0,47019775.0
+2019,20UF,"Regularização, Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados",2065,Proteção e Promoção dos Direitos dos Povos Indígenas,125,37022252.0,23123309.0
+2019,20VQ,Gestão Socioambiental em Territórios de Povos e Comunidades Tradicionais e Agricultores Familiares e em Terras Indígenas,2078,Conservação e Uso Sustentável da Biodiversidade,541,760000.0,114674.0
+2019,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,1472650000.0,1339167494.0
+2019,20Z9,Apoio à Competitividade e à Modernização da Construção Civil com Sustentabilidade Ambiental,2049,Moradia Digna,665,190000.0,0.0
+2019,210W,Apoio à Organização Econômica e Promoção da Cidadania de Mulheres Rurais,2012,Fortalecimento e Dinamização da Agricultura Familiar,606,400000.0,0.0
+2019,212B,"Benefícios Obrigatórios aos Servidores Civis, Empregados, Militares e seus Dependentes",2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",331,2351616.0,1766836.0
+2019,215O,Gestão Ambiental e Etnodesenvolvimento,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,18450853.0,6582058.0
+2019,215Q,Promoção dos Direitos dos Povos Indígenas de Recente Contato,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,1756370.0,1039409.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2106,"Programa de Gestão e Manutenção do Ministério da Ciência, Tecnologia, Inovações e Comunicações",122,2140688.0,1556400.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2108,Programa de Gestão e Manutenção do Ministério da Defesa,122,123232000.0,126094390.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0566,Prestação Jurisdicional Militar,122,1880000.0,105032.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2111,Programa de Gestão e Manutenção do Ministério do Desenvolvimento Regional,122,1927687.0,962955.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0553,Atuação Legislativa da Câmara dos Deputados,122,9890477.0,7669593.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0570,Gestão do Processo Eleitoral,122,747343.0,585030.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0550,Controle Externo,122,740883.0,481091.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2125,"Programa de Gestão e Manutenção do Ministério do Planejamento, Desenvolvimento e Gestão",122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0569,Prestação Jurisdicional na Justiça Federal,122,8991321.0,5833414.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,1389,Controle da Atuação Administrativa e Financeira no Poder Judiciário,122,1064000.0,205385.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2115,Programa de Gestão e Manutenção do Ministério da Saúde,122,2924000.0,2463609.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2130,Programa de Gestão e Manutenção da Advocacia-Geral da União,122,800000.0,649880.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2122,Programa de Gestão e Manutenção do Ministério da Cidadania,122,4229576.0,3527893.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2129,Prestação de Assistência Jurídica Gratuita pela Defensoria Pública da União,122,159362.0,70815.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2123,Programa de Gestão e Manutenção do Ministério do Esporte,122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0581,Defesa da Ordem Jurídica,122,4847623.0,2030985.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2124,Programa de Gestão e Manutenção do Ministério do Meio Ambiente,122,1272378.0,779193.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2101,Programa de Gestão e Manutenção da Presidência da República,122,8007558.0,6447918.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0567,Prestação Jurisdicional no Distrito Federal,122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0568,Prestação Jurisdicional no Superior Tribunal de Justiça,122,2255000.0,1978741.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2100,Aprimoramento do Ministério Público,122,1270000.0,1030875.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2118,Programa de Gestão e Manutenção do Ministério das Relações Exteriores,122,284300500.0,278883753.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2107,Programa de Gestão e Manutenção do Ministério da Cultura,122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2131,Programa de Gestão e Manutenção do Ministério do Trabalho,122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2121,"Programa de Gestão e Manutenção do Ministério da Indústria, Comércio Exterior e Serviços",122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2133,Programa de Gestão e Manutenção da Controladoria-Geral da União,122,650000.0,507946.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2126,Programa de Gestão e Manutenção do Ministério da Infraestrutura,122,3358038.0,2257326.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2135,Programa de Gestão e Manutenção do Ministério da Segurança Pública,122,0.0,0.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2105,"Programa de Gestão e Manutenção do Ministério da Agricultura, Pecuária e Abastecimento",122,3035457.0,1982063.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2112,Programa de Gestão e Manutenção do Ministério da Justiça e Segurança Pública,122,11441990.0,9197519.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2110,Programa de Gestão e Manutenção do Ministério da Economia,122,10063035.0,8433834.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0571,Prestação Jurisdicional Trabalhista,122,5797599.0,2290058.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2109,Programa de Gestão e Manutenção do Ministério da Educação,122,9600668.0,7370706.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0565,Prestação Jurisdicional do Supremo Tribunal Federal,122,1040000.0,959854.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2119,Programa de Gestão e Manutenção do Ministério de Minas e Energia,122,3147196.0,1621109.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0551,Atuação Legislativa do Senado Federal,122,1320000.0,481703.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2128,Programa de Gestão e Manutenção do Ministério do Turismo,122,782929.0,573819.0
+2019,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",122,1886728.0,1633901.0
+2019,216X,Funcionamento dos Conselhos e Comissões da Presidência da República,2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",122,559950.0,382972.0
+2019,218B,Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres,2016,Políticas para as Mulheres: Promoção da Igualdade e Enfrentamento à Violência,422,41118349.0,27500176.0
+2019,218Z,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos - FCDF,2110,Programa de Gestão e Manutenção do Ministério da Economia,122,639374500.0,638614570.0
+2019,2384,Direitos Sociais e Culturais e à Cidadania,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,423,19834534.0,6749892.0
+2019,3921,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,2015,Fortalecimento do Sistema Único de Saúde (SUS),511,45860166.0,5485311.0
+2019,4641,Publicidade de Utilidade Pública,2134,"Programa de Gestão e Manutenção do Ministério da Mulher, da Família e dos Direitos Humanos",131,1500000.0,0.0
+2019,6414,Sistema Nacional para Identificação e Seleção de Público-Alvo para os Programas Sociais do Governo Federal - Cadastro Único,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",126,13296636.0,9674429.0
+2019,7684,Saneamento Básico em Aldeias Indígenas para Prevenção e Controle de Agravos,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,511,41600000.0,22516646.0
+2019,7XE2,Implantação do Hospital da Mulher,2080,Educação de qualidade para todos,364,172159.0,0.0
+2019,8305,"Atenção de Referência e Pesquisa Clínica em Patologias de Alta Complexidade da Mulher, da Criança e do Adolescente e em Doenças Infecciosas",2015,Fortalecimento do Sistema Único de Saúde (SUS),571,103684221.0,91140817.0
+2019,8442,"Transferência de Renda Diretamente às Famílias em Condição de Pobreza e Extrema Pobreza (Lei nº 10.836, de 2004)",2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,32481620000.0,32481620000.0
+2019,8446,Serviço de Apoio à Gestão Descentralizada do Programa Bolsa Família,2019,"Inclusão social por meio do Bolsa Família, do Cadastro Único e da articulação de políticas sociais",244,550770000.0,510162506.0
+2019,8635,Preservação Cultural dos Povos Indígenas,2065,Proteção e Promoção dos Direitos dos Povos Indígenas,391,3496232.0,367591.0
+2019,8873,Apoio ao Fortalecimento Institucional dos Agentes Integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2049,Moradia Digna,482,2000000.0,0.0
+2019,8875,Apoio à Prestação de Serviços de Assistência Técnica para Habitação de Interesse Social,2049,Moradia Digna,482,0.0,0.0
+2020,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,763985975.0,266247048.0
+2020,00AF,Integralização de Cotas ao Fundo de Arrendamento Residencial - FAR,2220,Moradia Digna,845,1684071396.0,1684071396.0
+2020,00CW,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Urbanas (Lei nº 11.977, de 2009)",2220,Moradia Digna,846,267709017.0,267709017.0
+2020,00CX,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Rurais (Lei nº 11.977, de 2009)",2220,Moradia Digna,846,146598386.0,146598386.0
+2020,00CY,"Transferências ao Fundo de Desenvolvimento Social - FDS (Lei nº 11.977, de 2009)",2220,Moradia Digna,845,449507639.0,449507639.0
+2020,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,50400000.0,13460210.0
+2020,00QI,Seguros Habitacionais de Financiamento Imobiliário para Pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,4350000.0,4044011.0
+2020,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,643538232.0,639224954.0
+2020,00S4,"Auxílio Emergencial de Proteção Social a Pessoas em Situação de Vulnerabilidade, Devido à Pandemia da COVID-19",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,254240000000.0,229905730367.0
+2020,00SF,Auxílio Emergencial Residual para Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (COVID-19),5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,67600886209.0,63039703716.0
+2020,10S3,Apoio à Urbanização de Assentamentos Precários,2220,Moradia Digna,451,138533723.0,16031981.0
+2020,10S6,Apoio à Urbanização de Assentamentos Precários por meio do Fundo Nacional de Habitação de Interesse Social,2220,Moradia Digna,451,35910189.0,1919504.0
+2020,10SJ,Apoio à Produção ou Melhoria Habitacional de Interesse Social,2220,Moradia Digna,482,40931766.0,48300.0
+2020,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,0.0,0.0
+2020,14XS,Implementação da Casa da Mulher Brasileira e de Centros de Atendimento às Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,62473075.0,66306.0
+2020,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,122,1096609.0,98984.0
+2020,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",122,0.0,0.0
+2020,20IT,"Aperfeiçoamento dos Mecanismos de Gestão, de Disseminação de Informações para o Público do Programa Bolsa Família e de Articulação com Outras Políticas Públicas",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,4025126.0,3877707.0
+2020,20UF,"Regularização, Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados",0617,Proteção e Promoção dos Direitos dos Povos Indígenas,125,30348330.0,20972409.0
+2020,20UF,"Regularização, Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados",5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",125,0.0,0.0
+2020,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5022,"Proteção, Promoção e Recuperação da Saúde Indígena",423,1456130146.0,1344422176.0
+2020,20Z9,Apoio à Competitividade e à Modernização da Construção Civil com Sustentabilidade Ambiental,2220,Moradia Digna,665,234426.0,0.0
+2020,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,10770378.0,7266717.0
+2020,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,200000.0,72523.0
+2020,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,541222804.0,543438645.0
+2020,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,4522145.0,3877627.0
+2020,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,15497043.0,11495952.0
+2020,218B,Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,24650000.0,7291132.0
+2020,21BO,Proteção e Promoção dos Direitos dos Povos Indígenas,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",423,0.0,0.0
+2020,21BO,Proteção e Promoção dos Direitos dos Povos Indígenas,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,423,45935028.0,22314373.0
+2020,21C0,Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavirus,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,423,18340000.0,14971781.0
+2020,3921,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5023,Vigilância em Saúde,511,25621000.0,4715297.0
+2020,7684,Saneamento Básico em Aldeias Indígenas para Prevenção de doenças e Agravos,5022,"Proteção, Promoção e Recuperação da Saúde Indígena",511,23868555.0,16327242.0
+2020,8305,"Atenção de Referência e Pesquisa Clínica em Patologias de Alta Complexidade da Mulher, da Criança e do Adolescente e em Doenças Infecciosas",5020,"Desenvolvimento Científico, Tecnológico e Produtivo em Saúde",571,182252179.0,101478472.0
+2020,8442,"Transferência de Renda Diretamente às Famílias em Condição de Pobreza e Extrema Pobreza (Lei nº 10.836, de 2004)",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,21607145078.0,18880528607.0
+2020,8446,Serviço de Apoio à Gestão Descentralizada do Programa Bolsa Família,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,565770000.0,516997967.0
+2020,8866,Apoio à Regularização Fundiária em Áreas Urbanas,2220,Moradia Digna,127,2200000.0,0.0
+2020,8873,Apoio ao Fortalecimento Institucional dos Agentes Integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2220,Moradia Digna,482,2473127.0,4074.0
+2020,8875,Apoio à Melhoria Habitacional,2220,Moradia Digna,482,494623.0,0.0
+2021,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,1208633917.0,182486436.0
+2021,00AF,Integralização de Cotas ao Fundo de Arrendamento Residencial - FAR,2220,Moradia Digna,845,1074100000.0,1074100000.0
+2021,00CX,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Rurais (Lei nº 11.977, de 2009)",2220,Moradia Digna,846,76080463.0,23823341.0
+2021,00CY,"Transferências ao Fundo de Desenvolvimento Social – FDS (Lei nº 11.977, de 2009)",2220,Moradia Digna,845,286401495.0,286401495.0
+2021,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,61050000.0,69447.0
+2021,00QI,Seguros Habitacionais de Financiamento Imobiliário para Pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,4050000.0,3716191.0
+2021,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,641287506.0,615944440.0
+2021,00S4,"Auxílio Emergencial de Proteção Social a Pessoas em Situação de Vulnerabilidade, Devido à Pandemia da COVID-19",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,4173629579.0,4690668.0
+2021,00SI,Auxílio Emergencial 2021 para o Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,62607725000.0,59651207342.0
+2021,0E64,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com menos de 50.000 Habitantes (Lei n 11.977, de 2009)",2220,Moradia Digna,846,40084241.0,0.0
+2021,10S3,Apoio à Urbanização de Assentamentos Precários,2220,Moradia Digna,451,62620929.0,12468319.0
+2021,10S6,Apoio à Urbanização de Assentamentos Precários por meio do Fundo Nacional de Habitação de Interesse Social,2220,Moradia Digna,451,29177210.0,408376.0
+2021,10SJ,Apoio à Produção de Interesse Social,2220,Moradia Digna,482,58086737.0,19223.0
+2021,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,21000000.0,2999.0
+2021,14XS,Implementação da Casa da Mulher Brasileira e de Centros de Atendimento às Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,20050059.0,0.0
+2021,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,122,432777.0,52177.0
+2021,20IT,"Aperfeiçoamento dos Mecanismos de Gestão, de Disseminação de Informações para o Público do Programa Bolsa Família e de Articulação com Outras Políticas Públicas",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,5551034.0,1667688.0
+2021,20UF,"Regularização, Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados",0617,Proteção e Promoção dos Direitos dos Povos Indígenas,125,49140825.0,32778255.0
+2021,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5022,"Proteção, Promoção e Recuperação da Saúde Indígena",423,1541712000.0,1432804510.0
+2021,20Z9,Apoio à Competitividade e à Modernização da Construção Civil com Sustentabilidade Ambiental,2220,Moradia Digna,665,820507.0,0.0
+2021,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,10492000.0,6406120.0
+2021,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,131932.0,119819.0
+2021,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,576760030.0,563323848.0
+2021,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,3850335.0,3741130.0
+2021,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,14032382.0,11525346.0
+2021,218B,Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,1500000.0,500000.0
+2021,21BO,Proteção e Promoção dos Direitos dos Povos Indígenas,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,423,40509425.0,18720641.0
+2021,21C0,Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavirus,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,423,41048750.0,8676475.0
+2021,21CH,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5023,Vigilância em Saúde,511,5000000.0,3699686.0
+2021,21CJ,Saneamento Básico em Aldeias Indígenas para Prevenção de doenças e Agravos,5022,"Proteção, Promoção e Recuperação da Saúde Indígena",511,35500000.0,20588223.0
+2021,21CP,Operacionalização do Auxílio Emergencial 2021 para o Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,122,624575000.0,467162866.0
+2021,21DP,Transferência de Renda para Pagamento dos Benefícios e Auxílios do Programa Auxílio Brasil,5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,9268071257.0,9195057136.0
+2021,21DQ,"Aperfeiçoamento dos Mecanismos de Gestão, de Disseminação de Informações para o Público do Programa Auxílio Brasil e de Articulação com Outras Políticas Públicas",5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,2000000.0,0.0
+2021,21DR,Apoio aos Entes Federados por Meio do Índice de Gestão Descentralizada do Programa Auxílio Brasil – IGD - PAB,5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,93410000.0,0.0
+2021,8305,"Atenção de Referência e Pesquisa Clínica em Patologias de Alta Complexidade da Mulher, da Criança e do Adolescente e em Doenças Infecciosas",5020,"Desenvolvimento Científico, Tecnológico e Produtivo em Saúde",571,434948571.0,403318120.0
+2021,8442,"Transferência de Renda Diretamente às Famílias em Condição de Pobreza e Extrema Pobreza (Lei nº 10.836, de 2004)",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,16093802949.0,16092682791.0
+2021,8446,Serviço de Apoio à Gestão Descentralizada do Programa Bolsa Família,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,457360000.0,453740523.0
+2021,8866,Apoio à Regularização Fundiária em Áreas Urbanas,2220,Moradia Digna,127,3978300.0,0.0
+2021,8873,Apoio ao Fortalecimento Institucional dos Agentes Integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2220,Moradia Digna,482,3250000.0,1679364.0
+2021,8875,Apoio à Melhoria Habitacional,2220,Moradia Digna,482,500000.0,0.0
+2022,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,644846959.0,279518028.0
+2022,00AF,Integralização de Cotas ao Fundo de Arrendamento Residencial - FAR,2220,Moradia Digna,845,964736144.0,664736144.0
+2022,00CW,Subvenção Econômica Destinada a Ampliação do Acesso ao Financiamento Habitacional,2220,Moradia Digna,846,9163479.0,9163479.0
+2022,00CX,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Rurais (Lei nº 11.977, de 2009)",2220,Moradia Digna,846,0.0,0.0
+2022,00CY,"Transferências ao Fundo de Desenvolvimento Social – FDS (Lei nº 11.977, de 2009)",2220,Moradia Digna,845,50000000.0,50000000.0
+2022,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,25000000.0,1823659.0
+2022,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,671043072.0,660570415.0
+2022,00SN,Apoio à implementação da Casa da Mulher Brasileira e de Centros de Atendimento às Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,7242868.0,0.0
+2022,00SW,Apoio à Regularização Fundiária em Áreas Urbanas,2220,Moradia Digna,127,16470236.0,0.0
+2022,00T2,Apoio à Urbanização de Assentamentos Precários,2220,Moradia Digna,451,86709589.0,25158651.0
+2022,00TH,Apoio à Urbanização de Assentamentos Precários por meio do Fundo Nacional de Habitação de Interesse Social,2220,Moradia Digna,451,2729553.0,0.0
+2022,00TI,Apoio à Produção Habitacional de Interesse Social,2220,Moradia Digna,482,36648139.0,0.0
+2022,00TJ,Apoio à Melhoria Habitacional,2220,Moradia Digna,482,100000.0,0.0
+2022,0E64,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com menos de 50.000 Habitantes (Lei n 11.977, de 2009)",2220,Moradia Digna,846,52540000.0,0.0
+2022,10S3,Apoio à Urbanização de Assentamentos Precários,2220,Moradia Digna,451,0.0,0.0
+2022,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,21000000.0,0.0
+2022,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,122,342128.0,0.0
+2022,20UF,"Regularização, Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados",0617,Proteção e Promoção dos Direitos dos Povos Indígenas,125,50164314.0,37881602.0
+2022,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5022,"Proteção, Promoção e Recuperação da Saúde Indígena",423,1656039433.0,1538660168.0
+2022,20Z9,Apoio à Competitividade e à Modernização da Construção Civil com Sustentabilidade Ambiental,2220,Moradia Digna,665,100000.0,0.0
+2022,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,10587290.0,6222921.0
+2022,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,410000.0,166710.0
+2022,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,623891460.0,575985273.0
+2022,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,4536576.0,4347398.0
+2022,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,17862740.0,12882127.0
+2022,218B,Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,1250000.0,150000.0
+2022,21BO,Proteção e Promoção dos Direitos dos Povos Indígenas,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,423,40856053.0,25244615.0
+2022,21CH,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5023,Vigilância em Saúde,511,81845640.0,4056308.0
+2022,21CJ,Saneamento Básico em Aldeias Indígenas para Prevenção de doenças e Agravos,5022,"Proteção, Promoção e Recuperação da Saúde Indígena",511,47236410.0,32231085.0
+2022,21CP,Operacionalização do Auxílio Emergencial 2021 para o Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,122,3300000.0,0.0
+2022,21DP,Transferência de Renda para Pagamento dos Benefícios e Auxílios do Programa Auxílio Brasil,5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,113850558359.0,113029146437.0
+2022,21DP,Transferência de Renda para Pagamento dos Benefícios e Auxílios do Programa Auxílio Brasil,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,0.0,0.0
+2022,21DQ,"Aperfeiçoamento dos Mecanismos de Gestão, de Disseminação de Informações para o Público do Programa Auxílio Brasil e de Articulação com Outras Políticas Públicas",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,0.0,0.0
+2022,21DQ,"Aperfeiçoamento dos Mecanismos de Gestão, de Disseminação de Informações para o Público do Programa Auxílio Brasil e de Articulação com Outras Políticas Públicas",5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,6684953.0,2993431.0
+2022,21DR,Apoio aos Entes Federados por Meio do Índice de Gestão Descentralizada do Programa Auxílio Brasil – IGD - PAB,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,0.0,0.0
+2022,21DR,Apoio aos Entes Federados por Meio do Índice de Gestão Descentralizada do Programa Auxílio Brasil – IGD - PAB,5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,542500000.0,439108285.0
+2022,21DW,Processamento de Dados do Programa Auxílio Brasil - PAB,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,126,0.0,0.0
+2022,21DW,Processamento de Dados do Programa Auxílio Brasil - PAB,5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,126,46000000.0,21646864.0
+2022,8305,"Atenção de Referência e Pesquisa Clínica em Patologias de Alta Complexidade da Mulher, da Criança e do Adolescente e em Doenças Infecciosas",5020,"Desenvolvimento Científico, Tecnológico e Produtivo em Saúde",571,294304915.0,179329982.0
+2022,8873,Apoio ao Fortalecimento Institucional dos Agentes Integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2220,Moradia Digna,482,2682470.0,2549749.0
+2023,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,1289275330.0,448398105.0
+2023,00AF,Integralização de Cotas ao Fundo de Arrendamento Residencial - FAR,2220,Moradia Digna,845,7799902585.0,7649902585.0
+2023,00CW,Subvenção Econômica Destinada a Ampliação do Acesso ao Financiamento Habitacional,2220,Moradia Digna,846,141111383.0,126296189.0
+2023,00CX,"Subvenção Econômica Destinada a Implementação de Projetos de Interesse Social em Áreas Rurais (Lei nº 14.118, de 2021)",2220,Moradia Digna,846,509803328.0,400100000.0
+2023,00CY,"Transferências ao Fundo de Desenvolvimento Social – FDS (Lei nº 14.118, de 2021)",2220,Moradia Digna,845,781840519.0,780840519.0
+2023,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,15000000.0,0.0
+2023,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,675237968.0,640276953.0
+2023,00SN,Apoio à implementação da Casa da Mulher Brasileira e de Centros de Atendimento às Mulheres em Situação de Violência,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,18157565.0,0.0
+2023,00SW,Apoio à Regularização Fundiária em Áreas Urbanas,2220,Moradia Digna,127,871382.0,0.0
+2023,00T2,Apoio à Urbanização de Assentamentos Precários,2220,Moradia Digna,451,113064577.0,11028684.0
+2023,00TH,Apoio à Urbanização de Assentamentos Precários por meio do Fundo Nacional de Habitação de Interesse Social,2220,Moradia Digna,451,563195.0,0.0
+2023,00TI,Apoio à Produção Habitacional de Interesse Social,2220,Moradia Digna,482,15725071.0,0.0
+2023,00TJ,Apoio à Melhoria Habitacional,2220,Moradia Digna,482,0.0,0.0
+2023,00U7,Apoio aos Entes Federados por Meio do Índice de Gestão Descentralizada do Programa Auxílio Brasil – IGD - PAB,5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,234821000.0,234251826.0
+2023,00US,Apoio aos Entes Federados por meio do Índice de Gestão Descentralizada do Programa Bolsa Família e do Cadastro Único para Programas Sociais do Governo Federal – IGD,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,544321000.0,390461383.0
+2023,0E64,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com menos de 50.000 Habitantes (Lei nº 14.118, de 2021)",2220,Moradia Digna,846,0.0,0.0
+2023,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,15000000.0,88584.0
+2023,155L,Aprimoramento da Infraestrutura da Fundação Nacional do Índio,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,122,759770.0,0.0
+2023,20UF,"Regularização, Demarcação e Fiscalização de Terras Indígenas e Proteção dos Povos Indígenas Isolados",0617,Proteção e Promoção dos Direitos dos Povos Indígenas,125,215328966.0,77042340.0
+2023,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5022,"Proteção, Promoção e Recuperação da Saúde Indígena",423,2144903072.0,1962523594.0
+2023,20Z9,Apoio à Competitividade e à Modernização da Construção Civil com Sustentabilidade Ambiental,2220,Moradia Digna,665,0.0,0.0
+2023,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,10810325.0,8417958.0
+2023,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,700000.0,283529.0
+2023,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,661816731.0,578824183.0
+2023,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,5181444.0,4984711.0
+2023,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,19002324.0,15219011.0
+2023,218B,Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres,5034,"Proteção à Vida, Fortalecimento da Família, Promoção e Defesa dos Direitos Humanos para Todos",422,2033667.0,904000.0
+2023,21BO,Proteção e Promoção dos Direitos dos Povos Indígenas,0617,Proteção e Promoção dos Direitos dos Povos Indígenas,423,53239044.0,30041679.0
+2023,21CH,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5023,Vigilância em Saúde,511,4398864.0,0.0
+2023,21CJ,Saneamento Básico em Aldeias Indígenas para Prevenção de Doenças e Agravos,5022,"Proteção, Promoção e Recuperação da Saúde Indígena",511,128462233.0,56084747.0
+2023,21CP,Operacionalização do Auxílio Emergencial para Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,122,4462571.0,2071571.0
+2023,21DP,"Transferência de Renda Relativa aos Benefícios e Auxílios do Programa Auxílio Brasil (Lei nº 14.284, de 29 de dezembro de 2021)",5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,244,95471076730.0,95434466309.0
+2023,21DQ,"Gestão, Administração e Operacionalização do Programa Auxílio Brasil",5035,Promoção de cidadania por meio do Auxílio Brasil e da articulação de Políticas Públicas,122,23290000.0,20944642.0
+2023,21EK,"Fiscalização Ambiental Relacionada à Proteção da Vida, da Saúde e da Segurança em Terras Indígenas",6014,Prevenção e Controle do Desmatamento e dos Incêndios nos Biomas,125,52503138.0,31800494.0
+2023,21EL,"Gestão, Administração e Operacionalização do Programa Bolsa Família",5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,122,40378674.0,1909375.0
+2023,21EM,Emprego das Forças Armadas em Apoio a Ações Emergenciais em Terras Indígenas,6011,Cooperação com o Desenvolvimento Nacional,423,275342096.0,238872386.0
+2023,21EN,"Gestão de Unidades de Conservação Relacionada à Proteção da Vida, da Saúde e da Segurança em Terras Indígenas",1041,Conservação e Uso Sustentável da Biodiversidade e dos Recursos Naturais,541,22674816.0,17697497.0
+2023,8442,Transferência Direta e Condicionada de Renda às Famílias Beneficiárias do Programa Bolsa Família,5028,Inclusão Social por meio do Bolsa Família e da Articulação de Políticas Públicas,244,70851380836.0,70851380836.0
+2023,8873,Apoio ao Fortalecimento Institucional dos Agentes Integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2220,Moradia Digna,482,10088900.0,13333.0
+2024,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,1064987300.0,361349503.0
+2024,00AF,Integralização de cotas ao Fundo de Arrendamento Residencial - FAR,2320,Moradia Digna,845,11266689667.0,10598896396.0
+2024,00CW,Subvenção econômica destinada à ampliação do acesso ao financiamento habitacional,2320,Moradia Digna,846,426106908.0,87968869.0
+2024,00CX,Subvenção econômica destinada a Implementação de projetos de Interesse social em áreas rurais,2320,Moradia Digna,846,708850588.0,708850588.0
+2024,00CY,Transferências ao Fundo de Desenvolvimento Social – FDS,2320,Moradia Digna,845,1199699497.0,1199699497.0
+2024,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,3000000.0,24427.0
+2024,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,709087152.0,692272319.0
+2024,00SN,Apoio à Implementação de Casas da Mulher Brasileira e de Centros de Referência da Mulher Brasileira,5662,Mulher Viver sem Violência,422,42567757.0,0.0
+2024,00TI,Apoio à produção habitacional de interesse social,2320,Moradia Digna,482,434181160.0,0.0
+2024,00TJ,Apoio à Melhoria Habitacional e Urbana,5602,Periferia Viva,482,795028.0,0.0
+2024,00UF,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Aeronáutica,0032,Programa de Gestão e Manutenção do Poder Executivo,482,2342000.0,0.0
+2024,00US,Apoio aos Entes Federados por meio do Índice de Gestão Descentralizada do Programa Bolsa Família e do Cadastro Único para Programas Sociais do Governo Federal – IGD,5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,244,877058000.0,791904927.0
+2024,00UZ,Implementação de Iniciativas Voltadas ao Enfrentamento à Violência Contra Mulheres,5116,Segurança Pública com Cidadania,181,13152517.0,8400.0
+2024,00VL,Assistência à Moradia de Bolsistas Atuantes em Programas de Residência Médica,5113,"Educação Superior: Qualidade, Democracia, Equidade e Sustentabilidade",364,0.0,0.0
+2024,00VM,"Subvenção econômica destinada à habitação de interesse social em cidade¿s com menos de 80.000 Habitantes – Oferta Pública (Lei nº 14.620, de 2023)",2320,Moradia Digna,482,0.0,0.0
+2024,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,45909197.0,2920912.0
+2024,155L,Construção de Unidades Administrativas da Fundação Nacional dos Povos Indígenas,0032,Programa de Gestão e Manutenção do Poder Executivo,122,475066.0,0.0
+2024,20UF,"Regularização Fundiária, Proteção e Gestão dos Territórios Indígenas",1617,"Demarcação e Gestão dos Territórios Indígenas para o Bem Viver, a Sustentabilidade e o Enfrentamento da Emergência Climática",125,363347927.0,156870379.0
+2024,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5122,Saúde Indígena,423,3006592251.0,2705372453.0
+2024,20Z9,Apoio à competitividade e à modernização da construção civil com sustentabilidade ambiental,2320,Moradia Digna,665,22457.0,0.0
+2024,210W,Apoio à Organização Econômica e Promoção da Cidadania e o Bem Viver de Mulheres Rurais,1191,Agricultura Familiar e Agroecologia,606,3671837.0,977366.0
+2024,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,10846222.0,8168214.0
+2024,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,498908.0,274032.0
+2024,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,655342899.0,715379121.0
+2024,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,7548349.0,7292586.0
+2024,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,21271172.0,16347291.0
+2024,21BO,Direitos Pluriétnico-Culturais e Sociais dos Povos Indígenas,5838,Direitos Pluriétnicos Culturais e Sociais para o Pleno Exercício da Cidadania e o Bem Viver dos Povos Indígenas,423,98951866.0,42679974.0
+2024,21CH,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5123,Vigilância em Saúde e Ambiente,511,43160486.0,402873.0
+2024,21CJ,Saneamento Básico em Aldeias Indígenas para Prevenção de Doenças e Agravos,5122,Saúde Indígena,511,121916289.0,60560587.0
+2024,21CP,Operacionalização do Auxílio Emergencial para Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,122,3823185.0,2006908.0
+2024,21EK,"Fiscalização Ambiental Relacionada à Proteção da Vida, da Saúde e da Segurança em Terras Indígenas",6114,Proteção e Recuperação da Biodiversidade e Combate ao Desmatamento e Incêndios,125,69452328.0,41566198.0
+2024,21EL,"Gestão, Administração e Operacionalização do Programa Bolsa Família",5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,122,14479297.0,9172925.0
+2024,21EM,Emprego das Forças Armadas e do Centro Gestor e Operacional do Sistema de Proteção da Amazônia em Apoio a Ações Emergenciais em Terras Indígenas,6111,Cooperação da Defesa para o Desenvolvimento Nacional,423,309836202.0,237183493.0
+2024,21EN,"Gestão de Unidades de Conservação Relacionada à Proteção da Vida, da Saúde e da Segurança em Terras Indígenas",6114,Proteção e Recuperação da Biodiversidade e Combate ao Desmatamento e Incêndios,541,38149023.0,18435088.0
+2024,21EZ,Auxílio-Moradia dos Militares dos ex-Territórios,0032,Programa de Gestão e Manutenção do Poder Executivo,122,105844867.0,83202904.0
+2024,21FL,Gestão de Políticas para Povos Indígenas,5838,Direitos Pluriétnicos Culturais e Sociais para o Pleno Exercício da Cidadania e o Bem Viver dos Povos Indígenas,423,254777549.0,109814636.0
+2024,21GF,Ampliação da Participação Efetiva das Mulheres nos Espaços de Poder e Decisão,5661,Igualdade de Decisão e Poder para Mulheres,422,15165594.0,8613606.0
+2024,21GG,Igualdade de Direitos e Autonomia Econômica das Mulheres,5663,Autonomia Econômica das Mulheres,422,116394061.0,13441664.0
+2024,21GH,Atividades do Conselho Nacional dos Direitos da Mulher,5661,Igualdade de Decisão e Poder para Mulheres,422,1503929.0,707500.0
+2024,21GI,Central de Atendimento à Mulher (Ligue 180),5662,Mulher Viver sem Violência,422,18377074.0,8122539.0
+2024,21GJ,"Políticas de Prevenção, Acesso à Justiça e Enfrentamento à Violência contra as Mulheres",5662,Mulher Viver sem Violência,422,45311722.0,5137087.0
+2024,2F07,"Antes que Aconteça - Apoio e estruturação de políticas de autonomia, segurança, treinamento, inovação, pesquisa, desenvolvimento e capacitação e defesa feminina, prevenção, conscientização e combate à violência contra a mulher",5115,Promoção do Acesso à Justiça e da Defesa dos Direitos,422,121000000.0,0.0
+2024,8442,Transferência Direta e Condicionada de Renda às Famílias Beneficiárias do Programa Bolsa Família,5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,244,168199343849.0,168199336667.0
+2024,8873,Apoio ao fortalecimento Institucional dos agentes integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2320,Moradia Digna,482,13814472.0,13502908.0
+2025,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,1269868994.0,363965492.0
+2025,00AF,Integralização de cotas ao Fundo de Arrendamento Residencial - FAR,2320,Moradia Digna,845,6804900247.0,6720000000.0
+2025,00CW,Subvenção econômica destinada à ampliação do acesso ao financiamento habitacional,2320,Moradia Digna,846,228822774.0,210065931.0
+2025,00CX,Subvenção econômica destinada a Implementação de projetos de Interesse social em áreas rurais,2320,Moradia Digna,846,735762976.0,735762976.0
+2025,00CY,Transferências ao Fundo de Desenvolvimento Social – FDS,2320,Moradia Digna,845,244485744.0,171592347.0
+2025,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,5000000.0,1293695.0
+2025,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,724523661.0,683702406.0
+2025,00SN,Apoio à Implementação de Casas da Mulher Brasileira e de Centros de Referência da Mulher Brasileira,5662,Mulher Viver sem Violência,422,23783369.0,279600.0
+2025,00TI,Apoio à produção habitacional de interesse social,2320,Moradia Digna,482,859862983.0,421122150.0
+2025,00TJ,Apoio à Melhoria Habitacional,5602,Periferia Viva,482,446540.0,0.0
+2025,00US,Apoio aos Entes Federados por meio do Índice de Gestão Descentralizada do Programa Bolsa Família e do Cadastro Único para Programas Sociais do Governo Federal – IGD,5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,244,842958000.0,760515645.0
+2025,00UZ,Implementação de Iniciativas Voltadas ao Enfrentamento à Violência Contra Mulheres,5116,Segurança Pública com Cidadania,422,1521283.0,735564.0
+2025,00VL,Assistência à Moradia de Bolsistas Atuantes em Programas de Residência Médica,5113,"Educação Superior: Qualidade, Democracia, Equidade e Sustentabilidade",364,7302111.0,1811205.0
+2025,00VM,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com Menos de 80.000 Habitantes – Oferta Pública (Lei nº 14.620, de 2023)",2320,Moradia Digna,482,1000.0,0.0
+2025,00WK,Concessão de Bolsas de Estudo a Mulheres de Baixa Renda Candidatas à Carreira Diplomática,2316,Relações Internacionais e Assistência a Brasileiras e Brasileiros no Exterior,128,240000.0,0.0
+2025,00WL,Concessão de Bolsas de Estudo a Pessoas Indígenas Candidatas à Carreira Diplomática,2316,Relações Internacionais e Assistência a Brasileiras e Brasileiros no Exterior,128,240000.0,0.0
+2025,00WO,Contribuição ao Fundo para o Desenvolvimento dos Povos Indígenas da América Latina e Caribe - FILAC (MPI),0910,Operações Especiais: Gestão da Participação em Organismos e Entidades Nacionais e Internacionais,846,6000000.0,5588000.0
+2025,00WV,Contribuição Voluntária ao Programa das Nações Unidas para Assentamentos Humanos - ONU Habitat,2320,Moradia Digna,212,2249835.0,0.0
+2025,00XF,"Financiamento de operações de crédito reembolsável no âmbito do Programa Minha Casa, Minha Vida",0902,Operações Especiais: Financiamentos com Retorno,846,25668624383.0,11657821719.0
+2025,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,54544410.0,0.0
+2025,155L,Construção de Unidades Administrativas da Fundação Nacional dos Povos Indígenas,0032,Programa de Gestão e Manutenção do Poder Executivo,122,897551.0,0.0
+2025,20UF,"Regularização Fundiária, Proteção e Gestão dos Territórios Indígenas",1617,"Demarcação e Gestão dos Territórios Indígenas para o Bem Viver, a Sustentabilidade e o Enfrentamento da Emergência Climática",125,121327678.0,55508756.0
+2025,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5122,Saúde Indígena,423,2257130795.0,2049543730.0
+2025,20Z9,Apoio à competitividade e à modernização da construção civil com sustentabilidade ambiental,2320,Moradia Digna,665,10303.0,0.0
+2025,210W,Apoio à Organização Econômica e Promoção da Cidadania e o Bem Viver de Mulheres Rurais,1191,Agricultura Familiar e Agroecologia,606,32950028.0,25929148.0
+2025,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,13489734.0,9859011.0
+2025,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,540000.0,243338.0
+2025,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,738198836.0,694466357.0
+2025,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,9256196.0,8892478.0
+2025,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,19057886.0,16881443.0
+2025,21BO,Direitos Pluriétnicos Culturais e Sociais dos Povos Indígenas,5838,Direitos Pluriétnicos Culturais e Sociais para o Pleno Exercício da Cidadania e o Bem Viver dos Povos Indígenas,423,72587965.0,55957544.0
+2025,21CH,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5123,Vigilância em Saúde e Ambiente,511,29994762.0,0.0
+2025,21CJ,Saneamento Básico em Aldeias Indígenas para Prevenção de Doenças e Agravos,5122,Saúde Indígena,511,180249269.0,92070014.0
+2025,21CP,Operacionalização do Auxílio Emergencial para Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,122,3234584.0,1712588.0
+2025,21EL,"Gestão, Administração e Operacionalização do Programa Bolsa Família",5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,122,15369639.0,11310956.0
+2025,21EM,Emprego das Forças Armadas e do Centro Gestor e Operacional do Sistema de Proteção da Amazônia em Apoio a Ações em Terras Indígenas,6111,Cooperação da Defesa para o Desenvolvimento Nacional,423,200195324.0,112595687.0
+2025,21EZ,Auxílio-Moradia dos Militares dos ex-Territórios,0032,Programa de Gestão e Manutenção do Poder Executivo,122,112752391.0,95841170.0
+2025,21FL,Gestão dos Direitos dos Povos Indígenas,5838,Direitos Pluriétnicos Culturais e Sociais para o Pleno Exercício da Cidadania e o Bem Viver dos Povos Indígenas,423,13392853.0,11004300.0
+2025,21GF,Fomento à Participação Efetiva das Mulheres nos Espaços de Poder e Decisão,5661,Igualdade de Decisão e Poder para Mulheres,422,44188599.0,20763337.0
+2025,21GG,Apoio às iniciativas de promoção da Igualdade de Direitos e Autonomia Econômica das Mulheres,5663,Autonomia Econômica das Mulheres,422,85487130.0,5785409.0
+2025,21GH,Funcionamento do Conselho Nacional dos Direitos da Mulher,5661,Igualdade de Decisão e Poder para Mulheres,422,1577948.0,1216024.0
+2025,21GI,Apoio ao Funcionamento e Execução dos Serviços da Central de Atendimento à Mulher (Ligue 180),5662,Mulher Viver sem Violência,422,32096302.0,23695204.0
+2025,21GJ,"Apoio às Iniciativas de Prevenção, Acesso à Justiça e Enfrentamento à Violência Contra as Mulheres",5662,Mulher Viver sem Violência,422,36660962.0,17621806.0
+2025,21HW,Proteção aos Povos e Terras Indígenas – ADPFs 709 e 991,1617,"Demarcação e Gestão dos Territórios Indígenas para o Bem Viver, a Sustentabilidade e o Enfrentamento da Emergência Climática",423,224587730.0,84096974.0
+2025,2F07,Antes que Aconteça - Apoio e Estruturação de Políticas para Mulheres,5115,Promoção do Acesso à Justiça e da Defesa dos Direitos,422,1640000.0,492913.0
+2025,8442,Transferência Direta e Condicionada de Renda às Famílias Beneficiárias do Programa Bolsa Família,5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,246,158218126371.0,158185670562.0
+2025,8873,Apoio ao fortalecimento Institucional dos agentes integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2320,Moradia Digna,482,4526590.0,2894317.0
+2026,0023,Obrigações com a Garantia de Contratos de Financiamento Habitacional,0909,Operações Especiais: Outros Encargos Especiais,846,1492274712.0,247752106.0
+2026,00AF,Integralização de cotas ao Fundo de Arrendamento Residencial - FAR,2320,Moradia Digna,845,1243109118.0,500000000.0
+2026,00CW,"Subvenção econômica destinada à ampliação do acesso ao financiamento habitacional(Lei nº 14.620, DE 13 de julho de 2023)",2320,Moradia Digna,846,237122210.0,100000000.0
+2026,00CX,"Subvenção econômica destinada a Implementação de projetos de Interesse social em áreas rurais(Lei nº 14.620, DE 13 de julho de 2023)",2320,Moradia Digna,846,1500000000.0,1500000000.0
+2026,00CY,"Transferências ao Fundo de Desenvolvimento Social – FDS(Lei nº 14.620, DE 13 de julho de 2023)",2320,Moradia Digna,845,500500000.0,466566811.0
+2026,00M5,Aquisição de terrenos e construção de unidades habitacionais destinadas à moradia do pessoal da Marinha,0032,Programa de Gestão e Manutenção do Poder Executivo,482,3000000.0,2534246.0
+2026,00RS,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos do FCDF,0903,Operações Especiais: Transferências Constitucionais e as Decorrentes de Legislação Específica,845,955741619.0,704344983.0
+2026,00SN,Apoio à Implementação de Casas da Mulher Brasileira e de Centros de Referência da Mulher Brasileira,5662,Mulher Viver sem Violência,422,79264570.0,47420.0
+2026,00TI,Apoio à produção habitacional de interesse social,2320,Moradia Digna,482,3777000000.0,1759004050.0
+2026,00TJ,Apoio à melhoria habitacional,5602,Periferia Viva,482,2316846.0,0.0
+2026,00US,Apoio aos Entes Federados por meio do Índice de Gestão Descentralizada do Programa Bolsa Família e do Cadastro Único para Programas Sociais do Governo Federal – IGD,5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,244,877058000.0,598994487.0
+2026,00UZ,Implementação de Iniciativas Voltadas ao Enfrentamento à Violência Contra Mulheres,5116,Segurança Pública com Cidadania,422,26000000.0,13798657.0
+2026,00VE,Integralização de cotas do Fundo Garantidor da Habitação Popular - FGHab,2320,Moradia Digna,846,750000000.0,750000000.0
+2026,00VL,Assistência à Moradia de Bolsistas Atuantes em Programas de Residência Médica,5113,"Educação Superior: Qualidade, Democracia, Equidade e Sustentabilidade",364,0.0,0.0
+2026,00VM,"Subvenção Econômica Destinada à Habitação de Interesse Social em Cidades com Menos de 80.000 Habitantes – Oferta Pública (Lei nº 14.620, de 2023)",2320,Moradia Digna,482,0.0,0.0
+2026,00WK,Concessão de Bolsas de Estudo a Mulheres de Baixa Renda Candidatas à Carreira Diplomática,2316,Relações Internacionais e Assistência a Brasileiras e Brasileiros no Exterior,128,60000.0,0.0
+2026,00WL,Concessão de Bolsas de Estudo a Pessoas Indígenas Candidatas à Carreira Diplomática,2316,Relações Internacionais e Assistência a Brasileiras e Brasileiros no Exterior,128,60000.0,0.0
+2026,00XF,"Financiamento de operações de crédito reembolsável no âmbito do Programa Minha Casa, Minha Vida (Lei nº 12.351, de 2010)",0902,Operações Especiais: Financiamentos com Retorno,846,44762323258.0,25552118035.0
+2026,12F2,Reforma dos Imóveis Funcionais Destinados à Moradia dos Deputados Federais,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,15000000.0,770109.0
+2026,155L,Construção de Unidades Administrativas da Fundação Nacional dos Povos Indígenas,0032,Programa de Gestão e Manutenção do Poder Executivo,122,897550.0,0.0
+2026,20UF,"Regularização Fundiária, Proteção e Gestão dos Territórios Indígenas",1617,"Demarcação e Gestão dos Territórios Indígenas para o Bem Viver, a Sustentabilidade e o Enfrentamento da Emergência Climática",125,120346078.0,39596437.0
+2026,20YP,"Promoção, Proteção e Recuperação da Saúde Indígena",5122,Saúde Indígena,423,1717623915.0,1298387577.0
+2026,20Z9,Apoio à competitividade e à modernização da construção civil com sustentabilidade ambiental,2320,Moradia Digna,665,20000.0,0.0
+2026,210W,Apoio à Organização Econômica e Promoção da Cidadania e o Bem Viver de Mulheres Rurais,1191,Agricultura Familiar e Agroecologia,606,58186955.0,17280451.0
+2026,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0034,Programa de Gestão e Manutenção do Poder Legislativo,122,13899671.0,7756459.0
+2026,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0030,Programa de Gestão e Manutenção da Defensoria Pública da União,122,540000.0,196892.0
+2026,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0032,Programa de Gestão e Manutenção do Poder Executivo,122,749956798.0,636224062.0
+2026,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0031,Programa de Gestão e Manutenção do Ministério Público,122,11387091.0,8276457.0
+2026,216H,Ajuda de Custo para Moradia ou Auxílio-Moradia a Agentes Públicos,0033,Programa de Gestão e Manutenção do Poder Judiciário,122,21348092.0,14137286.0
+2026,21BO,Direitos Pluriétnicos Culturais e Sociais dos Povos Indígenas,5838,Direitos Pluriétnicos Culturais e Sociais para o Pleno Exercício da Cidadania e o Bem Viver dos Povos Indígenas,423,84346755.0,33967468.0
+2026,21CH,Implantação de Melhorias Habitacionais para Controle da Doença de Chagas,5123,Vigilância em Saúde e Ambiente,511,13658668.0,0.0
+2026,21CJ,Saneamento Básico em Aldeias Indígenas para Prevenção de Doenças e Agravos,5122,Saúde Indígena,511,156012210.0,87685500.0
+2026,21CP,Operacionalização do Auxílio Emergencial para Enfrentamento da Emergência de Saúde Pública de Importância Internacional Decorrente do Coronavírus (Covid-19),5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,122,3199890.0,2250776.0
+2026,21EL,"Gestão, Administração e Operacionalização do Programa Bolsa Família",5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,122,17809061.0,7660897.0
+2026,21EM,Emprego das Forças Armadas e do Centro Gestor e Operacional do Sistema de Proteção da Amazônia em Apoio a Ações em Terras Indígenas,6111,Cooperação da Defesa para o Desenvolvimento Nacional,423,194757601.0,79358972.0
+2026,21EZ,Auxílio-Moradia dos Militares dos ex-Territórios,0032,Programa de Gestão e Manutenção do Poder Executivo,122,128610156.0,95468927.0
+2026,21FL,Gestão dos Direitos dos Povos Indígenas,5838,Direitos Pluriétnicos Culturais e Sociais para o Pleno Exercício da Cidadania e o Bem Viver dos Povos Indígenas,423,13597520.0,10180569.0
+2026,21GF,Fomento à Participação Efetiva das Mulheres nos Espaços de Poder e Decisão,5661,Igualdade de Decisão e Poder para Mulheres,422,39363002.0,11423982.0
+2026,21GG,Promoção da Igualdade de Direitos e da Autonomia Econômica das Mulheres,5663,Autonomia Econômica das Mulheres,422,95388595.0,20961858.0
+2026,21GH,Funcionamento do Conselho Nacional dos Direitos da Mulher,5661,Igualdade de Decisão e Poder para Mulheres,422,1482782.0,600259.0
+2026,21GI,Apoio ao Funcionamento e Execução dos Serviços da Central de Atendimento à Mulher (Ligue 180),5662,Mulher Viver sem Violência,422,40645588.0,23163101.0
+2026,21GJ,"Apoio às Iniciativas de Prevenção, Acesso à Justiça e Enfrentamento à Violência Contra as Mulheres",5662,Mulher Viver sem Violência,422,47001802.0,14624950.0
+2026,21HW,"Proteção aos Povos e Terras Indígenas – ADPFs 709, 743, 760 e 991",1617,"Demarcação e Gestão dos Territórios Indígenas para o Bem Viver, a Sustentabilidade e o Enfrentamento da Emergência Climática",423,328000000.0,126908265.0
+2026,21IL,Aldeia Produtiva,1617,"Demarcação e Gestão dos Territórios Indígenas para o Bem Viver, a Sustentabilidade e o Enfrentamento da Emergência Climática",423,23568450.0,18008069.0
+2026,2F07,Antes que Aconteça - Apoio e Estruturação de Políticas para Mulheres,5115,Promoção do Acesso à Justiça e da Defesa dos Direitos,422,73697971.0,3507076.0
+2026,8442,Transferência Direta e Condicionada de Renda às Famílias Beneficiárias do Programa Bolsa Família,5128,Bolsa Família: Proteção Social por meio da Transferência de Renda e da Articulação de Políticas Públicas,246,161658837717.0,131331536576.0
+2026,8873,Apoio ao fortalecimento Institucional dos agentes integrantes do Sistema Nacional de Habitação de Interesse Social - SNHIS,2320,Moradia Digna,482,13706952.0,10783276.0

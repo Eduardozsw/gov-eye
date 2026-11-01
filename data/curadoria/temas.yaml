@@ -1,0 +1,81 @@
+# Temas navegáveis e seus indicadores.
+temas:
+  - id: combustiveis
+    nome: Combustíveis
+    categoria: tributo
+    descricao: >
+      Tributos federais cobrados por litro de combustível: PIS/Pasep e Cofins (somados)
+      e CIDE. O ICMS, estadual, fica fora do escopo atual.
+    indicadores:
+      - id: pis-cofins-gasolina
+        nome: PIS/Cofins sobre a gasolina
+        unidade: R$/litro
+        tipo: aliquota
+        descricao: Soma do PIS/Pasep e da Cofins cobrados do produtor ou importador por litro de gasolina.
+      - id: pis-cofins-diesel
+        nome: PIS/Cofins sobre o óleo diesel
+        unidade: R$/litro
+        tipo: aliquota
+        descricao: Soma do PIS/Pasep e da Cofins cobrados do produtor ou importador por litro de óleo diesel.
+      - id: cide-gasolina
+        nome: CIDE sobre a gasolina
+        unidade: R$/litro
+        tipo: aliquota
+        descricao: Contribuição de Intervenção no Domínio Econômico cobrada por litro de gasolina.
+      - id: cide-diesel
+        nome: CIDE sobre o óleo diesel
+        unidade: R$/litro
+        tipo: aliquota
+        descricao: Contribuição de Intervenção no Domínio Econômico cobrada por litro de óleo diesel.
+
+  - id: povos-indigenas
+    nome: Povos indígenas
+    categoria: politica
+    descricao: >
+      Ações do orçamento federal voltadas especificamente a povos indígenas: saúde indígena,
+      saneamento em aldeias, demarcação e proteção de territórios e promoção de direitos.
+      Salários e custeio administrativo da Funai ficam fora, porque estão em ações genéricas
+      que não permitem separar o gasto.
+    indicadores:
+      - id: orcamento-povos-indigenas
+        nome: Orçamento para povos indígenas
+        unidade: R$
+        tipo: orcamento
+
+  - id: mulheres
+    nome: Mulheres e enfrentamento à violência
+    categoria: politica
+    descricao: >
+      Ações do orçamento federal voltadas especificamente a mulheres, com destaque para o
+      enfrentamento à violência (Casa da Mulher Brasileira, Ligue 180).
+    indicadores:
+      - id: orcamento-mulheres
+        nome: Orçamento para políticas para mulheres
+        unidade: R$
+        tipo: orcamento
+
+  - id: bolsa-familia
+    nome: Bolsa Família
+    categoria: politica
+    descricao: >
+      Programa de transferência de renda. Entre novembro de 2021 e março de 2023 funcionou com
+      o nome de Auxílio Brasil; o gov-eye trata os dois como o mesmo programa e mostra as ações
+      de cada período. O Auxílio Emergencial da pandemia era um programa à parte e não entra.
+    indicadores:
+      - id: orcamento-bolsa-familia
+        nome: Orçamento do Bolsa Família / Auxílio Brasil
+        unidade: R$
+        tipo: orcamento
+
+  - id: minha-casa-minha-vida
+    nome: Minha Casa Minha Vida
+    categoria: politica
+    descricao: >
+      Programa habitacional. Entre 2021 e 2023 funcionou com o nome de Casa Verde e Amarela
+      (Lei 14.118/2021) e voltou a se chamar Minha Casa Minha Vida (Lei 14.620/2023). Grande parte
+      do programa é financiada pelo FGTS, que não passa pelo orçamento da União e fica fora destes números.
+    indicadores:
+      - id: orcamento-minha-casa-minha-vida
+        nome: Orçamento do Minha Casa Minha Vida / Casa Verde e Amarela
+        unidade: R$
+        tipo: orcamento

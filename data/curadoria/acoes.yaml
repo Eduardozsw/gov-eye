@@ -1,0 +1,206 @@
+# Mapeamento de ações orçamentárias para temas (seção 5.4 da especificação).
+#
+# PROPOSTA INICIAL, AGUARDANDO REVISÃO DO CURADOR. Nenhuma linha tem revisão registrada.
+# Critério usado na proposta: a ação entra quando o NOME OFICIAL dela (no SIOP) se refere
+# explicitamente ao público ou ao programa do tema. Ações genéricas (salários, administração)
+# ficam fora mesmo quando parte do dinheiro atende o tema, porque não dá para separar.
+#
+# Campos: tema, acao (código), justificativa, subfuncao (opcional: só conta o gasto nessa
+# subfunção), ano_inicio/ano_fim (opcionais), revisoes (lista de {revisor, data}).
+# A lista de candidatas consideradas está em candidatos-acoes.csv.
+
+acoes:
+  # ---------------------------------------------------------------- Povos indígenas
+  - tema: povos-indigenas
+    acao: 20YP
+    justificativa: "Promoção, Proteção e Recuperação da Saúde Indígena: principal ação da saúde indígena (Sesai)."
+  - tema: povos-indigenas
+    acao: "7684"
+    justificativa: "Saneamento Básico em Aldeias Indígenas (até 2020; substituída pela 21CJ)."
+  - tema: povos-indigenas
+    acao: 21CJ
+    justificativa: "Saneamento Básico em Aldeias Indígenas (a partir de 2021; sucede a 7684)."
+  - tema: povos-indigenas
+    acao: 20UF
+    justificativa: "Demarcação, fiscalização e gestão de terras indígenas e proteção de povos isolados."
+  - tema: povos-indigenas
+    acao: 215O
+    justificativa: "Gestão Ambiental e Etnodesenvolvimento, no programa de direitos dos povos indígenas (até 2019)."
+  - tema: povos-indigenas
+    acao: 215Q
+    justificativa: "Promoção dos Direitos dos Povos Indígenas de Recente Contato (até 2019)."
+  - tema: povos-indigenas
+    acao: "2384"
+    justificativa: "Direitos Sociais e Culturais e à Cidadania, no programa de direitos dos povos indígenas, subfunção 423 (até 2019)."
+    subfuncao: "423"
+  - tema: povos-indigenas
+    acao: "8635"
+    justificativa: "Preservação Cultural dos Povos Indígenas (até 2019)."
+  - tema: povos-indigenas
+    acao: 21BO
+    justificativa: "Direitos Pluriétnico-Culturais e Sociais dos Povos Indígenas (a partir de 2020; reúne ações anteriores da Funai)."
+  - tema: povos-indigenas
+    acao: 21C0
+    subfuncao: "423"
+    justificativa: "Enfrentamento da covid-19, só a parte classificada na subfunção 423 (assistência aos povos indígenas). O restante da ação atende a população em geral."
+  - tema: povos-indigenas
+    acao: 21FL
+    justificativa: "Gestão de Políticas para Povos Indígenas (a partir de 2024)."
+  - tema: povos-indigenas
+    acao: 21HW
+    justificativa: "Proteção aos Povos e Terras Indígenas, criada para cumprir decisões do STF (ADPFs 709, 743, 760 e 991)."
+  - tema: povos-indigenas
+    acao: 21IL
+    justificativa: "Aldeia Produtiva: ação classificada na subfunção 423 (assistência aos povos indígenas)."
+  - tema: povos-indigenas
+    acao: 21EK
+    justificativa: "Fiscalização Ambiental Relacionada à Proteção da Vida, da Saúde e da Segurança em Terras Indígenas."
+  - tema: povos-indigenas
+    acao: 21EN
+    justificativa: "Gestão de Unidades de Conservação Relacionada à Proteção da Vida, da Saúde e da Segurança em Terras Indígenas."
+  - tema: povos-indigenas
+    acao: 21EM
+    justificativa: "Emprego das Forças Armadas em apoio a ações em terras indígenas. O próprio orçamento classifica a ação na subfunção 423 (assistência aos povos indígenas)."
+  - tema: povos-indigenas
+    acao: 155L
+    justificativa: "Infraestrutura e unidades administrativas da Funai: ação exclusiva do órgão indigenista."
+  - tema: povos-indigenas
+    acao: 00WO
+    justificativa: "Contribuição ao Fundo para o Desenvolvimento dos Povos Indígenas da América Latina e Caribe (Filac)."
+
+  # ---------------------------------------------------------------- Mulheres
+  - tema: mulheres
+    acao: 218B
+    justificativa: "Políticas de Igualdade e Enfrentamento à Violência contra as Mulheres (até 2023; desdobrada em ações específicas a partir de 2024)."
+  - tema: mulheres
+    acao: 14XS
+    justificativa: "Construção e implementação da Casa da Mulher Brasileira e de centros de atendimento às mulheres (até 2021)."
+  - tema: mulheres
+    acao: 00SN
+    justificativa: "Apoio à implementação da Casa da Mulher Brasileira e de centros de atendimento a mulheres em situação de violência (a partir de 2022)."
+  - tema: mulheres
+    acao: 21GI
+    justificativa: "Central de Atendimento à Mulher (Ligue 180)."
+  - tema: mulheres
+    acao: 21GJ
+    justificativa: "Prevenção, acesso à justiça e enfrentamento à violência contra as mulheres."
+  - tema: mulheres
+    acao: 21GF
+    justificativa: "Ampliação da participação das mulheres nos espaços de poder e decisão."
+  - tema: mulheres
+    acao: 21GG
+    justificativa: "Igualdade de direitos e autonomia econômica das mulheres."
+  - tema: mulheres
+    acao: 21GH
+    justificativa: "Atividades do Conselho Nacional dos Direitos da Mulher."
+  - tema: mulheres
+    acao: 00UZ
+    justificativa: "Enfrentamento à violência contra mulheres no Ministério da Justiça e Segurança Pública."
+  - tema: mulheres
+    acao: 2F07
+    justificativa: "Antes que Aconteça: prevenção e combate à violência contra a mulher."
+  - tema: mulheres
+    acao: 210W
+    justificativa: "Organização econômica e promoção da cidadania de mulheres rurais."
+
+  # ---------------------------------------------------------------- Bolsa Família / Auxílio Brasil
+  - tema: bolsa-familia
+    acao: "8442"
+    justificativa: "Transferência de renda às famílias do Bolsa Família (benefícios pagos)."
+  - tema: bolsa-familia
+    acao: 21DP
+    justificativa: "Transferência de renda do Auxílio Brasil, nome do programa entre 2021 e 2023 (benefícios pagos)."
+  - tema: bolsa-familia
+    acao: "8446"
+    justificativa: "Apoio à gestão descentralizada do Bolsa Família (repasse a estados e municípios, até 2021)."
+  - tema: bolsa-familia
+    acao: 21DR
+    justificativa: "Apoio a estados e municípios pelo Índice de Gestão Descentralizada do Auxílio Brasil."
+  - tema: bolsa-familia
+    acao: 00U7
+    justificativa: "Apoio a estados e municípios pelo Índice de Gestão Descentralizada do Auxílio Brasil."
+  - tema: bolsa-familia
+    acao: 00US
+    justificativa: "Apoio a estados e municípios pelo Índice de Gestão Descentralizada do Bolsa Família (a partir de 2023)."
+  - tema: bolsa-familia
+    acao: 20IT
+    justificativa: "Disseminação de informações do Bolsa Família e do Cadastro Único."
+  - tema: bolsa-familia
+    acao: 21DQ
+    justificativa: "Gestão e disseminação de informações do Auxílio Brasil."
+  - tema: bolsa-familia
+    acao: 21DW
+    justificativa: "Processamento de dados do Auxílio Brasil."
+  - tema: bolsa-familia
+    acao: 21EL
+    justificativa: "Gestão, administração e operacionalização do Bolsa Família."
+
+  # ---------------------------------------------------------------- Minha Casa Minha Vida / Casa Verde e Amarela
+  - tema: minha-casa-minha-vida
+    acao: 00AF
+    justificativa: "Integralização de cotas ao Fundo de Arrendamento Residencial (FAR), que financia as moradias da faixa de menor renda do programa."
+  - tema: minha-casa-minha-vida
+    acao: 00CY
+    justificativa: "Transferências ao Fundo de Desenvolvimento Social (FDS), modalidade Entidades do programa. O nome oficial cita as leis do programa (11.977/2009, 14.118/2021 e 14.620/2023)."
+  - tema: minha-casa-minha-vida
+    acao: 00CW
+    justificativa: "Subvenção econômica para ampliar o acesso ao financiamento habitacional, instituída pela lei do programa."
+  - tema: minha-casa-minha-vida
+    acao: 00CX
+    justificativa: "Subvenção para projetos habitacionais de interesse social em áreas rurais. O nome oficial cita as leis do programa."
+  - tema: minha-casa-minha-vida
+    acao: 0E64
+    justificativa: "Subvenção para habitação de interesse social em cidades com menos de 50 mil habitantes. O nome oficial cita as leis do programa."
+  - tema: minha-casa-minha-vida
+    acao: 00TI
+    justificativa: "Apoio à produção habitacional de interesse social, no programa Moradia Digna (a partir de 2022)."
+  - tema: minha-casa-minha-vida
+    acao: 10SJ
+    justificativa: "Apoio à produção habitacional de interesse social, no programa Moradia Digna (até 2021; sucedida pela 00TI)."
+  - tema: minha-casa-minha-vida
+    acao: 00VE
+    justificativa: "Integralização de cotas do Fundo Garantidor da Habitação Popular (FGHab), criado pela lei do programa (11.977/2009)."
+
+excluidas:
+  - tema: minha-casa-minha-vida
+    acao: 00XF
+    motivo: "Financiamento de operações de crédito reembolsável: é empréstimo que retorna ao fundo financiador, não despesa do programa. Somar com as demais ações misturaria gasto e crédito."
+  - tema: minha-casa-minha-vida
+    acao: "0023"
+    motivo: "Garantia de contratos de financiamento habitacional antigos (Sistema Financeiro da Habitação), anteriores ao programa."
+  - tema: minha-casa-minha-vida
+    acao: 10S3
+    motivo: "Urbanização de assentamentos precários: política habitacional distinta do programa."
+  - tema: minha-casa-minha-vida
+    acao: 00T2
+    motivo: "Urbanização de assentamentos precários: política habitacional distinta do programa."
+  - tema: minha-casa-minha-vida
+    acao: 10S6
+    motivo: "Melhoria de assentamentos precários: política habitacional distinta do programa."
+  - tema: minha-casa-minha-vida
+    acao: "8873"
+    motivo: "Fortalecimento institucional do sistema nacional de habitação: não financia moradias do programa."
+  - tema: minha-casa-minha-vida
+    acao: 216H
+    motivo: "Auxílio-moradia de agentes públicos: benefício a servidores, sem relação com o programa."
+  - tema: bolsa-familia
+    acao: 00S4
+    motivo: "Auxílio Emergencial (2020): programa da pandemia, distinto do Bolsa Família."
+  - tema: bolsa-familia
+    acao: 00SF
+    motivo: "Auxílio Emergencial Residual (2020): programa da pandemia, distinto do Bolsa Família."
+  - tema: bolsa-familia
+    acao: 00SI
+    motivo: "Auxílio Emergencial 2021: programa da pandemia, distinto do Bolsa Família."
+  - tema: bolsa-familia
+    acao: 21CP
+    motivo: "Operacionalização do Auxílio Emergencial: programa da pandemia, distinto do Bolsa Família."
+  - tema: bolsa-familia
+    acao: "6414"
+    motivo: "Cadastro Único: atende vários programas sociais, sem como separar a parte do Bolsa Família."
+  - tema: mulheres
+    acao: "8305"
+    motivo: "Atenção de referência e pesquisa clínica (Fiocruz) para mulheres, crianças, adolescentes e doenças infecciosas: o nome não permite separar a parte específica das mulheres."
+  - tema: mulheres
+    acao: "2000"
+    motivo: "Administração da unidade: custeio administrativo genérico do ministério."
