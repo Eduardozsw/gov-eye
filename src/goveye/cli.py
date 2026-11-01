@@ -76,6 +76,31 @@ def cmd_candidatos_dou(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_conferir_trechos(_: argparse.Namespace) -> int:
+    """Confere se o trecho de cada evento aparece no texto do DOU coletado para o ato (pelo SHA-256)."""
+    import re
+
+    from .coleta.dou import carregar_filtrados
+
+    def normalizar(s: str) -> str:
+        return re.sub(r"\s+", " ", s).strip(' "')
+
+    textos = {a.sha256_xml: normalizar(a.texto) for a in carregar_filtrados()}
+    c = cur.carregar()
+    falhas = 0
+    for e in c.eventos:
+        texto = textos.get(c.atos[e.ato_id].sha256_xml)
+        if texto is None:
+            situacao = "texto do ato não coletado"
+        elif all(normalizar(p) in texto for p in e.trecho.split("[...]")):
+            situacao = "ok"
+        else:
+            situacao = "TRECHO NÃO ENCONTRADO"
+        falhas += situacao != "ok"
+        print(f"{e.id:45} {situacao}")
+    return 1 if falhas else 0
+
+
 def cmd_carregar(_: argparse.Namespace) -> int:
     from .pipeline import carregar
 
@@ -124,6 +149,10 @@ def main() -> None:
     p = sub.add_parser("candidatos-dou", help="lista os atos do DOU já filtrados")
     p.add_argument("--busca", help="texto que deve aparecer no ato")
     p.set_defaults(f=cmd_candidatos_dou)
+
+    sub.add_parser("conferir-trechos", help="confere os trechos dos eventos com o texto do DOU").set_defaults(
+        f=cmd_conferir_trechos
+    )
 
     sub.add_parser("carregar", help="monta o banco SQLite a partir da curadoria e das coletas").set_defaults(
         f=cmd_carregar

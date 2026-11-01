@@ -17,6 +17,8 @@ def lista_nomes(nomes: list[str]) -> str:
 
 
 def _movimento(antes: float, depois: float, fmt) -> str:
+    if depois == antes:
+        return f"continuou em {fmt(depois)}"
     if depois == 0:
         return f"foi zerado (era {fmt(antes)})"
     if antes == 0:
@@ -36,8 +38,11 @@ def com_artigo(preposicao: str, ato: dict) -> str:
 
 
 def _assinatura(ato: dict, mandato: dict | None, preposicao: str) -> str:
-    feminino = ato["tipo"] in TIPOS_FEMININOS
-    texto = f"{com_artigo(preposicao, ato)}, {'assinada' if feminino else 'assinado'} em {data_extenso(ato['data_assinatura'])}"
+    if ato["tipo"].startswith("Lei"):
+        verbo = "sancionada"
+    else:
+        verbo = "assinada" if ato["tipo"] in TIPOS_FEMININOS else "assinado"
+    texto = f"{com_artigo(preposicao, ato)}, {verbo} em {data_extenso(ato['data_assinatura'])}"
     if ato["signatarios"]:
         texto += " por " + lista_nomes([s["nome"] for s in ato["signatarios"]])
     if mandato:

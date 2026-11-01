@@ -1,0 +1,14 @@
+# PROPOSTA AUTOMÁTICA, PENDENTE DE REVISÃO.
+# Série levantada só até maio de 2018: faltam os atos editados após a greve dos caminhoneiros
+# (maio de 2018), que precisam ser lidos antes dos eventos de 2021 em diante (Decreto 10.638/2021 etc.).
+eventos:
+  - id: pis-cofins-diesel-2017-07
+    indicador: pis-cofins-diesel
+    data_efeito: 2017-07-21
+    valor_depois: 0.4615
+    ato: decreto-9101-2017
+    trecho: >-
+      II - R$ 82,20 (oitenta e dois reais e vinte centavos) e R$ 379,30 (trezentos e setenta e nove reais e
+      trinta centavos) por metro cúbico de óleo diesel e suas correntes;
+    nota: >-
+      R$ 82,20 (PIS/Pasep) + R$ 379,30 (Cofins) = R$ 461,50 por metro cúbico, ou R$ 0,4615 por litro.

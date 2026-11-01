@@ -12,11 +12,13 @@ temas:
         unidade: R$/litro
         tipo: aliquota
         descricao: Soma do PIS/Pasep e da Cofins cobrados do produtor ou importador por litro de gasolina.
+        levantado_ate: 2023-02-28
       - id: pis-cofins-diesel
         nome: PIS/Cofins sobre o óleo diesel
         unidade: R$/litro
         tipo: aliquota
         descricao: Soma do PIS/Pasep e da Cofins cobrados do produtor ou importador por litro de óleo diesel.
+        levantado_ate: 2018-05-29
       - id: cide-gasolina
         nome: CIDE sobre a gasolina
         unidade: R$/litro

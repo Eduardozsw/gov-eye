@@ -1,0 +1,45 @@
+# PROPOSTA AUTOMÁTICA, PENDENTE DE REVISÃO.
+# Valores dos decretos em R$ por metro cúbico, convertidos para R$ por litro (divididos por 1.000).
+# PIS/Pasep e Cofins aparecem somados.
+eventos:
+  - id: pis-cofins-gasolina-2017-07
+    indicador: pis-cofins-gasolina
+    data_efeito: 2017-07-21
+    valor_depois: 0.7925
+    ato: decreto-9101-2017
+    trecho: >-
+      I - R$ 141,10 (cento e quarenta e um reais e dez centavos) e R$ 651,40 (seiscentos e cinquenta e um reais
+      e quarenta cen tavos) por metro cúbico de gasolinas e suas correntes;
+    nota: >-
+      R$ 141,10 (PIS/Pasep) + R$ 651,40 (Cofins) = R$ 792,50 por metro cúbico, ou R$ 0,7925 por litro.
+      O decreto entrou em vigor na publicação, em 21/07/2017. A CONFERIR: nenhum ato mudou este valor entre
+      julho de 2017 e junho de 2022. O texto oficial traz "cen tavos" (quebra de linha da diagramação).
+
+  - id: pis-cofins-gasolina-2022-06
+    indicador: pis-cofins-gasolina
+    data_efeito: 2022-06-23
+    valor_antes: 0.7925
+    valor_depois: 0.0
+    causa: LEI_CONGRESSO
+    ato: lc-194-2022
+    trecho: >-
+      "Art. 9º-A As alíquotas da Contribuição para o PIS/Pasep, da Cofins e da Contribuição de Intervenção no
+      Domínio Econômico (Cide) incidentes sobre as operações que envolvam gasolina e suas correntes, exceto de
+      aviação, [...] ficam reduzidas a 0 (zero) até 31 de dezembro de 2022.
+    nota: >-
+      Lei complementar aprovada pelo Congresso e sancionada em 23/06/2022, em vigor na publicação (art. 15).
+
+  - id: pis-cofins-gasolina-2023-01
+    indicador: pis-cofins-gasolina
+    data_efeito: 2023-01-02
+    valor_antes: 0.0
+    valor_depois: 0.0
+    causa: PRORROGACAO
+    ato: mp-1157-2023
+    trecho: >-
+      Art. 2º Ficam reduzidas a zero, até 28 de fevereiro de 2023, as alíquotas da Contribuição para o PIS/Pasep
+      e da Cofins incidentes sobre operações realizadas com: I - gasolina e suas correntes
+    nota: >-
+      A redução da LC 194 valia até 31/12/2022. A MP foi assinada em 1º/01/2023 e publicada em edição extra
+      do DOU de 02/01/2023, com vigência a partir da publicação (art. 7º). DECISÃO DO CURADOR: registrar ou não
+      o dia 1º/01/2023 como retorno da alíquota cheia.
