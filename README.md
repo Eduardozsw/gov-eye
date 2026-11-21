@@ -11,8 +11,8 @@ Linha do tempo verificável de tributos e políticas públicas federais: o que m
 Requer [uv](https://docs.astral.sh/uv/).
 
 ```sh
-uv run goveye validar               # confere a curadoria
-uv run goveye carregar              # monta data/goveye.sqlite a partir da curadoria e de data/coletas
+uv run goveye validar               # confere as definições em data/definicoes
+uv run goveye carregar              # monta data/goveye.sqlite a partir das definições e de data/coletas
 uv run goveye site                  # exporta a prévia para web/dados/site.json
 uv run goveye site --modo publicacao  # recusa se site.yaml tiver PREENCHER; esconde anos com divergência SIOP × Portal
 cd web && npm install && npm run dev  # abre o site em http://localhost:3000
@@ -25,22 +25,11 @@ Coleta (acessa servidores públicos; respeita uma pausa entre requisições):
 ```sh
 uv run goveye coletar-orcamento --anos 2018-2026  # SIOP, Portal da Transparência e IPCA
 uv run goveye coletar-dou 2023-01 2023-02         # ZIP mensal do DOU (~530 MB cada), guarda só os atos filtrados
-uv run goveye candidatos-dou --busca gasolina     # lista os atos filtrados para o curador
+uv run goveye candidatos-dou --busca gasolina     # lista os atos filtrados do DOU
 uv run goveye fase0                               # verifica todas as fontes oficiais
 ```
 
-## Revisão (opcional)
-
-A publicação não depende de revisão humana (especificação, seção 7). Quem revisar um item pode registrar:
-
-```sh
-uv run goveye pendentes
-uv run goveye revisar acao mulheres:21GI --revisor "Seu Nome"
-uv run goveye revisar evento pis-cofins-gasolina-2023-03 --revisor "Seu Nome"
-uv run goveye revisar ato mp-1157-2023 --revisor "Seu Nome"
-```
-
-Cada revisão é acrescentada a `data/curadoria/revisoes.yaml`.
+## Correções
 
 Correção de algo já publicado (fica pública na página do item e em `/correcoes/`; nada é apagado):
 
@@ -48,17 +37,17 @@ Correção de algo já publicado (fica pública na página do item e em `/correc
 uv run goveye corrigir evento pis-cofins-gasolina-2023-03 --o-que-mudou "Data de efeito corrigida de 01/03 para 02/03/2023" --motivo "Aviso de leitor; conferido no DOU"
 ```
 
-Cada correção é acrescentada a `data/curadoria/correcoes.yaml`. Ajustes feitos antes da primeira publicação não são correções e não precisam ser registrados.
+Cada correção é acrescentada a `data/definicoes/correcoes.yaml`. Ajustes feitos antes da primeira publicação não são correções e não precisam ser registrados.
 
 ## Estrutura
 
 ```
-data/curadoria/      fonte da verdade editorial (YAML): temas, mandatos, atos, eventos, ações, revisões
+data/definicoes/     o que o site mostra (YAML): temas, mandatos, atos, eventos, ações, glossário, correções
 data/coletas/        instantâneos processados das fontes (versionados)
 data/raw/            downloads brutos (fora do git)
 src/goveye/fontes/   verificação de cada fonte oficial (Fase 0)
 src/goveye/coleta/   coletores: DOU e orçamento
-src/goveye/curadoria.py  leitura e validação dos YAML
+src/goveye/definicoes.py  leitura e validação dos YAML
 src/goveye/banco.py  banco SQLite (derivado, reconstruído a cada carga)
 src/goveye/site/     regras de publicação, frases, gráficos SVG e exportação para o front-end
 web/                 front-end em Next.js (ADR 0002)

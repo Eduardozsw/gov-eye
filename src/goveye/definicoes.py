@@ -1,8 +1,7 @@
-"""Leitura e validação dos arquivos de curadoria em data/curadoria/.
+"""Leitura e validação dos arquivos de definições em data/definicoes/.
 
-Esses arquivos são a fonte da verdade editorial: o que o curador revisou e
-aprovou. Os coletores nunca escrevem neles; só o curador (ou o comando
-`goveye revisar`) altera.
+Esses arquivos dizem o que o site mostra: temas, ações do orçamento de cada tema,
+atos e eventos da linha do tempo. Os coletores nunca escrevem neles.
 """
 
 from collections import defaultdict
@@ -12,7 +11,7 @@ from pathlib import Path
 
 import yaml
 
-from .config import CURADORIA
+from .config import DEFINICOES
 from .modelo import (
     AcaoExcluida,
     AcaoMapeada,
@@ -24,23 +23,21 @@ from .modelo import (
     Evento,
     Indicador,
     Mandato,
-    Revisao,
     Tema,
 )
 
-ARQUIVO_REVISOES = "revisoes.yaml"
 ARQUIVO_CORRECOES = "correcoes.yaml"
-OBJETOS_REVISAVEIS = ("ato", "evento", "acao")
+OBJETOS_CORRIGIVEIS = ("ato", "evento", "acao")
 DOMINIOS_OFICIAIS = ("https://www.in.gov.br/", "http://pesquisa.in.gov.br/", "https://www.planalto.gov.br/")
 TOLERANCIA_VALOR = 1e-6
 
 
-class ErroCuradoria(ValueError):
+class ErroDefinicoes(ValueError):
     pass
 
 
 @dataclass
-class Curadoria:
+class Definicoes:
     mandatos: list[Mandato]
     temas: list[Tema]
     atos: dict[str, Ato]
@@ -68,10 +65,6 @@ def _ler(caminho: Path):
         return yaml.safe_load(f) or {}
 
 
-def _revisoes(lista) -> list[Revisao]:
-    return [Revisao(revisor=r["revisor"], data=r["data"]) for r in lista or []]
-
-
 def _ato(d: dict) -> Ato:
     return Ato(
         id=d["id"],
@@ -85,7 +78,6 @@ def _ato(d: dict) -> Ato:
         id_materia_dou=str(d.get("id_materia_dou", "")),
         sha256_xml=d.get("sha256_xml", ""),
         vigencia_fim_prevista=d.get("vigencia_fim_prevista"),
-        revisoes=_revisoes(d.get("revisoes")),
     )
 
 
@@ -101,11 +93,10 @@ def _evento(d: dict) -> Evento:
         trecho=d["trecho"].strip(),
         ato_origem_id=d.get("ato_origem"),
         nota=(d.get("nota") or "").strip(),
-        revisoes=_revisoes(d.get("revisoes")),
     )
 
 
-def carregar(pasta: Path = CURADORIA) -> Curadoria:
+def carregar(pasta: Path = DEFINICOES) -> Definicoes:
     mandatos = [Mandato(**m) for m in _ler(pasta / "mandatos.yaml")["mandatos"]]
 
     temas = []
@@ -117,7 +108,7 @@ def carregar(pasta: Path = CURADORIA) -> Curadoria:
     for arquivo in sorted((pasta / "atos").glob("*.yaml")):
         ato = _ato(_ler(arquivo))
         if ato.id in atos:
-            raise ErroCuradoria(f"Ato duplicado: {ato.id}")
+            raise ErroDefinicoes(f"Ato duplicado: {ato.id}")
         atos[ato.id] = ato
 
     eventos = []
@@ -133,7 +124,6 @@ def carregar(pasta: Path = CURADORIA) -> Curadoria:
             subfuncao=str(a["subfuncao"]) if a.get("subfuncao") else None,
             ano_inicio=a.get("ano_inicio"),
             ano_fim=a.get("ano_fim"),
-            revisoes=_revisoes(a.get("revisoes")),
         )
         for a in mapeamento["acoes"]
     ]
@@ -148,16 +138,13 @@ def carregar(pasta: Path = CURADORIA) -> Curadoria:
                  o_que_mudou=(x.get("o_que_mudou") or "").strip(), motivo=(x.get("motivo") or "").strip())
         for x in registro.get("correcoes") or []
     ]
-    curadoria = Curadoria(mandatos, temas, atos, eventos, acoes, excluidas, correcoes)
-    erros = _aplicar_registro(curadoria, pasta / ARQUIVO_REVISOES)
-    if erros:
-        raise ErroCuradoria("\n".join(erros))
-    validar(curadoria)
-    return curadoria
+    definicoes = Definicoes(mandatos, temas, atos, eventos, acoes, excluidas, correcoes)
+    validar(definicoes)
+    return definicoes
 
 
-def revisaveis(c: Curadoria) -> dict[tuple[str, str], Ato | Evento | AcaoMapeada]:
-    """Objetos que o curador pode revisar, pela chave usada em revisoes.yaml."""
+def corrigiveis(c: Definicoes) -> dict[tuple[str, str], Ato | Evento | AcaoMapeada]:
+    """Objetos que podem receber correção, pela chave usada em correcoes.yaml."""
     return {
         **{("ato", a.id): a for a in c.atos.values()},
         **{("evento", e.id): e for e in c.eventos},
@@ -165,52 +152,18 @@ def revisaveis(c: Curadoria) -> dict[tuple[str, str], Ato | Evento | AcaoMapeada
     }
 
 
-def _aplicar_registro(c: Curadoria, caminho: Path) -> list[str]:
-    """Junta as revisões do registro (revisoes.yaml) às revisões escritas nos próprios arquivos."""
-    if not caminho.exists():
-        return []
-    objetos = revisaveis(c)
-    erros = []
-    for r in _ler(caminho).get("revisoes") or []:
-        alvo = objetos.get((r["objeto"], str(r["id"])))
-        if alvo is None:
-            erros.append(f"Revisão de {r['objeto']} inexistente: {r['id']}")
-            continue
-        alvo.revisoes.append(Revisao(revisor=r["revisor"], data=r["data"]))
-    return erros
-
-
-def registrar_revisao(objeto: str, id_: str, revisor: str, dia: date, pasta: Path = CURADORIA) -> None:
-    """Acrescenta uma revisão ao registro. Só o curador deve chamar isto (comando `goveye revisar`)."""
-    if objeto not in OBJETOS_REVISAVEIS:
-        raise ErroCuradoria(f"Objeto não revisável: {objeto}")
-    if (objeto, id_) not in revisaveis(carregar(pasta)):
-        raise ErroCuradoria(f"{objeto} inexistente: {id_}")
-    caminho = pasta / ARQUIVO_REVISOES
-    if not caminho.exists():
-        caminho.write_text(
-            "# Registro de revisões do curador. Uma linha por revisão; não apagar linhas.\nrevisoes:\n",
-            encoding="utf-8",
-        )
-    item = yaml.safe_dump(
-        [{"objeto": objeto, "id": id_, "revisor": revisor, "data": dia}], allow_unicode=True, default_flow_style=None
-    )
-    with caminho.open("a", encoding="utf-8") as f:
-        f.write("  " + item)
-
-
 def registrar_correcao(objeto: str, id_: str, o_que_mudou: str, motivo: str, dia: date,
-                       pasta: Path = CURADORIA) -> None:
+                       pasta: Path = DEFINICOES) -> None:
     """Acrescenta uma correção ao histórico público (comando `goveye corrigir`).
 
     Registre só o que mudou depois de publicado: ajustes antes da primeira publicação não são correções.
     """
-    if objeto not in OBJETOS_REVISAVEIS:
-        raise ErroCuradoria(f"Objeto inválido: {objeto}")
-    if (objeto, id_) not in revisaveis(carregar(pasta)):
-        raise ErroCuradoria(f"{objeto} inexistente: {id_}")
+    if objeto not in OBJETOS_CORRIGIVEIS:
+        raise ErroDefinicoes(f"Objeto inválido: {objeto}")
+    if (objeto, id_) not in corrigiveis(carregar(pasta)):
+        raise ErroDefinicoes(f"{objeto} inexistente: {id_}")
     if not o_que_mudou.strip() or not motivo.strip():
-        raise ErroCuradoria("A correção precisa dizer o que mudou e por quê")
+        raise ErroDefinicoes("A correção precisa dizer o que mudou e por quê")
     caminho = pasta / ARQUIVO_CORRECOES
     if not caminho.exists():
         caminho.write_text(
@@ -226,8 +179,8 @@ def registrar_correcao(objeto: str, id_: str, o_que_mudou: str, motivo: str, dia
         f.write("".join("  " + linha for linha in item.splitlines(keepends=True)))
 
 
-def validar(c: Curadoria) -> None:
-    """Regras que impedem publicar algo incoerente. Levanta ErroCuradoria com todos os problemas."""
+def validar(c: Definicoes) -> None:
+    """Regras que impedem publicar algo incoerente. Levanta ErroDefinicoes com todos os problemas."""
     erros: list[str] = []
     indicadores = c.indicadores
     temas = {t.id for t in c.temas}
@@ -286,7 +239,7 @@ def validar(c: Curadoria) -> None:
         if not x.motivo:
             erros.append(f"Ação excluída {x.codigo} ({x.tema_id}): sem motivo")
 
-    objetos = revisaveis(c)
+    objetos = corrigiveis(c)
     for x in c.correcoes:
         if (x.objeto, x.objeto_id) not in objetos:
             erros.append(f"Correção de {x.objeto} inexistente: {x.objeto_id}")
@@ -294,4 +247,4 @@ def validar(c: Curadoria) -> None:
             erros.append(f"Correção de {x.objeto} {x.objeto_id} em {x.data}: falta dizer o que mudou ou por quê")
 
     if erros:
-        raise ErroCuradoria("\n".join(erros))
+        raise ErroDefinicoes("\n".join(erros))

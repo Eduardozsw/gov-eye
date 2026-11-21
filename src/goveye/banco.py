@@ -1,8 +1,7 @@
-"""Banco SQLite do gov-eye, reconstruído do zero a cada carga a partir da curadoria e das coletas.
+"""Banco SQLite do gov-eye, reconstruído do zero a cada carga a partir das definições e das coletas.
 
-O banco é um produto derivado: nada é editado nele à mão. A fonte da verdade
-editorial são os arquivos em data/curadoria/; a dos números, os dados brutos
-em data/raw/.
+O banco é um produto derivado: nada é editado nele à mão. O que o site mostra
+vem dos arquivos em data/definicoes/; os números, dos dados brutos em data/raw/.
 """
 
 import sqlite3
@@ -11,8 +10,8 @@ from pathlib import Path
 
 from . import orcamento as orc
 from .config import BANCO
-from .curadoria import Curadoria
-from .modelo import TEXTO_CAUSA, Revisao, status_revisao
+from .definicoes import Definicoes
+from .modelo import TEXTO_CAUSA
 
 ESQUEMA = """
 CREATE TABLE mandato (
@@ -29,7 +28,7 @@ CREATE TABLE ato (
     id TEXT PRIMARY KEY, tipo TEXT, numero TEXT, titulo TEXT, ementa TEXT,
     data_assinatura TEXT, data_publicacao TEXT, vigencia_fim_prevista TEXT,
     url_oficial TEXT, id_materia_dou TEXT, sha256_xml TEXT,
-    mandato_id TEXT REFERENCES mandato(id), status_revisao TEXT
+    mandato_id TEXT REFERENCES mandato(id)
 );
 CREATE TABLE signatario (
     ato_id TEXT REFERENCES ato(id), ordem INTEGER, nome TEXT, cargo TEXT
@@ -38,17 +37,14 @@ CREATE TABLE evento (
     id TEXT PRIMARY KEY, indicador_id TEXT REFERENCES indicador(id), data_efeito TEXT,
     valor_antes REAL, valor_depois REAL, causa TEXT, texto_causa TEXT,
     ato_id TEXT REFERENCES ato(id), ato_origem_id TEXT REFERENCES ato(id),
-    trecho TEXT, nota TEXT, mandato_id TEXT REFERENCES mandato(id), status_revisao TEXT
+    trecho TEXT, nota TEXT, mandato_id TEXT REFERENCES mandato(id)
 );
 CREATE TABLE correcao (
     objeto TEXT, objeto_id TEXT, data TEXT, o_que_mudou TEXT, motivo TEXT
 );
-CREATE TABLE revisao (
-    objeto TEXT, objeto_id TEXT, revisor TEXT, data TEXT
-);
 CREATE TABLE acao_mapeada (
     tema_id TEXT REFERENCES tema(id), codigo TEXT, subfuncao TEXT, ano_inicio INTEGER, ano_fim INTEGER,
-    justificativa TEXT, status_revisao TEXT
+    justificativa TEXT
 );
 CREATE TABLE acao_excluida (
     tema_id TEXT REFERENCES tema(id), codigo TEXT, motivo TEXT
@@ -71,20 +67,13 @@ def _iso(d: date | None) -> str | None:
     return d.isoformat() if d else None
 
 
-def _mandato_id(c: Curadoria, dia: date) -> str | None:
+def _mandato_id(c: Definicoes, dia: date) -> str | None:
     m = c.mandato_em(dia)
     return m.id if m else None
 
 
-def _gravar_revisoes(db: sqlite3.Connection, objeto: str, objeto_id: str, revisoes: list[Revisao]) -> None:
-    db.executemany(
-        "INSERT INTO revisao VALUES (?, ?, ?, ?)",
-        [(objeto, objeto_id, r.revisor, r.data.isoformat()) for r in revisoes],
-    )
-
-
 def construir(
-    c: Curadoria,
+    c: Definicoes,
     linhas_siop: list[dict],
     portal: dict[int, dict[str, dict[str, float]]],
     ipca: dict[str, float],
@@ -109,37 +98,32 @@ def construir(
 
     for a in c.atos.values():
         db.execute(
-            "INSERT INTO ato VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO ato VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 a.id, a.tipo, a.numero, a.titulo, a.ementa, _iso(a.data_assinatura), _iso(a.data_publicacao),
                 _iso(a.vigencia_fim_prevista), a.url_oficial, a.id_materia_dou, a.sha256_xml,
-                _mandato_id(c, a.data_assinatura), status_revisao(a.revisoes).value,
+                _mandato_id(c, a.data_assinatura),
             ),
         )
         db.executemany(
             "INSERT INTO signatario VALUES (?, ?, ?, ?)",
             [(a.id, n, s.nome, s.cargo) for n, s in enumerate(a.signatarios)],
         )
-        _gravar_revisoes(db, "ato", a.id, a.revisoes)
 
     for e in c.eventos:
         db.execute(
-            "INSERT INTO evento VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO evento VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 e.id, e.indicador_id, _iso(e.data_efeito), e.valor_antes, e.valor_depois,
                 e.causa.value if e.causa else None, TEXTO_CAUSA[e.causa] if e.causa else "Valor inicial da série",
                 e.ato_id, e.ato_origem_id, e.trecho, e.nota, _mandato_id(c, e.data_efeito),
-                status_revisao(e.revisoes).value,
             ),
         )
-        _gravar_revisoes(db, "evento", e.id, e.revisoes)
 
-    for m in c.acoes:
-        db.execute(
-            "INSERT INTO acao_mapeada VALUES (?, ?, ?, ?, ?, ?, ?)",
-            (m.tema_id, m.codigo, m.subfuncao, m.ano_inicio, m.ano_fim, m.justificativa, status_revisao(m.revisoes).value),
-        )
-        _gravar_revisoes(db, "acao", f"{m.tema_id}:{m.codigo}", m.revisoes)
+    db.executemany(
+        "INSERT INTO acao_mapeada VALUES (?, ?, ?, ?, ?, ?)",
+        [(m.tema_id, m.codigo, m.subfuncao, m.ano_inicio, m.ano_fim, m.justificativa) for m in c.acoes],
+    )
     db.executemany(
         "INSERT INTO correcao VALUES (?, ?, ?, ?, ?)",
         [(x.objeto, x.objeto_id, _iso(x.data), x.o_que_mudou, x.motivo) for x in c.correcoes],

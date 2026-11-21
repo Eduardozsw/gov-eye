@@ -8,8 +8,6 @@ Dois modos (seção 7):
 - "previa": uso interno; mostra também os valores dos anos em que SIOP e Portal divergem.
 - "publicacao": recusa enquanto site.yaml tiver campos a preencher, e anos com divergência
   entre SIOP e Portal ficam bloqueados.
-A revisão humana é opcional e não bloqueia a publicação; quando existe, fica registrada
-nos dados abertos (coluna status_revisao).
 """
 
 import csv
@@ -26,7 +24,7 @@ import yaml
 
 from .. import orcamento as orc
 from ..banco import conectar
-from ..config import BANCO, CURADORIA, WEB
+from ..config import BANCO, DEFINICOES, WEB
 from ..modelo import Causa
 from . import formato, svg, textos
 
@@ -248,15 +246,14 @@ def _dados_abertos(m: Montagem, pasta: Path) -> list[dict]:
 
     arquivos = {
         "eventos.csv": _csv(eventos, ["id", "indicador_id", "data_efeito", "valor_antes", "valor_depois", "causa",
-                                      "texto_causa", "ato_id", "ato_origem_id", "mandato_id", "trecho", "nota",
-                                      "status_revisao"]),
+                                      "texto_causa", "ato_id", "ato_origem_id", "mandato_id", "trecho", "nota"]),
         "atos.csv": _csv(atos, ["id", "tipo", "numero", "titulo", "ementa", "data_assinatura", "data_publicacao",
                                 "vigencia_fim_prevista", "signatarios", "url_oficial", "id_materia_dou",
-                                "sha256_xml", "mandato_id", "status_revisao"]),
+                                "sha256_xml", "mandato_id"]),
         "orcamento.csv": _csv(orcamento, ["tema_id", "ano", "acao", "nome_acao", "programa", "nome_programa",
                                           "subfuncao", *orc.ESTAGIOS, "fator_ipca"]),
         "acoes-mapeadas.csv": _csv(acoes, ["tema_id", "codigo", "subfuncao", "ano_inicio", "ano_fim",
-                                           "justificativa", "status_revisao"]),
+                                           "justificativa"]),
         "acoes-excluidas.csv": _csv(m.excluidas, ["tema_id", "codigo", "motivo"]),
         "correcoes.csv": _csv(correcoes, ["data", "objeto", "objeto_id", "o_que_mudou", "motivo"]),
         "mandatos.csv": _csv(m.mandatos, ["id", "presidente", "nome_curto", "partido_na_posse", "inicio", "fim"]),
@@ -499,8 +496,8 @@ def _correcoes_web(m: Montagem, temas: list[dict], atos: list[dict]) -> list[dic
     return saida
 
 
-def _glossario(curadoria: Path) -> list[dict]:
-    caminho = curadoria / "glossario.yaml"
+def _glossario(definicoes: Path) -> list[dict]:
+    caminho = definicoes / "glossario.yaml"
     termos = (yaml.safe_load(caminho.read_text(encoding="utf-8")) or {}).get("termos", []) if caminho.exists() else []
     ids = [t.get("id") for t in termos]
     problemas = [f"termo repetido: {i}" for i in sorted({i for i in ids if ids.count(i) > 1})]
@@ -538,12 +535,12 @@ def _busca(temas: list[dict], atos: list[dict]) -> list[dict]:
     return itens
 
 
-def exportar(modo: str, banco: Path = BANCO, saida: Path = WEB, curadoria: Path = CURADORIA,
+def exportar(modo: str, banco: Path = BANCO, saida: Path = WEB, definicoes: Path = DEFINICOES,
              hoje: date | None = None) -> Path:
     """Grava saida/dados/site.json e os dados abertos em saida/public/dados/."""
-    config = _config_site(curadoria)
+    config = _config_site(definicoes)
     if modo == "publicacao" and _a_preencher(config):
-        raise ErroPublicacao(f"Preencha os campos marcados com {MARCADOR_A_PREENCHER} em {curadoria / 'site.yaml'}")
+        raise ErroPublicacao(f"Preencha os campos marcados com {MARCADOR_A_PREENCHER} em {definicoes / 'site.yaml'}")
 
     db = conectar(banco)
     m = Montagem(db, modo, hoje or date.today())
@@ -582,7 +579,7 @@ def exportar(modo: str, banco: Path = BANCO, saida: Path = WEB, curadoria: Path 
         "atos": atos,
         "prazos": _prazos_web(m),
         "correcoes": _correcoes_web(m, temas, atos),
-        "glossario": _glossario(curadoria),
+        "glossario": _glossario(definicoes),
         "metodologia": {
             "tolerancia": formato.moeda(orc.TOLERANCIA_CONFERENCIA),
             "ipca_referencia": _mes_referencia(m.ipca_referencia),

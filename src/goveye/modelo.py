@@ -33,35 +33,11 @@ TEXTO_CAUSA = {
 }
 
 
-class StatusRevisao(StrEnum):
-    PENDENTE = "pendente"
-    PRIMEIRA_PASSAGEM = "primeira passagem"
-    REVISAO_INDIVIDUAL = "revisão individual"
-    REVISADO = "revisado"
-
-
-@dataclass(frozen=True)
-class Revisao:
-    revisor: str
-    data: date
-
-
-def status_revisao(revisoes: list[Revisao]) -> StatusRevisao:
-    """Aplica o protocolo da seção 7: duas passagens em dias diferentes, ou dois revisores."""
-    if not revisoes:
-        return StatusRevisao.PENDENTE
-    if len({r.revisor for r in revisoes}) >= 2:
-        return StatusRevisao.REVISADO
-    if len({r.data for r in revisoes}) >= 2:
-        return StatusRevisao.REVISAO_INDIVIDUAL
-    return StatusRevisao.PRIMEIRA_PASSAGEM
-
-
 @dataclass(frozen=True)
 class Correcao:
     """Correção feita depois da publicação (princípio P7). O registro só cresce: nada é apagado."""
 
-    objeto: str  # "ato", "evento" ou "acao", como nas revisões
+    objeto: str  # "ato", "evento" ou "acao"
     objeto_id: str
     data: date
     o_que_mudou: str
@@ -119,7 +95,6 @@ class Ato:
     id_materia_dou: str = ""
     sha256_xml: str = ""
     vigencia_fim_prevista: date | None = None
-    revisoes: list[Revisao] = field(default_factory=list)
 
     @property
     def titulo(self) -> str:
@@ -140,7 +115,6 @@ class Evento:
     trecho: str  # citação literal do ato que comprova o valor
     ato_origem_id: str | None = None  # em expirações, o ato que fixou o prazo
     nota: str = ""
-    revisoes: list[Revisao] = field(default_factory=list)
 
 
 @dataclass
@@ -155,7 +129,6 @@ class AcaoMapeada:
     subfuncao: str | None = None
     ano_inicio: int | None = None
     ano_fim: int | None = None
-    revisoes: list[Revisao] = field(default_factory=list)
 
     def vale_em(self, ano: int, subfuncao: str) -> bool:
         return (
@@ -167,7 +140,7 @@ class AcaoMapeada:
 
 @dataclass
 class AcaoExcluida:
-    """Ação candidata que o curador decidiu não incluir, com o motivo (publicado na metodologia)."""
+    """Ação candidata que ficou fora do tema, com o motivo (publicado na metodologia)."""
 
     tema_id: str
     codigo: str

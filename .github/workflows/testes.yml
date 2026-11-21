@@ -15,7 +15,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --locked
       - run: uv run pytest -q
-      # A curadoria real precisa estar sempre válida, mesmo com itens pendentes.
+      # As definições reais precisam estar sempre válidas.
       - run: uv run goveye validar
       # O front-end é construído a partir da prévia, montada só com dados versionados (sem rede para as fontes).
       - run: uv run goveye carregar

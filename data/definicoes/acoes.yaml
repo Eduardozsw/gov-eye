@@ -5,7 +5,7 @@
 # ficam fora mesmo quando parte do dinheiro atende o tema, porque não dá para separar.
 #
 # Campos: tema, acao (código), justificativa, subfuncao (opcional: só conta o gasto nessa
-# subfunção), ano_inicio/ano_fim (opcionais), revisoes (lista de {revisor, data}).
+# subfunção), ano_inicio/ano_fim (opcionais).
 # A lista de candidatas consideradas está em candidatos-acoes.csv.
 
 acoes:

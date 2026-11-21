@@ -21,7 +21,7 @@
 
 ## O que muda no plano
 
-1. **Orçamento:** SIOP como fonte principal, Portal da Transparência como conferência automática. Uma divergência entre os dois bloqueia a publicação até revisão.
+1. **Orçamento:** SIOP como fonte principal, Portal da Transparência como conferência automática. Uma divergência entre os dois bloqueia a publicação até as duas fontes baterem.
 2. **Atos:** DOU como fonte única no MVP. Planalto, LexML e Receita ficam fora do pipeline.
 3. **Volume do DOU:** cada mês da Seção 1 tem ~530 MB e o servidor não aceita download parcial. O coletor vai baixar mês a mês, filtrar só os atos relevantes (por tipo e palavras-chave) e descartar o resto. Estimando pelo mês testado, são ~60 GB para 2018–2026, baixados uma única vez.
 4. **Limites de acesso:** o bloqueio do Planalto mostra que os coletores precisam de intervalos entre requisições e de cache local, para não repetir downloads.

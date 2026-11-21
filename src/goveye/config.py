@@ -7,7 +7,7 @@ DADOS = RAIZ / "data"
 BRUTOS = DADOS / "raw"
 # Resultados processados das coletas (pequenos, versionados): permitem refazer o site sem rede.
 COLETAS = DADOS / "coletas"
-CURADORIA = DADOS / "curadoria"
+DEFINICOES = DADOS / "definicoes"
 BANCO = DADOS / "goveye.sqlite"
 # Front-end em Next.js; recebe web/dados/site.json e os dados abertos em web/public/dados/.
 WEB = RAIZ / "web"

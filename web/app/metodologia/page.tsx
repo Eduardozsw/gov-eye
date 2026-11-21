@@ -72,8 +72,9 @@ export default function Metodologia() {
         das ações orçamentárias de cada tema segue o critério acima e está justificada ação por ação.
       </p>
       <p>
-        Esses itens não passam por revisão humana individual antes de ir ao ar. Se encontrar um erro, use o link
-        &ldquo;Reportar erro&rdquo; da página: a correção é feita e fica registrada.
+        Os números não são produzidos pelo gov-eye: vêm direto das fontes oficiais e são reorganizados numa linha do
+        tempo. Se encontrar um erro, use o link &ldquo;Reportar erro&rdquo; da página: a correção é feita e fica
+        registrada.
       </p>
 
       <h2>Correções</h2>

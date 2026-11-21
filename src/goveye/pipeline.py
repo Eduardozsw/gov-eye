@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from . import banco
-from . import curadoria as cur
+from . import definicoes as defs
 from .coleta import dou, orcamento
 from .config import ANO_FINAL, ANO_INICIAL
 from .fontes.base import novo_cliente
@@ -11,7 +11,7 @@ from .fontes.base import novo_cliente
 
 def coletar_orcamento(anos: range = range(ANO_INICIAL, ANO_FINAL + 1)) -> None:
     """Baixa SIOP, Portal da Transparência e IPCA para as ações do mapeamento."""
-    c = cur.carregar()
+    c = defs.carregar()
     codigos = sorted({a.codigo for a in c.acoes})
     with novo_cliente() as cliente:
         siop, portal = [], {}
@@ -38,7 +38,7 @@ def coletar_dou(meses: list[tuple[int, int]], manter_zip: bool = False) -> None:
 
 
 def carregar() -> Path:
-    """Monta o banco SQLite a partir da curadoria e das coletas já feitas."""
-    c = cur.carregar()
+    """Monta o banco SQLite a partir das definições e das coletas já feitas."""
+    c = defs.carregar()
     portal = {int(ano): v for ano, v in orcamento.ler("portal.json").items()}
     return banco.construir(c, orcamento.ler("siop.json"), portal, orcamento.ler("ipca.json"))

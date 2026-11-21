@@ -5,9 +5,6 @@ eventos:
     valor_depois: 0.5
     ato: decreto-teste-1
     trecho: "Art. 1º O tributo X fica fixado em R$ 0,50 por litro."
-    revisoes:
-      - {revisor: Curador, data: 2026-01-10}
-      - {revisor: Curador, data: 2026-01-12}
   - id: tributo-x-zerado
     indicador: tributo-x
     data_efeito: 2022-06-01

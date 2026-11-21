@@ -1,4 +1,4 @@
-"""Fixtures sem rede: uma curadoria mínima e fictícia (atos "de teste"), mais dados de orçamento sintéticos."""
+"""Fixtures sem rede: definições mínimas e fictícias (atos "de teste"), mais dados de orçamento sintéticos."""
 
 import shutil
 from pathlib import Path
@@ -15,9 +15,9 @@ def escrever_yaml(caminho: Path, conteudo) -> None:
 
 
 @pytest.fixture
-def pasta_curadoria(tmp_path: Path) -> Path:
-    destino = tmp_path / "curadoria"
-    shutil.copytree(FIXTURES / "curadoria", destino)
+def pasta_definicoes(tmp_path: Path) -> Path:
+    destino = tmp_path / "definicoes"
+    shutil.copytree(FIXTURES / "definicoes", destino)
     return destino
 
 

@@ -8,6 +8,3 @@ signatarios:
   - nome: Presidente A de Teste
     cargo: Presidente da República
 url_oficial: https://www.in.gov.br/teste/decreto-teste-1
-revisoes:
-  - {revisor: Curador, data: 2026-01-10}
-  - {revisor: Curador, data: 2026-01-12}

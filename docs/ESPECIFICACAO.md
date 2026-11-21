@@ -33,7 +33,7 @@ O cidadão não precisa confiar no gov-eye: ele pode conferir cada informação 
 | P3 | **Mesmo critério para todos** | As regras de coleta, classificação e exibição não dependem de partido ou governo. Qualquer exceção é documentada publicamente. |
 | P4 | **Causa explícita** | Toda mudança informa sua causa (seção 5.3). "Voltou ao valor anterior porque o prazo expirou" é diferente de "foi aumentado". |
 | P5 | **Valores comparáveis** | Valores monetários são exibidos nominais **e** corrigidos pela inflação (IPCA), com a data-base indicada. |
-| P6 | **Verificável** | Dados, metodologia e histórico de revisão abertos (CC BY 4.0) e código aberto (AGPL-3.0). Cada número publicado pode ser conferido na fonte oficial, e qualquer pessoa pode ler no código como ele foi coletado e calculado. |
+| P6 | **Verificável** | Dados, metodologia e histórico de correções abertos (CC BY 4.0) e código aberto (AGPL-3.0). Cada número publicado pode ser conferido na fonte oficial, e qualquer pessoa pode ler no código como ele foi coletado e calculado. |
 | P7 | **Erros corrigidos às claras** | Correções ficam registradas num histórico público por evento. Nada é apagado em silêncio. |
 
 ## 4. Público e perguntas que o sistema responde
@@ -66,7 +66,7 @@ Ato ─< Votação ─< Voto >─ Parlamentar
 | **Tema** | Assunto navegável pelo cidadão | `id`, `nome` ("Combustíveis", "Povos indígenas"), `categoria` (tributo / política pública), `descrição` |
 | **Indicador** | Série que pode mudar ao longo do tempo | `id`, `tema_id`, `nome` ("PIS/Cofins sobre gasolina"), `unidade` (R$/litro, %, R$), `tipo` (alíquota / orçamento / regra) |
 | **Observação** | Valor do indicador num intervalo de tempo | `indicador_id`, `valor`, `vigente_de`, `vigente_ate`, `fonte_url` |
-| **Evento** | Mudança no valor de um indicador | `id`, `indicador_id`, `data_efeito`, `valor_antes`, `valor_depois`, `causa` (5.3), `ato_id`, `ato_origem_id` (para expirações), `fonte_url`, `status_revisao` |
+| **Evento** | Mudança no valor de um indicador | `id`, `indicador_id`, `data_efeito`, `valor_antes`, `valor_depois`, `causa` (5.3), `ato_id`, `ato_origem_id` (para expirações), `fonte_url` |
 | **Ato** | Documento oficial | `id`, `tipo` (Lei, LC, MP, Decreto, Portaria, Convênio, Decisão judicial), `numero`, `data_assinatura`, `data_publicacao`, `vigencia_inicio`, `vigencia_fim_prevista`, `ementa`, `url_dou`, `url_planalto`, `urn_lexml` |
 | **Agente** | Quem assinou | `id`, `nome`, `cargo`, `mandato_id` |
 | **Mandato** | Período de governo | `id`, `presidente`, `inicio`, `fim`, `partido_na_posse` |
@@ -104,7 +104,7 @@ O caso `EXPIRACAO_PREVISTA` é o que mais desmonta a narrativa "zerou × aumento
 
 ### 5.4 Mapeamento entre planos plurianuais
 
-Programas e ações do orçamento mudam de código e de nome a cada PPA. O mapeamento de ações para temas é feito **por curadoria humana**, com uma justificativa escrita e pública para cada ligação. Sem isso, um programa renomeado pareceria extinto.
+Programas e ações do orçamento mudam de código e de nome a cada PPA. O mapeamento de ações para temas é definido uma vez, por um critério fixo (o nome oficial da ação), com uma justificativa escrita e pública para cada ligação. Sem isso, um programa renomeado pareceria extinto.
 
 ## 6. Fontes de dados
 
@@ -123,7 +123,7 @@ Programas e ações do orçamento mudam de código e de nome a cada PPA. O mapea
 | **LexML** | Fora do MVP | Página anti-robô | ⛔ Bloqueado |
 | **Receita Federal** (normas) | Fora do MVP | API interna sem documentação | ⚠️ Parcial |
 
-**Regra de precedência:** quando duas fontes divergirem, vale o texto publicado no DOU. A divergência é registrada e exibida. No orçamento, uma divergência entre SIOP e Portal da Transparência bloqueia a publicação do valor até revisão.
+**Regra de precedência:** quando duas fontes divergirem, vale o texto publicado no DOU. A divergência é registrada e exibida. No orçamento, uma divergência entre SIOP e Portal da Transparência bloqueia a publicação do valor até as duas fontes baterem.
 
 ## 7. Pipeline de dados
 
@@ -136,11 +136,10 @@ Programas e ações do orçamento mudam de código e de nome a cada PPA. O mapea
 3. **Extração de eventos:**
    - Orçamento: automática (valores numéricos estruturados por ação e ano).
    - Alíquotas e regras: **semiautomática**. O sistema identifica atos candidatos (por palavras-chave e NCM nas ementas) e propõe o evento, com o trecho literal do ato que comprova o valor.
-4. **Conferência automática:** o curador único não tem como revisar cada item a cada coleta, então a publicação não depende de revisão humana. No lugar dela:
+4. **Conferência automática:** não há revisão humana item a item; os dados vêm das fontes oficiais e as checagens são automáticas:
    - no orçamento, a divergência entre SIOP e Portal da Transparência bloqueia o ano (seção 6);
-   - em cada evento, o trecho citado é conferido com o texto do DOU coletado (`goveye conferir-trechos`) quando o evento entra na curadoria. Os textos filtrados do DOU ficam fora do git, por isso essa conferência ainda não roda na publicação agendada;
-   - o site diz na metodologia que os itens não passam por revisão humana individual, mostra o trecho e o link oficial em cada evento e oferece "reportar erro"; correções ficam públicas (P7).
-   - A revisão humana continua possível e opcional (`goveye revisar`). Quando feita, fica registrada nos dados abertos (`status_revisao`).
+   - em cada evento, o trecho citado é conferido com o texto do DOU coletado (`goveye conferir-trechos`) quando o evento é incluído. Os textos filtrados do DOU ficam fora do git, por isso essa conferência ainda não roda na publicação agendada;
+   - o site diz na metodologia que os números vêm direto das fontes oficiais, mostra o trecho e o link oficial em cada evento e oferece "reportar erro"; correções ficam públicas (P7).
 5. **Publicação:** geração do site e dos arquivos de dados abertos (CSV/JSON).
 
 ## 8. Interface
@@ -188,8 +187,8 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Coleta e ETL | Python (httpx, lxml, pandas) | Ecossistema forte para dados públicos |
 | Repositório | GitHub, público, código sob AGPL-3.0 | Seção 13 |
 | Agendamento | GitHub Actions (cron) | Gratuito e sem cota de minutos para repositórios públicos |
-| Armazenamento | YAML de curadoria e instantâneos JSON das coletas, versionados; SQLite derivado, reconstruído a cada carga (ADR 0001) | Simples, auditável, histórico via git |
-| Conferência | Checagens automáticas no carregamento e na exportação (seção 7); revisão humana opcional registrada em `revisoes.yaml` | Publicação sem depender da disponibilidade do curador; o que for revisado fica registrado nos dados abertos |
+| Armazenamento | YAML de definições (`data/definicoes/`) e instantâneos JSON das coletas, versionados; SQLite derivado, reconstruído a cada carga (ADR 0001) | Simples, auditável, histórico via git |
+| Conferência | Checagens automáticas no carregamento e na exportação (seção 7) | Publicação sem depender de revisão humana |
 | Site | Next.js com exportação estática; regras, frases e gráficos SVG continuam no Python, que exporta `site.json` (ADR 0002) | Identidade visual e busca no navegador sem perder as regras num lugar só; hospedagem sem servidor |
 | Hospedagem | Cloudflare Pages | Custo zero e permite uso comercial (o plano gratuito da Vercel é só para uso não comercial). Com o repositório público, o GitHub Pages também passou a ser gratuito |
 | Dados abertos | CSV e JSON publicados junto com o site, licença CC BY 4.0 | Princípio P6 |
@@ -227,17 +226,17 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Ser acusado de favorecer um lado | Princípios P2/P3, textos por modelo, metodologia pública, histórico de correções aberto, página "Quem faz" com o responsável identificado |
 | Alguém publicar uma cópia alterada do código | A AGPL-3.0 obriga quem publicar uma versão alterada, inclusive como site, a abrir o código dela e indicar as mudanças. A licença não protege o nome: contra quem se passar pelo gov-eye valem as medidas da linha abaixo |
 | Terceiros se passarem pelo gov-eye ou divulgarem dados adulterados em nome dele | Domínio oficial único; registro da marca no INPI quando o projeto ganhar alcance; arquivos de dados publicados com hash e assinatura digital para qualquer pessoa conferir a origem; cada evento aponta para o documento oficial, o que expõe números inventados; a licença CC BY 4.0 exige indicar alterações e proíbe sugerir endosso do gov-eye |
-| Erro de dado viralizar | Trecho do ato e link oficial ao lado de cada valor; conferência automática (seção 7); botão "reportar erro" em cada evento; correções visíveis (P7). Sem revisão humana obrigatória, o risco é maior nas escolhas editoriais (mapeamento de ações, causa de cada evento) |
+| Erro de dado viralizar | Trecho do ato e link oficial ao lado de cada valor; conferência automática (seção 7); botão "reportar erro" em cada evento; correções visíveis (P7). O mapeamento de ações e a causa de cada evento seguem critérios fixos e públicos (seções 5.3 e 5.4) |
 | Mudança ou queda de APIs públicas | Arquivo bruto guardado na coleta; testes de contrato por fonte no agendamento |
 | Mapeamento de programas contestável | Justificativa pública para cada ligação ação → tema |
 | Período eleitoral | Manter a neutralidade e evitar qualquer conteúdo que possa ser lido como propaganda; consultar orientação jurídica antes de campanhas de divulgação |
-| Sustentabilidade da curadoria | Começar pequeno; documentar o processo para voluntários; explorar parceria com checadores e universidades |
+| Sustentabilidade do projeto | Começar pequeno; automatizar a coleta; explorar parceria com checadores e universidades |
 
 ## 13. Decisões e questões em aberto
 
 ### Decidido
 
-- **Revisão no MVP:** a publicação não depende de revisão humana (seção 7). O autor revisa quando puder, sem prazo; os critérios para aceitar revisores voluntários serão definidos depois.
+- **Sem revisão humana:** o gov-eye reorganiza dados das fontes oficiais; não há revisão item a item. As checagens são automáticas (seção 7) e os erros apontados viram correções públicas.
 - **Orientação de bancada por partido:** fica para a Fase 3, junto com as votações.
 - **Temas do MVP:** povos indígenas, mulheres / enfrentamento à violência, Bolsa Família e Minha Casa Minha Vida (seção 11).
 - **Responsável:** pessoa física. O site terá uma página "Quem faz" com o nome do responsável, um contato e uma declaração sobre filiação partidária.
@@ -246,5 +245,4 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 
 ### Em aberto
 
-1. Critério para aceitar revisores voluntários.
-2. Orientação jurídica sobre responsabilidade pelo conteúdo antes de uma divulgação ampla, sobretudo em período eleitoral.
+1. Orientação jurídica sobre responsabilidade pelo conteúdo antes de uma divulgação ampla, sobretudo em período eleitoral.
