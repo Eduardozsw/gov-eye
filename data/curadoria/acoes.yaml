@@ -1,7 +1,6 @@
 # Mapeamento de ações orçamentárias para temas (seção 5.4 da especificação).
 #
-# PROPOSTA INICIAL, AGUARDANDO REVISÃO DO CURADOR. Nenhuma linha tem revisão registrada.
-# Critério usado na proposta: a ação entra quando o NOME OFICIAL dela (no SIOP) se refere
+# Critério: a ação entra quando o NOME OFICIAL dela (no SIOP) se refere
 # explicitamente ao público ou ao programa do tema. Ações genéricas (salários, administração)
 # ficam fora mesmo quando parte do dinheiro atende o tema, porque não dá para separar.
 #
@@ -161,6 +160,243 @@ acoes:
     acao: 00VE
     justificativa: "Integralização de cotas do Fundo Garantidor da Habitação Popular (FGHab), criado pela lei do programa (11.977/2009)."
 
+  # ---------------------------------------------------------------- Educação básica
+  - tema: educacao-basica
+    acao: 0E36
+    justificativa: "Complementação da União ao Fundeb (até 2021; sucedida pela 00SB com o novo Fundeb da EC 108/2020)."
+  - tema: educacao-basica
+    acao: 00SB
+    justificativa: "Complementação da União ao Fundeb (a partir de 2021; sucede a 0E36)."
+  - tema: educacao-basica
+    acao: 00PI
+    justificativa: "Apoio ao Programa Nacional de Alimentação Escolar (PNAE): merenda escolar."
+  - tema: educacao-basica
+    acao: "0515"
+    justificativa: "Dinheiro Direto na Escola (PDDE) para a educação básica."
+  - tema: educacao-basica
+    acao: 20RQ
+    justificativa: "Produção, aquisição e distribuição de livros e materiais didáticos para a educação básica."
+  - tema: educacao-basica
+    acao: "0969"
+    justificativa: "Apoio ao transporte escolar na educação básica (PNATE)."
+  - tema: educacao-basica
+    acao: 0E53
+    justificativa: "Aquisição de veículos para o transporte escolar da educação básica (Caminho da Escola)."
+  - tema: educacao-basica
+    acao: 20RP
+    justificativa: "Apoio à infraestrutura para a educação básica."
+  - tema: educacao-basica
+    acao: 00VI
+    justificativa: "Apoio à implantação de escolas em tempo integral (a partir de 2024)."
+  - tema: educacao-basica
+    acao: 12KU
+    justificativa: "Apoio à implantação de escolas para educação infantil (até 2021; sucedida pela 00SU)."
+  - tema: educacao-basica
+    acao: 00SU
+    justificativa: "Apoio à implantação de escolas para educação infantil (a partir de 2022; sucede a 12KU)."
+  - tema: educacao-basica
+    acao: 00OW
+    justificativa: "Apoio à manutenção da educação infantil."
+  - tema: educacao-basica
+    acao: "0509"
+    justificativa: "Apoio ao desenvolvimento da educação básica."
+  - tema: educacao-basica
+    acao: 20RJ
+    justificativa: "Capacitação e formação inicial e continuada de professores da educação básica."
+  - tema: educacao-basica
+    acao: 00O0
+    justificativa: "Concessão de bolsas de apoio à educação básica (formação de professores)."
+  - tema: educacao-basica
+    acao: 00SS
+    justificativa: "Assistência financeira a estados e ao DF para garantir acesso à internet a alunos e professores da rede pública (2021 e 2022)."
+  - tema: educacao-basica
+    acao: 214V
+    justificativa: "Apoio à alfabetização e à educação de jovens e adultos."
+  - tema: educacao-basica
+    acao: 00PH
+    justificativa: "Bolsas e auxílio financeiro para alfabetização e educação de jovens e adultos."
+  - tema: educacao-basica
+    acao: 20RM
+    justificativa: "Exames e avaliações da educação básica."
+  - tema: educacao-basica
+    acao: "4014"
+    justificativa: "Censo Escolar da Educação Básica."
+  - tema: educacao-basica
+    acao: 20RI
+    justificativa: "Funcionamento das instituições federais de educação básica (colégios de aplicação e afins)."
+  - tema: educacao-basica
+    acao: 21CO
+    justificativa: "Funcionamento das instituições federais de educação especial (a partir de 2021)."
+
+  # ---------------------------------------------------------------- Universidades e institutos federais
+  - tema: universidades-institutos
+    acao: 20RK
+    justificativa: "Funcionamento das instituições federais de ensino superior: principal ação de custeio das universidades."
+  - tema: universidades-institutos
+    acao: 20RL
+    justificativa: "Funcionamento das instituições da rede federal de educação profissional, científica e tecnológica."
+  - tema: universidades-institutos
+    acao: "4002"
+    justificativa: "Assistência ao estudante de ensino superior (PNAES)."
+  - tema: universidades-institutos
+    acao: "2994"
+    justificativa: "Assistência aos estudantes da rede federal de educação profissional, científica e tecnológica."
+  - tema: universidades-institutos
+    acao: 0A12
+    justificativa: "Bolsa Permanência no ensino superior, paga a estudantes das universidades federais."
+  - tema: universidades-institutos
+    acao: 21IV
+    justificativa: "Apoio à alimentação do estudante da rede federal de educação profissional (a partir de 2026)."
+  - tema: universidades-institutos
+    acao: "8282"
+    justificativa: "Reestruturação e modernização das instituições federais de ensino superior."
+  - tema: universidades-institutos
+    acao: 20RG
+    justificativa: "Reestruturação e modernização das instituições da rede federal de educação profissional."
+  - tema: universidades-institutos
+    acao: 15R3
+    justificativa: "Apoio à consolidação, reestruturação e modernização das instituições federais de ensino superior."
+  - tema: universidades-institutos
+    acao: 15R4
+    justificativa: "Apoio à expansão, consolidação e reestruturação da rede federal de educação profissional."
+  - tema: universidades-institutos
+    acao: 219V
+    justificativa: "Apoio ao funcionamento das instituições federais de educação superior."
+  - tema: universidades-institutos
+    acao: 219U
+    justificativa: "Apoio ao funcionamento e modernização da rede federal de educação profissional."
+  - tema: universidades-institutos
+    acao: 20GK
+    justificativa: "Fomento às ações de graduação, pós-graduação, ensino, pesquisa e extensão nas instituições federais."
+  - tema: universidades-institutos
+    acao: 21B3
+    justificativa: "Fomento ao ensino, pesquisa, extensão e inovação na educação profissional e tecnológica."
+  - tema: universidades-institutos
+    acao: 21B4
+    justificativa: "Fomento ao desenvolvimento e modernização dos sistemas de ensino de educação profissional e tecnológica."
+  - tema: universidades-institutos
+    acao: 20RW
+    justificativa: "Apoio à formação profissional, científica e tecnológica (até 2023)."
+  - tema: universidades-institutos
+    acao: "6380"
+    justificativa: "Fomento ao desenvolvimento da educação profissional e tecnológica (até 2019)."
+  - tema: universidades-institutos
+    acao: 21D7
+    justificativa: "Apoio à educação a distância nas instituições federais (a partir de 2022)."
+  - tema: universidades-institutos
+    acao: 21GS
+    justificativa: "Internacionalização da educação superior (a partir de 2024)."
+  - tema: universidades-institutos
+    acao: 21GT
+    justificativa: "Ações de sustentabilidade nas universidades federais (a partir de 2024)."
+  - tema: universidades-institutos
+    acao: 11G1
+    justificativa: "Implantação da Universidade Federal da Integração Latino-Americana (Unila)."
+  - tema: universidades-institutos
+    acao: 14XN
+    justificativa: "Implantação da Universidade Federal do Oeste da Bahia (UFOB)."
+  - tema: universidades-institutos
+    acao: 14XO
+    justificativa: "Implantação da Universidade Federal do Sul e Sudeste do Pará (Unifesspa)."
+  - tema: universidades-institutos
+    acao: 14XP
+    justificativa: "Implantação da Universidade Federal do Cariri (UFCA)."
+  - tema: universidades-institutos
+    acao: 14XQ
+    justificativa: "Implantação da Universidade Federal do Sul da Bahia (UFSB)."
+  - tema: universidades-institutos
+    acao: 154O
+    justificativa: "Implantação do campus de Governador Valadares (UFJF)."
+
+  # ---------------------------------------------------------------- Pé-de-Meia
+  - tema: pe-de-meia
+    acao: 00W2
+    justificativa: "Integralização de cotas da União no fundo privado que custeia a poupança de incentivo à permanência e conclusão escolar de estudantes do ensino médio (Pé-de-Meia)."
+
+  # ---------------------------------------------------------------- FIES
+  - tema: fies
+    acao: 00IG
+    justificativa: "Concessão de financiamento estudantil do FIES (Lei 10.260/2001): valor emprestado aos estudantes."
+  - tema: fies
+    acao: 00YG
+    justificativa: "Financiamento a beneficiários adimplentes do FIES (a partir de 2026)."
+
+  # ---------------------------------------------------------------- Farmácia Popular
+  - tema: farmacia-popular
+    acao: 20YR
+    justificativa: "Manutenção e funcionamento do Farmácia Popular pelo sistema de gratuidade."
+  - tema: farmacia-popular
+    acao: 20YS
+    justificativa: "Manutenção e funcionamento do Farmácia Popular pelo sistema de copagamento."
+
+  # ---------------------------------------------------------------- Mais Médicos / Médicos pelo Brasil
+  - tema: mais-medicos
+    acao: 214U
+    justificativa: "Implementação do Programa Mais Médicos (até 2019)."
+  - tema: mais-medicos
+    acao: 21BG
+    justificativa: "Formação e provisão de profissionais para a atenção primária (a partir de 2020): financia o Médicos pelo Brasil e, desde 2023, o Mais Médicos. Também paga residências e formação, sem como separar."
+  - tema: mais-medicos
+    acao: 00QC
+    justificativa: "Bolsas para supervisão do Programa Mais Médicos."
+
+  # ---------------------------------------------------------------- Atenção primária à saúde
+  - tema: atencao-primaria
+    acao: 219A
+    justificativa: "Piso de Atenção Primária à Saúde: principal repasse federal aos municípios para a atenção primária."
+  - tema: atencao-primaria
+    acao: 2E89
+    justificativa: "Incremento temporário ao custeio dos serviços de atenção primária à saúde."
+  - tema: atencao-primaria
+    acao: 00UC
+    justificativa: "Transferência aos entes federativos para o pagamento dos agentes comunitários de saúde (a partir de 2023)."
+  - tema: atencao-primaria
+    acao: "8581"
+    justificativa: "Estruturação da rede de serviços de atenção primária (obras e equipamentos de unidades básicas)."
+  - tema: atencao-primaria
+    acao: 21CE
+    justificativa: "Implementação de políticas de atenção primária à saúde (a partir de 2021)."
+  - tema: atencao-primaria
+    acao: 2E79
+    justificativa: "Expansão e consolidação da atenção básica (até 2020)."
+  - tema: atencao-primaria
+    acao: 217U
+    justificativa: "Apoio à manutenção dos polos do Academia da Saúde, parte da atenção primária."
+
+  # ---------------------------------------------------------------- Fiscalização ambiental e áreas protegidas
+  - tema: fiscalizacao-ambiental
+    acao: 214N
+    justificativa: "Controle e fiscalização ambiental (Ibama)."
+  - tema: fiscalizacao-ambiental
+    acao: 214P
+    justificativa: "Fiscalização ambiental e prevenção e combate a incêndios florestais (Ibama)."
+  - tema: fiscalizacao-ambiental
+    acao: 214M
+    justificativa: "Prevenção e controle de incêndios florestais nas áreas federais prioritárias."
+  - tema: fiscalizacao-ambiental
+    acao: 21BS
+    justificativa: "Prevenção, fiscalização e combate ao desmatamento ilegal e aos incêndios florestais (2019 e 2020)."
+  - tema: fiscalizacao-ambiental
+    acao: 20WM
+    justificativa: "Criação, gestão e implementação das unidades de conservação federais (ICMBio)."
+  - tema: fiscalizacao-ambiental
+    acao: 20WN
+    justificativa: "Pesquisa, monitoramento e conservação de espécies e do patrimônio espeleológico (ICMBio)."
+  - tema: fiscalizacao-ambiental
+    acao: 21EK
+    justificativa: "Fiscalização ambiental em terras indígenas (2023 e 2024). Também conta no tema Povos indígenas."
+  - tema: fiscalizacao-ambiental
+    acao: 21EN
+    justificativa: "Gestão de unidades de conservação em terras indígenas (2023 e 2024). Também conta no tema Povos indígenas."
+
+  # ---------------------------------------------------------------- Bolsas de pesquisa e pós-graduação
+  - tema: bolsas-pesquisa
+    acao: "0487"
+    justificativa: "Concessão de bolsas de estudo no ensino superior: bolsas de pós-graduação da Capes."
+  - tema: bolsas-pesquisa
+    acao: 00LV
+    justificativa: "Formação, capacitação e fixação de recursos humanos para o desenvolvimento científico: bolsas do CNPq."
+
 excluidas:
   - tema: minha-casa-minha-vida
     acao: 00XF
@@ -204,3 +440,90 @@ excluidas:
   - tema: mulheres
     acao: "2000"
     motivo: "Administração da unidade: custeio administrativo genérico do ministério."
+  - tema: educacao-basica
+    acao: 0C33
+    motivo: "Transferência ao Fundeb da parte formada por impostos dos próprios estados e municípios: a União só repassa, não decide o valor. A parte federal está na complementação (0E36 e 00SB)."
+  - tema: educacao-basica
+    acao: "0369"
+    motivo: "Cotas estadual e municipal do salário-educação: repasse obrigatório da parte que pertence a estados e municípios."
+  - tema: educacao-basica
+    acao: "0312"
+    motivo: "Serviços públicos de educação do Distrito Federal, pagos pelo Fundo Constitucional do DF: obrigação constitucional com um único ente, que distorceria a comparação."
+  - tema: educacao-basica
+    acao: 00WX
+    motivo: "Pessoal ativo da educação do Distrito Federal, pago pelo Fundo Constitucional do DF (a partir de 2025)."
+  - tema: educacao-basica
+    acao: 213M
+    motivo: "Valorização da diversidade, direitos humanos e inclusão: o nome não se refere especificamente à educação básica."
+  - tema: educacao-basica
+    acao: 20XM
+    motivo: "Ensino assistencial nos colégios militares: escolas do Ministério da Defesa, fora da rede de educação básica apoiada pelo MEC."
+  - tema: educacao-basica
+    acao: 21GP
+    motivo: "Estabelecimentos de educação básica militares do Ministério da Defesa (a partir de 2024)."
+  - tema: educacao-basica
+    acao: 20XS
+    motivo: "Ensino assistencial na Fundação Osorio, ligada ao Exército."
+  - tema: universidades-institutos
+    acao: 20TP
+    motivo: "Ativos civis da União: salários de servidores, ação geral de pessoal sem como separar só as universidades."
+  - tema: universidades-institutos
+    acao: "4086"
+    motivo: "Funcionamento de hospitais universitários federais: atendimento à população pelo SUS, não ensino."
+  - tema: universidades-institutos
+    acao: 20RX
+    motivo: "Reestruturação dos hospitais universitários federais (REHUF): atendimento à população pelo SUS, não ensino."
+  - tema: universidades-institutos
+    acao: 21GQ
+    motivo: "Estabelecimentos de ensino superior militares do Ministério da Defesa."
+  - tema: universidades-institutos
+    acao: 2A82
+    motivo: "Ensino no Instituto Militar de Engenharia (IME), do Exército."
+  - tema: universidades-institutos
+    acao: 20X8
+    motivo: "Ensino no Instituto Tecnológico de Aeronáutica (ITA), da Aeronáutica."
+  - tema: universidades-institutos
+    acao: 21GN
+    motivo: "Ensino profissional militar do Ministério da Defesa."
+  - tema: universidades-institutos
+    acao: "2510"
+    motivo: "Ensino profissional marítimo, da Marinha."
+  - tema: universidades-institutos
+    acao: 7XE1
+    motivo: "Reconstrução do Museu Nacional (UFRJ): obra de patrimônio cultural, não de ensino."
+  - tema: universidades-institutos
+    acao: 20RN
+    motivo: "Avaliação da educação superior e da pós-graduação: atividade de regulação do MEC, que alcança também instituições privadas."
+  - tema: fies
+    acao: 20RZ
+    motivo: "Administração do FIES: despesa de gestão. Somar com os empréstimos misturaria gasto e crédito."
+  - tema: fies
+    acao: 00M2
+    motivo: "Aportes aos fundos garantidores do crédito educativo: despesa que cobre a inadimplência. Somar com os empréstimos misturaria gasto e crédito."
+  - tema: atencao-primaria
+    acao: 21BG
+    motivo: "Formação e provisão de profissionais para a atenção primária: conta no tema Mais Médicos."
+  - tema: atencao-primaria
+    acao: 21DX
+    motivo: "Contrato de gestão com a agência federal de atenção primária (Adaps, depois AgSUS): a agência também administra outras atividades, sem como separar."
+  - tema: atencao-primaria
+    acao: 20AE
+    motivo: "Assistência farmacêutica na atenção básica: compra de remédios distribuídos pelo SUS, política distinta do custeio da atenção primária."
+  - tema: fiscalizacao-ambiental
+    acao: 214O
+    motivo: "Uso sustentável da biodiversidade e recuperação ambiental: não é fiscalização nem gestão de áreas protegidas."
+  - tema: fiscalizacao-ambiental
+    acao: 20WA
+    motivo: "Cadastro, recomposição e produção florestal: política florestal distinta da fiscalização."
+  - tema: fiscalizacao-ambiental
+    acao: 21F5
+    motivo: "Gestão de florestas públicas (Serviço Florestal Brasileiro): concessões e manejo, não fiscalização."
+  - tema: fiscalizacao-ambiental
+    acao: 2E87
+    motivo: "Proteção e direitos animais: política distinta da fiscalização ambiental."
+  - tema: bolsas-pesquisa
+    acao: 00QH
+    motivo: "Bolsas do Proies em instituições privadas, dadas como forma de quitar dívidas tributárias: não são bolsas de pesquisa."
+  - tema: bolsas-pesquisa
+    acao: 00P1
+    motivo: "Bolsas de residência em saúde: formação profissional, não pesquisa."

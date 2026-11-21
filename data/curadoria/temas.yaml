@@ -81,3 +81,131 @@ temas:
         nome: Orçamento do Minha Casa Minha Vida / Casa Verde e Amarela
         unidade: R$
         tipo: orcamento
+
+  - id: educacao-basica
+    nome: Educação básica
+    categoria: politica
+    descricao: >
+      Dinheiro da União para creches e escolas de estados e municípios: complementação do Fundeb,
+      merenda (PNAE), dinheiro direto na escola (PDDE), livros didáticos, transporte escolar, obras,
+      formação de professores e avaliações como o Censo Escolar. A parte do Fundeb que vem de impostos
+      dos próprios estados e municípios e as cotas do salário-educação repassadas a eles ficam fora,
+      porque a União só as transfere. Os salários de professores são pagos por estados e municípios.
+    indicadores:
+      - id: orcamento-educacao-basica
+        nome: Orçamento federal para a educação básica
+        unidade: R$
+        tipo: orcamento
+
+  - id: universidades-institutos
+    nome: Universidades e institutos federais
+    categoria: politica
+    descricao: >
+      Funcionamento, obras e assistência estudantil das universidades federais e da rede federal de
+      educação profissional (institutos federais e Cefets). Salários e aposentadorias de professores e
+      servidores ficam fora: são a maior parte do custo, mas estão em ações gerais de pessoal. Por isso
+      estes números mostram o gasto com custeio e investimento, que é o alvo dos bloqueios orçamentários.
+      Hospitais universitários e escolas militares de ensino superior também ficam fora.
+    indicadores:
+      - id: orcamento-universidades-institutos
+        nome: Orçamento de custeio e investimento das universidades e institutos federais
+        unidade: R$
+        tipo: orcamento
+
+  - id: pe-de-meia
+    nome: Pé-de-Meia
+    categoria: politica
+    descricao: >
+      Poupança paga a estudantes do ensino médio público inscritos no Cadastro Único (Lei 14.818/2024).
+      O orçamento registra os aportes da União ao fundo privado que paga os estudantes, não os pagamentos
+      a cada estudante; por isso o valor de um ano não é o que os estudantes receberam naquele ano.
+      Em 2024 o fundo também recebeu recursos de outros fundos federais (FGO e Fgeduc) sem passar pelo
+      orçamento, o que o TCU apontou no Acórdão 61/2025; esses recursos não aparecem nestes números.
+    indicadores:
+      - id: orcamento-pe-de-meia
+        nome: Aportes da União ao fundo do Pé-de-Meia
+        unidade: R$
+        tipo: orcamento
+
+  - id: fies
+    nome: FIES
+    categoria: politica
+    descricao: >
+      Fundo de Financiamento Estudantil: empréstimos para cursos de graduação em faculdades privadas,
+      que o estudante devolve depois de formado. Os números mostram o dinheiro emprestado em cada ano,
+      não um gasto definitivo. A administração do fundo e os aportes aos fundos garantidores ficam fora,
+      para não somar empréstimo com despesa. O ProUni não aparece porque é pago com isenção de impostos,
+      e não com dinheiro do orçamento.
+    indicadores:
+      - id: orcamento-fies
+        nome: Financiamentos concedidos pelo FIES
+        unidade: R$
+        tipo: orcamento
+
+  - id: farmacia-popular
+    nome: Farmácia Popular
+    categoria: politica
+    descricao: >
+      Remédios gratuitos ou com desconto em farmácias credenciadas. O programa tem duas modalidades
+      no orçamento: a gratuidade e o copagamento, em que o governo paga parte do preço.
+    indicadores:
+      - id: orcamento-farmacia-popular
+        nome: Orçamento do Farmácia Popular
+        unidade: R$
+        tipo: orcamento
+
+  - id: mais-medicos
+    nome: Mais Médicos
+    categoria: politica
+    descricao: >
+      Envio de médicos para a atenção primária em lugares com falta de profissionais. Criado em 2013
+      (Lei 12.871/2013), teve um sucessor, o Médicos pelo Brasil (Lei 13.958/2019), e voltou a se chamar
+      Mais Médicos em 2023 (Lei 14.621/2023); o gov-eye trata os dois como o mesmo programa. A partir de
+      2020 o orçamento usa uma ação mais ampla, de formação e provisão de profissionais para a atenção
+      primária, que também paga residências e cursos; por isso os anos antes e depois de 2020 não são
+      diretamente comparáveis.
+    indicadores:
+      - id: orcamento-mais-medicos
+        nome: Orçamento do Mais Médicos / Médicos pelo Brasil
+        unidade: R$
+        tipo: orcamento
+
+  - id: atencao-primaria
+    nome: Atenção primária à saúde
+    categoria: politica
+    descricao: >
+      Repasses da União a municípios para postos de saúde e equipes de Saúde da Família, obras nas
+      unidades básicas e, desde 2023, o pagamento dos agentes comunitários de saúde. O Mais Médicos,
+      que também faz parte da atenção primária, tem tema próprio e não entra nestes números.
+    indicadores:
+      - id: orcamento-atencao-primaria
+        nome: Orçamento federal para a atenção primária à saúde
+        unidade: R$
+        tipo: orcamento
+
+  - id: fiscalizacao-ambiental
+    nome: Fiscalização ambiental e áreas protegidas
+    categoria: politica
+    descricao: >
+      Fiscalização ambiental do Ibama, prevenção e combate a incêndios florestais e gestão das unidades
+      de conservação federais (ICMBio). Os salários dos fiscais e brigadistas efetivos ficam fora, porque
+      estão em ações gerais de pessoal. O Fundo Amazônia é administrado pelo BNDES, fora do orçamento da
+      União, e também não aparece aqui.
+    indicadores:
+      - id: orcamento-fiscalizacao-ambiental
+        nome: Orçamento para fiscalização ambiental e áreas protegidas
+        unidade: R$
+        tipo: orcamento
+
+  - id: bolsas-pesquisa
+    nome: Bolsas de pesquisa e pós-graduação
+    categoria: politica
+    descricao: >
+      Bolsas de mestrado, doutorado, pós-doutorado e iniciação científica pagas pela Capes (Ministério
+      da Educação) e pelo CNPq (Ministério da Ciência, Tecnologia e Inovação). O Fundo Nacional de
+      Desenvolvimento Científico e Tecnológico (FNDCT) ainda não está incluído.
+    indicadores:
+      - id: orcamento-bolsas-pesquisa
+        nome: Orçamento de bolsas da Capes e do CNPq
+        unidade: R$
+        tipo: orcamento
