@@ -34,6 +34,14 @@ const SINONIMOS: Record<string, string[]> = {
   moradia: ["casa", "habitacao"],
   casas: ["casa", "habitacao"],
   combustivel: ["combustiveis", "gasolina", "diesel"],
+  faculdade: ["faculdade", "universidade"],
+  faculdades: ["faculdade", "universidade"],
+  creche: ["creche", "infantil"],
+  remedio: ["remedio", "farmacia"],
+  remedios: ["remedio", "farmacia"],
+  queimada: ["incendio"],
+  queimadas: ["incendio"],
+  desmatamento: ["desmatamento", "fiscalizacao"],
 };
 
 export function normalizar(texto: string): string {

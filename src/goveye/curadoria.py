@@ -6,7 +6,7 @@ aprovou. Os coletores nunca escrevem neles; só o curador (ou o comando
 """
 
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
@@ -20,6 +20,7 @@ from .modelo import (
     Ato,
     Categoria,
     Causa,
+    Correcao,
     Evento,
     Indicador,
     Mandato,
@@ -28,6 +29,7 @@ from .modelo import (
 )
 
 ARQUIVO_REVISOES = "revisoes.yaml"
+ARQUIVO_CORRECOES = "correcoes.yaml"
 OBJETOS_REVISAVEIS = ("ato", "evento", "acao")
 DOMINIOS_OFICIAIS = ("https://www.in.gov.br/", "http://pesquisa.in.gov.br/", "https://www.planalto.gov.br/")
 TOLERANCIA_VALOR = 1e-6
@@ -45,6 +47,7 @@ class Curadoria:
     eventos: list[Evento]
     acoes: list[AcaoMapeada]
     excluidas: list[AcaoExcluida]
+    correcoes: list[Correcao] = field(default_factory=list)
 
     @property
     def indicadores(self) -> dict[str, Indicador]:
@@ -139,7 +142,13 @@ def carregar(pasta: Path = CURADORIA) -> Curadoria:
         for a in mapeamento.get("excluidas", [])
     ]
 
-    curadoria = Curadoria(mandatos, temas, atos, eventos, acoes, excluidas)
+    registro = _ler(pasta / ARQUIVO_CORRECOES) if (pasta / ARQUIVO_CORRECOES).exists() else {}
+    correcoes = [
+        Correcao(objeto=x["objeto"], objeto_id=str(x["id"]), data=x["data"],
+                 o_que_mudou=(x.get("o_que_mudou") or "").strip(), motivo=(x.get("motivo") or "").strip())
+        for x in registro.get("correcoes") or []
+    ]
+    curadoria = Curadoria(mandatos, temas, atos, eventos, acoes, excluidas, correcoes)
     erros = _aplicar_registro(curadoria, pasta / ARQUIVO_REVISOES)
     if erros:
         raise ErroCuradoria("\n".join(erros))
@@ -188,6 +197,33 @@ def registrar_revisao(objeto: str, id_: str, revisor: str, dia: date, pasta: Pat
     )
     with caminho.open("a", encoding="utf-8") as f:
         f.write("  " + item)
+
+
+def registrar_correcao(objeto: str, id_: str, o_que_mudou: str, motivo: str, dia: date,
+                       pasta: Path = CURADORIA) -> None:
+    """Acrescenta uma correção ao histórico público (comando `goveye corrigir`).
+
+    Registre só o que mudou depois de publicado: ajustes antes da primeira publicação não são correções.
+    """
+    if objeto not in OBJETOS_REVISAVEIS:
+        raise ErroCuradoria(f"Objeto inválido: {objeto}")
+    if (objeto, id_) not in revisaveis(carregar(pasta)):
+        raise ErroCuradoria(f"{objeto} inexistente: {id_}")
+    if not o_que_mudou.strip() or not motivo.strip():
+        raise ErroCuradoria("A correção precisa dizer o que mudou e por quê")
+    caminho = pasta / ARQUIVO_CORRECOES
+    if not caminho.exists():
+        caminho.write_text(
+            "# Histórico público de correções (princípio P7). Só acrescentar; não apagar nem editar linhas.\n"
+            "correcoes:\n",
+            encoding="utf-8",
+        )
+    item = yaml.safe_dump(
+        [{"objeto": objeto, "id": id_, "data": dia, "o_que_mudou": o_que_mudou.strip(), "motivo": motivo.strip()}],
+        allow_unicode=True, default_flow_style=False, sort_keys=False, width=1000,
+    )
+    with caminho.open("a", encoding="utf-8") as f:
+        f.write("".join("  " + linha for linha in item.splitlines(keepends=True)))
 
 
 def validar(c: Curadoria) -> None:
@@ -249,6 +285,13 @@ def validar(c: Curadoria) -> None:
             erros.append(f"Ação {x.codigo} ({x.tema_id}): aparece como incluída e excluída")
         if not x.motivo:
             erros.append(f"Ação excluída {x.codigo} ({x.tema_id}): sem motivo")
+
+    objetos = revisaveis(c)
+    for x in c.correcoes:
+        if (x.objeto, x.objeto_id) not in objetos:
+            erros.append(f"Correção de {x.objeto} inexistente: {x.objeto_id}")
+        if not x.o_que_mudou or not x.motivo:
+            erros.append(f"Correção de {x.objeto} {x.objeto_id} em {x.data}: falta dizer o que mudou ou por quê")
 
     if erros:
         raise ErroCuradoria("\n".join(erros))

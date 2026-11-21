@@ -3,8 +3,10 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { BuscaGlobal } from "@/components/BuscaGlobal.tsx";
+import { Navegacao } from "@/components/Navegacao.tsx";
 import { Marca } from "@/components/Olho.tsx";
-import { site } from "@/lib/dados.ts";
+import { enderecoSite, site } from "@/lib/dados.ts";
 
 import "./globals.css";
 
@@ -12,10 +14,11 @@ const texto = Inter({ subsets: ["latin"], variable: "--fonte-texto", display: "s
 const titulo = Space_Grotesk({ subsets: ["latin"], variable: "--fonte-titulo", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: enderecoSite(),
   title: { default: "gov-eye · Quem mudou o quê, e quando", template: "%s · gov-eye" },
   description:
     "Linha do tempo verificável de tributos e políticas públicas federais, com cada mudança ligada ao ato oficial que a causou.",
-  // A prévia inclui itens não revisados: não pode ser indexada.
+  // A prévia é só para teste: não pode ser indexada.
   robots: site.previa ? { index: false, follow: false } : undefined,
 };
 
@@ -28,8 +31,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </a>
         {site.previa && (
           <div className="faixa-previa" role="note">
-            PRÉVIA INTERNA: inclui itens ainda não revisados, marcados com{" "}
-            <span className="selo">pendente de revisão</span>. Não divulgue esta versão.
+            PRÉVIA INTERNA: versão de teste. Não divulgue.
           </div>
         )}
         <header className="topo">
@@ -38,14 +40,8 @@ export default function Layout({ children }: { children: ReactNode }) {
               <Marca />
               gov-eye
             </Link>
-            <nav aria-label="Principal">
-              <ul>
-                <li><Link href="/#temas">Temas</Link></li>
-                <li><Link href="/metodologia/">Como verificamos</Link></li>
-                <li><Link href="/dados/">Dados abertos</Link></li>
-                <li><Link href="/quem-faz/">Quem faz</Link></li>
-              </ul>
-            </nav>
+            <Navegacao />
+            <BuscaGlobal />
           </div>
         </header>
         <main id="conteudo">{children}</main>
@@ -75,7 +71,10 @@ export default function Layout({ children }: { children: ReactNode }) {
             <div>
               <h2>Sobre</h2>
               <ul>
+                <li><Link href="/prazos/">Prazos escritos nos atos</Link></li>
                 <li><Link href="/metodologia/">Como verificamos</Link></li>
+                <li><Link href="/glossario/">Glossário</Link></li>
+                <li><Link href="/correcoes/">Correções</Link></li>
                 <li><Link href="/dados/">Dados abertos</Link></li>
                 <li><Link href="/quem-faz/">Quem faz</Link></li>
               </ul>

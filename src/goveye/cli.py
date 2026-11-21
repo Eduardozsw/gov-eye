@@ -50,6 +50,13 @@ def cmd_revisar(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_corrigir(args: argparse.Namespace) -> int:
+    dia = date.fromisoformat(args.data) if args.data else date.today()
+    cur.registrar_correcao(args.objeto, args.id, args.o_que_mudou, args.motivo, dia)
+    print(f"Correção registrada em {cur.ARQUIVO_CORRECOES}. Ela aparece no site na próxima exportação.")
+    return 0
+
+
 def cmd_coletar_orcamento(args: argparse.Namespace) -> int:
     from .pipeline import coletar_orcamento
 
@@ -137,6 +144,14 @@ def main() -> None:
     p.add_argument("--revisor", required=True, help="nome de quem revisou")
     p.add_argument("--data", help="AAAA-MM-DD (padrão: hoje)")
     p.set_defaults(f=cmd_revisar)
+
+    p = sub.add_parser("corrigir", help="registra uma correção no histórico público (data/curadoria/correcoes.yaml)")
+    p.add_argument("objeto", choices=cur.OBJETOS_REVISAVEIS)
+    p.add_argument("id", help="id do ato ou evento; para ação, tema:codigo")
+    p.add_argument("--o-que-mudou", required=True, help='ex.: "Valor corrigido de R$ 0,79 para R$ 0,7925 por litro"')
+    p.add_argument("--motivo", required=True, help='ex.: "Erro de arredondamento apontado por leitor"')
+    p.add_argument("--data", help="AAAA-MM-DD (padrão: hoje)")
+    p.set_defaults(f=cmd_corrigir)
 
     p = sub.add_parser("coletar-orcamento", help="baixa SIOP, Portal da Transparência e IPCA")
     p.add_argument("--anos", type=_anos, default=range(ANO_INICIAL, ANO_FINAL + 1), help="ex.: 2018-2026")

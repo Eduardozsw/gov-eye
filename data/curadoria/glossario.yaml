@@ -1,0 +1,111 @@
+# Glossário do site (especificação 8.4): termos técnicos em linguagem simples.
+# Cada definição aparece num balão ao tocar no termo
+# e na página /glossario/. O id é usado nos links (/glossario/#id) e no código do site.
+termos:
+  - id: autorizado
+    termo: Autorizado (dotação atualizada)
+    definicao: >-
+      Quanto o orçamento permite gastar numa ação no ano: o valor aprovado na lei orçamentária, mais os créditos
+      adicionais e menos os cortes feitos ao longo do ano. Autorizado não quer dizer gasto.
+  - id: empenhado
+    termo: Empenhado
+    definicao: >-
+      Primeira etapa do gasto: o governo reserva o dinheiro para um fornecedor ou beneficiário, por exemplo ao
+      assinar um contrato. Ainda não houve pagamento.
+  - id: liquidado
+    termo: Liquidado
+    definicao: >-
+      Etapa em que o governo confere que o serviço foi prestado ou o bem foi entregue e reconhece que deve pagar.
+  - id: pago
+    termo: Pago
+    definicao: >-
+      Dinheiro que efetivamente saiu do caixa do governo no ano. É o número mais próximo do que foi de fato gasto.
+      Neste site, não inclui pagamentos de despesas de anos anteriores (restos a pagar).
+  - id: restos-a-pagar
+    termo: Restos a pagar
+    definicao: >-
+      Despesas empenhadas num ano e pagas em anos seguintes. Ficam fora do valor pago de cada ano mostrado aqui.
+  - id: ipca
+    termo: Corrigido pela inflação (IPCA)
+    definicao: >-
+      Valor de um ano passado convertido para reais de hoje com o IPCA, o índice oficial de inflação calculado pelo
+      IBGE. Serve para comparar anos diferentes de forma justa.
+  - id: valores-da-epoca
+    termo: Valores da época
+    definicao: >-
+      Valor em reais do próprio ano, sem correção pela inflação. Também chamado de valor nominal.
+  - id: acao-orcamentaria
+    termo: Ação orçamentária
+    definicao: >-
+      Cada linha do orçamento federal, identificada por um código de quatro caracteres (por exemplo, 21GI). É a
+      unidade usada aqui para somar o gasto de um tema.
+  - id: plano-plurianual
+    termo: Plano plurianual (PPA)
+    definicao: >-
+      Plano de quatro anos do governo federal que organiza os programas do orçamento. A cada novo plano, ações e
+      programas podem mudar de nome ou de código sem que a política tenha acabado.
+  - id: subfuncao
+    termo: Subfunção
+    definicao: >-
+      Classificação do orçamento que diz a que área um gasto se destina, por exemplo 423, assistência aos povos
+      indígenas. Usada aqui para separar a parte de uma ação que atende vários públicos.
+  - id: siop
+    termo: SIOP
+    definicao: >-
+      Sistema Integrado de Planejamento e Orçamento, do governo federal. É a fonte dos números do orçamento usados
+      neste site.
+  - id: portal-da-transparencia
+    termo: Portal da Transparência
+    definicao: >-
+      Site da Controladoria-Geral da União com os gastos do governo federal. Usado aqui para conferir os números do
+      SIOP.
+  - id: pis-cofins
+    termo: PIS/Cofins
+    definicao: >-
+      Duas contribuições federais (PIS/Pasep e Cofins) cobradas sobre a venda de bens e serviços. Sobre os
+      combustíveis, são cobradas em reais por litro e aparecem somadas neste site.
+  - id: cide
+    termo: CIDE-Combustíveis
+    definicao: >-
+      Contribuição federal sobre a importação e a venda de combustíveis, cobrada em reais por litro. Parte da
+      arrecadação é repassada a estados e municípios.
+  - id: aliquota-por-litro
+    termo: Alíquota por litro (ad rem)
+    definicao: >-
+      Imposto cobrado como valor fixo por unidade (por exemplo, R$ 0,79 por litro), e não como porcentagem do preço.
+      Por isso não muda quando o preço do combustível sobe ou desce.
+  - id: medida-provisoria
+    termo: Medida Provisória
+    definicao: >-
+      Ato do presidente da República com força de lei, que vale a partir da publicação. Perde a validade se não for
+      aprovada pelo Congresso em até 120 dias (60 dias, prorrogáveis por mais 60).
+  - id: decreto
+    termo: Decreto
+    definicao: >-
+      Ato assinado pelo presidente da República para regulamentar uma lei. Não passa pelo Congresso. Algumas
+      alíquotas, como as de PIS/Cofins sobre combustíveis, podem ser mudadas por decreto porque a lei permite.
+  - id: lei
+    termo: Lei
+    definicao: >-
+      Norma aprovada pela Câmara e pelo Senado e sancionada pelo presidente da República. Uma medida provisória
+      aprovada pelo Congresso vira lei.
+  - id: lei-complementar
+    termo: Lei Complementar
+    definicao: >-
+      Lei exigida pela Constituição para certos temas, aprovada pela maioria absoluta da Câmara e do Senado (mais da
+      metade de todos os membros) e sancionada pelo presidente.
+  - id: diario-oficial
+    termo: Diário Oficial da União (DOU)
+    definicao: >-
+      Jornal oficial do governo federal, publicado pela Imprensa Nacional. Leis, decretos e medidas provisórias só
+      produzem efeito depois de publicados nele.
+  - id: edicao-extra
+    termo: Edição extra
+    definicao: >-
+      Edição do Diário Oficial publicada fora da edição normal do dia, em geral para atos que precisam valer com
+      urgência.
+  - id: vigencia
+    termo: Prazo de vigência
+    definicao: >-
+      Período em que uma regra vale. Quando o próprio ato diz até quando vale, ao fim do prazo ele deixa de valer
+      sem que ninguém precise assinar nada novo.

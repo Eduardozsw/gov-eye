@@ -4,7 +4,7 @@ import pytest
 
 from conftest import escrever_yaml
 from goveye import curadoria as cur
-from goveye.modelo import Revisao, StatusRevisao, publicavel, status_revisao
+from goveye.modelo import Revisao, StatusRevisao, status_revisao
 
 
 def test_carrega_fixture(pasta_curadoria):
@@ -67,8 +67,6 @@ def test_protocolo_de_revisao():
     assert status_revisao([Revisao("A", d1), Revisao("A", d1)]) == StatusRevisao.PRIMEIRA_PASSAGEM
     assert status_revisao([Revisao("A", d1), Revisao("A", d2)]) == StatusRevisao.REVISAO_INDIVIDUAL
     assert status_revisao([Revisao("A", d1), Revisao("B", d1)]) == StatusRevisao.REVISADO
-    assert not publicavel(StatusRevisao.PRIMEIRA_PASSAGEM)
-    assert publicavel(StatusRevisao.REVISAO_INDIVIDUAL)
 
 
 def test_registro_de_revisoes(pasta_curadoria):
@@ -81,3 +79,28 @@ def test_registro_de_revisoes(pasta_curadoria):
 def test_registro_recusa_objeto_inexistente(pasta_curadoria):
     with pytest.raises(cur.ErroCuradoria, match="inexistente"):
         cur.registrar_revisao("ato", "nao-existe", "Curador", date(2026, 2, 1), pasta_curadoria)
+
+
+def test_registro_de_correcoes(pasta_curadoria):
+    cur.registrar_correcao("evento", "tributo-x-zerado", "Data de efeito corrigida de 31/05 para 01/06/2022",
+                           "Leitura errada da data de publicação", date(2026, 3, 1), pasta_curadoria)
+    cur.registrar_correcao("ato", "mp-teste-2", "Cargo do signatário corrigido", "Erro de digitação",
+                           date(2026, 3, 2), pasta_curadoria)
+    c = cur.carregar(pasta_curadoria)
+    assert [(x.objeto, x.objeto_id, x.data) for x in c.correcoes] == [
+        ("evento", "tributo-x-zerado", date(2026, 3, 1)),
+        ("ato", "mp-teste-2", date(2026, 3, 2)),
+    ]
+    assert c.correcoes[0].motivo == "Leitura errada da data de publicação"
+
+
+def test_correcao_exige_objeto_existente_e_motivo(pasta_curadoria):
+    with pytest.raises(cur.ErroCuradoria):
+        cur.registrar_correcao("evento", "nao-existe", "x", "y", date(2026, 3, 1), pasta_curadoria)
+    with pytest.raises(cur.ErroCuradoria):
+        cur.registrar_correcao("evento", "tributo-x-zerado", "x", " ", date(2026, 3, 1), pasta_curadoria)
+    (pasta_curadoria / "correcoes.yaml").write_text(
+        "correcoes:\n  - {objeto: evento, id: sumiu, data: 2026-03-01, o_que_mudou: x, motivo: y}\n", encoding="utf-8"
+    )
+    with pytest.raises(cur.ErroCuradoria, match="sumiu"):
+        cur.carregar(pasta_curadoria)

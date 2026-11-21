@@ -128,16 +128,19 @@ Programas e ações do orçamento mudam de código e de nome a cada PPA. O mapea
 ## 7. Pipeline de dados
 
 ```
-[1 Coleta] → [2 Normalização] → [3 Extração de eventos] → [4 Revisão humana] → [5 Publicação]
+[1 Coleta] → [2 Normalização] → [3 Extração de eventos] → [4 Conferência automática] → [5 Publicação]
 ```
 
 1. **Coleta:** scripts agendados baixam as fontes e guardam o arquivo bruto com data e hash, para auditoria.
 2. **Normalização:** os dados são convertidos para o modelo da seção 5.
 3. **Extração de eventos:**
    - Orçamento: automática (valores numéricos estruturados por ação e ano).
-   - Alíquotas e regras: **semiautomática**. O sistema identifica atos candidatos (por palavras-chave e NCM nas ementas) e sugere o evento. Extrair alíquota e prazo de um texto jurídico não é confiável o bastante para publicar sem revisão.
-4. **Revisão humana:** cada evento de alíquota ou regra precisa de aprovação de um curador, que confere valor, data, causa e fonte. O nome do revisor e a data ficam registrados.
-   - **Enquanto houver um único curador**, a revisão acontece em duas passagens, em dias diferentes, seguindo uma lista de verificação fixa: valor confere com o ato, data de efeito confere com a vigência, causa classificada pela tabela 5.3, link abre o documento certo. Os eventos publicados nesse período mostram "revisão individual" até receberem uma segunda revisão.
+   - Alíquotas e regras: **semiautomática**. O sistema identifica atos candidatos (por palavras-chave e NCM nas ementas) e propõe o evento, com o trecho literal do ato que comprova o valor.
+4. **Conferência automática:** o curador único não tem como revisar cada item a cada coleta, então a publicação não depende de revisão humana. No lugar dela:
+   - no orçamento, a divergência entre SIOP e Portal da Transparência bloqueia o ano (seção 6);
+   - em cada evento, o trecho citado é conferido com o texto do DOU coletado (`goveye conferir-trechos`) quando o evento entra na curadoria. Os textos filtrados do DOU ficam fora do git, por isso essa conferência ainda não roda na publicação agendada;
+   - o site diz na metodologia que os itens não passam por revisão humana individual, mostra o trecho e o link oficial em cada evento e oferece "reportar erro"; correções ficam públicas (P7).
+   - A revisão humana continua possível e opcional (`goveye revisar`). Quando feita, fica registrada nos dados abertos (`status_revisao`).
 5. **Publicação:** geração do site e dos arquivos de dados abertos (CSV/JSON).
 
 ## 8. Interface
@@ -176,7 +179,7 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 
 - Proibido: adjetivos de juízo, suposição de intenção, comparação entre governos que não seja numérica.
 - Permitido: notas de contexto factuais e com fonte (ex.: "O ato original previa vigência até 31/12").
-- Notas de contexto passam por **dupla revisão**. Enquanto houver um único curador, valem as duas passagens em dias diferentes descritas na seção 7.
+- Notas de contexto seguem as mesmas regras: só fatos com fonte, sem adjetivos de juízo.
 
 ## 10. Arquitetura técnica
 
@@ -186,7 +189,7 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Repositório | GitHub, público, código sob AGPL-3.0 | Seção 13 |
 | Agendamento | GitHub Actions (cron) | Gratuito e sem cota de minutos para repositórios públicos |
 | Armazenamento | YAML de curadoria e instantâneos JSON das coletas, versionados; SQLite derivado, reconstruído a cada carga (ADR 0001) | Simples, auditável, histórico via git |
-| Revisão humana | Fila de eventos pendentes em arquivos YAML revisados via pull request | Toda aprovação fica registrada; o histórico de revisão de cada evento é publicado junto com os dados |
+| Conferência | Checagens automáticas no carregamento e na exportação (seção 7); revisão humana opcional registrada em `revisoes.yaml` | Publicação sem depender da disponibilidade do curador; o que for revisado fica registrado nos dados abertos |
 | Site | Next.js com exportação estática; regras, frases e gráficos SVG continuam no Python, que exporta `site.json` (ADR 0002) | Identidade visual e busca no navegador sem perder as regras num lugar só; hospedagem sem servidor |
 | Hospedagem | Cloudflare Pages | Custo zero e permite uso comercial (o plano gratuito da Vercel é só para uso não comercial). Com o repositório público, o GitHub Pages também passou a ser gratuito |
 | Dados abertos | CSV e JSON publicados junto com o site, licença CC BY 4.0 | Princípio P6 |
@@ -212,7 +215,7 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Fase | Entrega | Critério de pronto |
 |---|---|---|
 | **0. Validação das fontes** | Script de teste para cada fonte da seção 6; tabela de validação atualizada | Cada fonte do MVP baixada com sucesso e com formato documentado |
-| **1. Dados do MVP** | Banco com as duas fatias, todos os eventos revisados | 100% dos eventos com fonte oficial e causa; revisão em duas passagens (seção 7) |
+| **1. Dados do MVP** | Banco com as duas fatias | 100% dos eventos com fonte oficial, causa e trecho conferido no DOU (seção 7) |
 | **2. Site do MVP** | Telas da seção 8.1 (exceto votações) | Funciona em celular; todos os pontos levam ao documento oficial |
 | **3. Votações** | Ligação entre atos e votações da Câmara e do Senado, com orientação de bancada por partido | Votos por parlamentar e orientações exibidos nos atos do MVP |
 | **4. Expansão** | Novos temas e tributos; avaliar estados | Definido após o feedback do MVP |
@@ -224,7 +227,7 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Ser acusado de favorecer um lado | Princípios P2/P3, textos por modelo, metodologia pública, histórico de correções aberto, página "Quem faz" com o responsável identificado |
 | Alguém publicar uma cópia alterada do código | A AGPL-3.0 obriga quem publicar uma versão alterada, inclusive como site, a abrir o código dela e indicar as mudanças. A licença não protege o nome: contra quem se passar pelo gov-eye valem as medidas da linha abaixo |
 | Terceiros se passarem pelo gov-eye ou divulgarem dados adulterados em nome dele | Domínio oficial único; registro da marca no INPI quando o projeto ganhar alcance; arquivos de dados publicados com hash e assinatura digital para qualquer pessoa conferir a origem; cada evento aponta para o documento oficial, o que expõe números inventados; a licença CC BY 4.0 exige indicar alterações e proíbe sugerir endosso do gov-eye |
-| Erro de dado viralizar | Revisão humana obrigatória para alíquotas; botão "reportar erro" em cada evento; correções visíveis (P7) |
+| Erro de dado viralizar | Trecho do ato e link oficial ao lado de cada valor; conferência automática (seção 7); botão "reportar erro" em cada evento; correções visíveis (P7). Sem revisão humana obrigatória, o risco é maior nas escolhas editoriais (mapeamento de ações, causa de cada evento) |
 | Mudança ou queda de APIs públicas | Arquivo bruto guardado na coleta; testes de contrato por fonte no agendamento |
 | Mapeamento de programas contestável | Justificativa pública para cada ligação ação → tema |
 | Período eleitoral | Manter a neutralidade e evitar qualquer conteúdo que possa ser lido como propaganda; consultar orientação jurídica antes de campanhas de divulgação |
@@ -234,7 +237,7 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 
 ### Decidido
 
-- **Revisão no MVP:** feita pelo autor do projeto, como curador único, seguindo o protocolo de duas passagens da seção 7. Os critérios para aceitar novos revisores serão definidos depois.
+- **Revisão no MVP:** a publicação não depende de revisão humana (seção 7). O autor revisa quando puder, sem prazo; os critérios para aceitar revisores voluntários serão definidos depois.
 - **Orientação de bancada por partido:** fica para a Fase 3, junto com as votações.
 - **Temas do MVP:** povos indígenas, mulheres / enfrentamento à violência, Bolsa Família e Minha Casa Minha Vida (seção 11).
 - **Responsável:** pessoa física. O site terá uma página "Quem faz" com o nome do responsável, um contato e uma declaração sobre filiação partidária.
@@ -243,5 +246,5 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 
 ### Em aberto
 
-1. Critério para aceitar novos revisores.
+1. Critério para aceitar revisores voluntários.
 2. Orientação jurídica sobre responsabilidade pelo conteúdo antes de uma divulgação ampla, sobretudo em período eleitoral.

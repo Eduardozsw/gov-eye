@@ -27,7 +27,6 @@ class Degrau:
     data: date
     valor: float
     rotulo: str  # texto do <title> do marcador
-    pendente: bool = False
 
 
 def _escala(d0: float, d1: float, p0: float, p1: float):
@@ -120,9 +119,8 @@ def degraus(
             caminho.append(f"L{x(ate.toordinal()):.1f},{y(atual.valor):.1f}")
         partes.append(f'<path class="serie" d="{" ".join(caminho)}"/>')
         for p in pontos:
-            classe = "marcador pendente" if p.pendente else "marcador"
             partes.append(
-                f'<circle class="{classe}" cx="{x(p.data.toordinal()):.1f}" cy="{y(p.valor):.1f}" r="5">'
+                f'<circle class="marcador" cx="{x(p.data.toordinal()):.1f}" cy="{y(p.valor):.1f}" r="5">'
                 f"<title>{escape(data_br(p.data))}: {escape(p.rotulo)}</title></circle>"
             )
 
@@ -175,6 +173,33 @@ def barras(dados: list[Barra], titulo: str, altura: int = 280) -> str:
             f'height="{y(0) - y(b.autorizado):.1f}"/>'
             f'<rect class="pago{" andamento" if b.em_andamento else ""}" x="{x0 + w * 0.2:.1f}" y="{y(b.pago):.1f}" '
             f'width="{w * 0.6:.1f}" height="{y(0) - y(b.pago):.1f}"/></g>'
+        )
+    partes.append("</svg>")
+    return "".join(partes)
+
+
+def mini_barras(dados: list[Barra], titulo: str, largura: int = 160, altura: int = 40) -> str:
+    """Barras pequenas, sem eixos, do valor pago por ano (cartões da página inicial).
+
+    Ano bloqueado fica como lacuna; ano em andamento sai mais claro. Os números completos
+    estão na página do tema.
+    """
+    topo = max([b.pago for b in dados if not b.bloqueado] + [0]) or 1.0
+    passo = largura / max(len(dados), 1)
+    partes = [
+        # Estica até a largura do cartão: as barras ficam mais largas, a altura não muda.
+        f'<svg viewBox="0 0 {largura} {altura}" class="mini" preserveAspectRatio="none" role="img" '
+        f'aria-label="{escape(titulo)}">',
+        f"<title>{escape(titulo)}</title>",
+    ]
+    for n, b in enumerate(dados):
+        if b.bloqueado:
+            continue
+        h = max(b.pago / topo * (altura - 2), 1.5)
+        partes.append(
+            f'<rect class="pago{" andamento" if b.em_andamento else ""}" x="{n * passo + passo * 0.15:.1f}" '
+            f'y="{altura - h:.1f}" width="{passo * 0.7:.1f}" height="{h:.1f}">'
+            f"<title>{b.ano}{'*' if b.em_andamento else ''}: {escape(moeda_curta(b.pago))}</title></rect>"
         )
     partes.append("</svg>")
     return "".join(partes)

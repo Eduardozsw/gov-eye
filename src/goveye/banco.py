@@ -40,6 +40,9 @@ CREATE TABLE evento (
     ato_id TEXT REFERENCES ato(id), ato_origem_id TEXT REFERENCES ato(id),
     trecho TEXT, nota TEXT, mandato_id TEXT REFERENCES mandato(id), status_revisao TEXT
 );
+CREATE TABLE correcao (
+    objeto TEXT, objeto_id TEXT, data TEXT, o_que_mudou TEXT, motivo TEXT
+);
 CREATE TABLE revisao (
     objeto TEXT, objeto_id TEXT, revisor TEXT, data TEXT
 );
@@ -137,6 +140,10 @@ def construir(
             (m.tema_id, m.codigo, m.subfuncao, m.ano_inicio, m.ano_fim, m.justificativa, status_revisao(m.revisoes).value),
         )
         _gravar_revisoes(db, "acao", f"{m.tema_id}:{m.codigo}", m.revisoes)
+    db.executemany(
+        "INSERT INTO correcao VALUES (?, ?, ?, ?, ?)",
+        [(x.objeto, x.objeto_id, _iso(x.data), x.o_que_mudou, x.motivo) for x in c.correcoes],
+    )
     db.executemany(
         "INSERT INTO acao_excluida VALUES (?, ?, ?)", [(x.tema_id, x.codigo, x.motivo) for x in c.excluidas]
     )

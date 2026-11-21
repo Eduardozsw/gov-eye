@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { site } from "@/lib/dados.ts";
 
@@ -60,12 +61,26 @@ export default function Metodologia() {
         Pagamentos de dívidas de anos anteriores (restos a pagar) não entram.
       </p>
 
-      <h2>Revisão</h2>
+      <h2>Conferência</h2>
       <p>
-        Nada é publicado sem revisão humana. Cada item passa por duas revisões em dias diferentes antes de ir ao ar; até
-        lá, não aparece no site. Uma série de alíquotas só é mostrada até o último item revisado, para nunca pular uma
-        mudança. O orçamento de um tema só aparece quando todas as ações incluídas foram revisadas, para não mostrar uma
-        soma parcial.
+        Os valores do orçamento vêm do SIOP e são comparados automaticamente com o Portal da Transparência. Quando as
+        duas fontes divergem, o ano fica &ldquo;em conferência&rdquo; e o valor não é mostrado.
+      </p>
+      <p>
+        As mudanças de alíquota são extraídas do texto do Diário Oficial de forma automatizada. Cada uma traz o trecho do
+        ato que comprova o valor e o link para o documento oficial, para que qualquer pessoa possa conferir. A escolha
+        das ações orçamentárias de cada tema segue o critério acima e está justificada ação por ação.
+      </p>
+      <p>
+        Esses itens não passam por revisão humana individual antes de ir ao ar. Se encontrar um erro, use o link
+        &ldquo;Reportar erro&rdquo; da página: a correção é feita e fica registrada.
+      </p>
+
+      <h2>Correções</h2>
+      <p>
+        Erros encontrados depois da publicação são corrigidos às claras: cada correção fica registrada com data, o que
+        mudou e o motivo, na página do item e na lista de <Link href="/correcoes/">correções</Link>. Os termos técnicos
+        estão explicados no <Link href="/glossario/">glossário</Link>.
       </p>
 
       <h2>Ações orçamentárias excluídas</h2>

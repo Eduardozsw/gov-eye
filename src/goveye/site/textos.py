@@ -16,6 +16,13 @@ def lista_nomes(nomes: list[str]) -> str:
     return ", ".join(nomes[:-1]) + " e " + nomes[-1]
 
 
+def nome_no_meio_da_frase(nome: str) -> str:
+    """"Educação básica" vira "educação básica"; nomes próprios ("Bolsa Família", "FIES") ficam como estão."""
+    if any(c.isupper() for c in nome[1:]):
+        return nome
+    return nome[:1].lower() + nome[1:]
+
+
 def _movimento(antes: float, depois: float, fmt) -> str:
     if depois == antes:
         return f"continuou em {fmt(depois)}"
@@ -70,6 +77,11 @@ def frase_evento(evento: dict, indicador: dict, ato: dict, mandato_ato: dict | N
             "Nenhum ato novo foi assinado para esta mudança."
         )
     return f"{mudanca}. {evento['texto_causa']}: {_assinatura_solta(ato, mandato_ato)}."
+
+
+def frase_prazo(indicador: str, valor: str, fim: str, ato: dict) -> str:
+    """Prazo escrito no próprio ato: vale igual para prazos já vencidos e futuros."""
+    return f"O valor de {indicador} foi fixado em {valor} até {data_extenso(fim)} {com_artigo('por', ato)}."
 
 
 def frase_orcamento(tema: str, ano: int, autorizado: float, pago: float, fmt_moeda) -> str:

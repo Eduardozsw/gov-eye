@@ -15,8 +15,8 @@ export default function QuemFaz() {
       </p>
       <p>{r.apresentacao}</p>
       <p>
-        Encontrou um erro? Escreva para {r.contato} com o link da página. As correções são registradas e o histórico
-        fica público.
+        Encontrou um erro? Escreva para {r.contato} com o link da página. As correções são registradas e o{" "}
+        <Link href="/correcoes/">histórico</Link> fica público.
       </p>
       <h2>Como saber se uma cópia é verdadeira</h2>
       <p>

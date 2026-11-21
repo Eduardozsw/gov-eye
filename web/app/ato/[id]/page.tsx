@@ -2,8 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Selo } from "@/components/Selo.tsx";
-import { ato as acharAto, site } from "@/lib/dados.ts";
+import { Correcoes } from "@/components/Correcoes.tsx";
+import { ReportarErro } from "@/components/ReportarErro.tsx";
+import { Termo } from "@/components/Termo.tsx";
+import { ato as acharAto, contato, site } from "@/lib/dados.ts";
+
+// Tipo do ato → termo do glossário que o explica.
+const TERMO_DO_TIPO: Record<string, string> = {
+  Decreto: "decreto",
+  Lei: "lei",
+  "Lei Complementar": "lei-complementar",
+  "Medida Provisória": "medida-provisoria",
+};
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -24,9 +34,11 @@ export default async function PaginaAto({ params }: Props) {
   if (!a) notFound();
   return (
     <div className="pagina">
-      <p className="migalha">Ato oficial · {a.tipo}</p>
+      <p className="migalha">
+        Ato oficial · {TERMO_DO_TIPO[a.tipo] ? <Termo id={TERMO_DO_TIPO[a.tipo]}>{a.tipo}</Termo> : a.tipo}
+      </p>
       <h1>
-        {a.titulo} <Selo pendente={a.pendente} />
+        {a.titulo}
       </h1>
       <p className="lede">{a.ementa}</p>
       <dl className="ficha">
@@ -54,7 +66,9 @@ export default async function PaginaAto({ params }: Props) {
         )}
         {a.vigencia_fim && (
           <>
-            <dt>Prazo previsto no próprio ato</dt>
+            <dt>
+              <Termo id="vigencia">Prazo previsto</Termo> no próprio ato
+            </dt>
             <dd>até {a.vigencia_fim}</dd>
           </>
         )}
@@ -79,13 +93,15 @@ export default async function PaginaAto({ params }: Props) {
           <ul>
             {a.eventos.map((e) => (
               <li key={e.id}>
-                {e.frase} <Selo pendente={e.pendente} />{" "}
+                {e.frase}{" "}
                 <Link href={`/tema/${e.tema_id}/#${e.id}`}>Ver na linha do tempo</Link>
               </li>
             ))}
           </ul>
         </>
       )}
+      <Correcoes lista={a.correcoes} />
+      <ReportarErro contato={contato()} assunto={a.titulo} caminho={`/ato/${a.id}/`} />
     </div>
   );
 }

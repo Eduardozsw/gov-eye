@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type ReactNode, useEffect, useId, useMemo, useRef, useState } from "react";
 
@@ -8,6 +7,7 @@ import { buscar, preparar } from "@/lib/busca.ts";
 import type { ItemBusca } from "@/lib/tipos.ts";
 
 import { Olho } from "./Olho.tsx";
+import { ListaResultados, useItemAtivo } from "./Resultados.tsx";
 
 function reduzMovimento(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -57,10 +57,10 @@ export function Explorador({ sugestoes, indice, children }: Props) {
   const campo = useRef<HTMLInputElement>(null);
   const [valor, setValor] = useState("");
   const [foco, setFoco] = useState(false);
-  const [ativo, setAtivo] = useState(-1);
 
   const preparado = useMemo(() => preparar(indice), [indice]);
   const resultados = useMemo(() => buscar(preparado, valor), [preparado, valor]);
+  const { ativo, setAtivo, aoTeclar: navegar } = useItemAtivo(resultados.length);
   const { texto, fraseAtual } = useDigitacao(sugestoes, valor === "");
   const aberto = foco && valor.trim() !== "";
   const listaId = `${id}-resultados`;
@@ -81,15 +81,11 @@ export function Explorador({ sugestoes, indice, children }: Props) {
   }
 
   function aoTeclar(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "ArrowDown" && resultados.length) {
-      e.preventDefault();
-      setAtivo((a) => (a + 1) % resultados.length);
-    } else if (e.key === "ArrowUp" && resultados.length) {
-      e.preventDefault();
-      setAtivo((a) => (a <= 0 ? resultados.length - 1 : a - 1));
-    } else if (e.key === "Escape") {
+    if (e.key === "Escape") {
       setValor("");
       setAtivo(-1);
+    } else {
+      navegar(e);
     }
   }
 
@@ -156,22 +152,13 @@ export function Explorador({ sugestoes, indice, children }: Props) {
             </button>
           </div>
 
-          <ul className="busca__resultados" id={listaId} role="listbox" hidden={!aberto} aria-label="Resultados">
-            {resultados.map((r, n) => (
-              <li key={`${r.href}-${r.titulo}`} id={`${listaId}-${n}`} role="option" aria-selected={n === ativo}>
-                <Link href={r.href} tabIndex={-1}>
-                  <span className="busca__tipo">{r.tipo}</span>
-                  <span className="busca__titulo">{r.titulo}</span>
-                  <span className="busca__resumo">{r.resumo}</span>
-                </Link>
-              </li>
-            ))}
-            {aberto && resultados.length === 0 && (
-              <li className="busca__vazio" role="option" aria-selected={false} aria-disabled="true">
-                Nada encontrado. Tente o nome de um imposto, programa ou ano.
-              </li>
-            )}
-          </ul>
+          <ListaResultados
+            id={listaId}
+            className="busca__resultados"
+            resultados={resultados}
+            ativo={ativo}
+            aberto={aberto}
+          />
         </div>
 
         <ul className="busca__sugestoes" aria-label="Exemplos de busca">

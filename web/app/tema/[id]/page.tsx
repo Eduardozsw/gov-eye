@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Grafico, Selo } from "@/components/Selo.tsx";
-import { site, tema as acharTema } from "@/lib/dados.ts";
+import { Grafico } from "@/components/Grafico.tsx";
+import { ReportarErro } from "@/components/ReportarErro.tsx";
+import { Termo } from "@/components/Termo.tsx";
+import { contato, site, tema as acharTema } from "@/lib/dados.ts";
 import type { Orcamento, Serie } from "@/lib/tipos.ts";
+
+// Frases ano a ano visíveis antes de "ver os outros anos".
+const FRASES_VISIVEIS = 3;
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -25,7 +30,7 @@ function SecaoSerie({ s }: { s: Serie }) {
       <h2 id={`t-${s.id}`}>{s.nome}</h2>
       {s.descricao && <p>{s.descricao}</p>}
       {s.eventos.length === 0 ? (
-        <p className="aviso">Série em levantamento: nenhum valor revisado ainda.</p>
+        <p className="aviso">Série em levantamento: nenhum valor registrado ainda.</p>
       ) : (
         <>
           {s.valor_atual && (
@@ -45,20 +50,18 @@ function SecaoSerie({ s }: { s: Serie }) {
               Série levantada até {s.levantado_ate}. Mudanças posteriores ainda não foram registradas.
             </p>
           )}
-          {s.interrompida && (
-            <p className="aviso">
-              A série continua depois do último item mostrado, mas os eventos seguintes ainda estão em revisão.
-            </p>
-          )}
           <ol className="linha-tempo">
             {s.eventos.map((e) => (
               <li key={e.id} id={e.id} className={`evento${e.expiracao ? " expiracao" : ""}`}>
                 <p className="quando">
                   <time dateTime={e.data_iso}>{e.data}</time>
                   {e.governo && <span className="governo">governo {e.governo}</span>}
-                  <span className="causa">{e.causa}</span> <Selo pendente={e.pendente} />
+                  <span className="causa">{e.causa}</span>
                 </p>
                 <p>{e.frase}</p>
+                <p className="evento__link">
+                  <Link href={`/mudanca/${e.id}/`}>Abrir e compartilhar esta mudança</Link>
+                </p>
                 <details>
                   <summary>Trecho do ato</summary>
                   <blockquote>{e.trecho}</blockquote>
@@ -82,20 +85,56 @@ function SecaoSerie({ s }: { s: Serie }) {
   );
 }
 
+function Frase({ f }: { f: Orcamento["frases"][number] }) {
+  return (
+    <li>
+      {f.texto} {f.divergente && <span className="selo">fontes divergem</span>}
+    </li>
+  );
+}
+
+// Com mais de uma série no tema, um índice no topo leva direto a cada uma.
+function Sumario({ series }: { series: Serie[] }) {
+  return (
+    <nav className="sumario" aria-label="Séries deste tema">
+      <ul>
+        {series.map((s) => (
+          <li key={s.id}>
+            <a href={`#${s.id}`}>
+              <span>{s.nome}</span>
+              <small>
+                {s.valor_atual
+                  ? `${s.valor_atual}/L hoje`
+                  : s.eventos.length
+                    ? `levantada até ${s.levantado_ate}`
+                    : "em levantamento"}
+              </small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 function SecaoOrcamento({ o }: { o: Orcamento }) {
   return (
     <>
-      {!o.liberado ? (
-        <p className="aviso">
-          O mapeamento das ações orçamentárias deste tema ainda está em revisão. Os números serão publicados depois que
-          cada ação incluída for conferida.
-        </p>
+      {!o.tem_dados ? (
+        <p className="aviso">Os valores do orçamento deste tema ainda não foram coletados.</p>
       ) : (
         <section aria-labelledby="t-orc">
           <h2 id="t-orc">Orçamento federal por ano</h2>
           <p>
-            Barra clara: valor <strong>autorizado</strong> (lei orçamentária mais créditos e cortes). Barra escura: valor{" "}
-            <strong>pago</strong>. Ano com * ainda está em andamento.
+            Barra clara: valor{" "}
+            <strong>
+              <Termo id="autorizado">autorizado</Termo>
+            </strong>{" "}
+            (lei orçamentária mais créditos e cortes). Barra escura: valor{" "}
+            <strong>
+              <Termo id="pago">pago</Termo>
+            </strong>
+            . Ano com * ainda está em andamento.
           </p>
           <div className="alternador">
             <input type="radio" name="valores" id="v-corrigido" defaultChecked />
@@ -104,7 +143,9 @@ function SecaoOrcamento({ o }: { o: Orcamento }) {
             <label htmlFor="v-nominal">Valores da época</label>
             <figure className="g-corrigido">
               <Grafico svg={o.grafico_corrigido} />
-              <figcaption>Valores corrigidos pelo IPCA até {o.ipca_referencia}.</figcaption>
+              <figcaption>
+                Valores corrigidos pelo <Termo id="ipca">IPCA</Termo> até {o.ipca_referencia}.
+              </figcaption>
             </figure>
             <figure className="g-nominal">
               <Grafico svg={o.grafico_nominal} />
@@ -113,12 +154,20 @@ function SecaoOrcamento({ o }: { o: Orcamento }) {
           </div>
 
           <ul className="frases">
-            {o.frases.map((f) => (
-              <li key={f.ano}>
-                {f.texto} {f.divergente && <span className="selo">fontes divergem</span>}
-              </li>
+            {o.frases.slice(0, FRASES_VISIVEIS).map((f) => (
+              <Frase key={f.ano} f={f} />
             ))}
           </ul>
+          {o.frases.length > FRASES_VISIVEIS && (
+            <details className="mais-frases">
+              <summary>Ver os outros {o.frases.length - FRASES_VISIVEIS} anos</summary>
+              <ul className="frases">
+                {o.frases.slice(FRASES_VISIVEIS).map((f) => (
+                  <Frase key={f.ano} f={f} />
+                ))}
+              </ul>
+            </details>
+          )}
 
           <div className="rolagem">
             <table>
@@ -151,14 +200,15 @@ function SecaoOrcamento({ o }: { o: Orcamento }) {
       <section id="acoes" aria-labelledby="t-acoes">
         <h2 id="t-acoes">O que entra nesta conta</h2>
         <p>
-          As ações orçamentárias abaixo foram incluídas porque o nome oficial delas se refere a este tema. Os códigos
-          mudam de um plano plurianual para outro, por isso a lista tem ações antigas e novas.
+          As <Termo id="acao-orcamentaria">ações orçamentárias</Termo> abaixo foram incluídas porque o nome oficial delas
+          se refere a este tema. Os códigos mudam de um <Termo id="plano-plurianual">plano plurianual</Termo> para outro,
+          por isso a lista tem ações antigas e novas.
         </p>
         <ul className="acoes">
           {o.acoes.map((a) => (
             <li key={`${a.codigo}-${a.subfuncao ?? ""}`}>
               <code>{a.codigo}</code>
-              {a.subfuncao && ` (só subfunção ${a.subfuncao})`}: {a.justificativa} <Selo pendente={a.pendente} />
+              {a.subfuncao && ` (só subfunção ${a.subfuncao})`}: {a.justificativa}
             </li>
           ))}
         </ul>
@@ -259,8 +309,10 @@ export default async function PaginaTema({ params }: Props) {
         </div>
       </header>
       <div className="pagina">
+        {t.series && t.series.length > 1 && <Sumario series={t.series} />}
         {t.series?.map((s) => <SecaoSerie key={s.id} s={s} />)}
         {t.orcamento && <SecaoOrcamento o={t.orcamento} />}
+        <ReportarErro contato={contato()} assunto={t.nome} caminho={`/tema/${t.id}/`} />
       </div>
     </>
   );

@@ -3,6 +3,8 @@
 
 export type Ref = { id: string; titulo: string };
 
+export type Correcao = { data: string; o_que_mudou: string; motivo: string };
+
 export type Evento = {
   id: string;
   data_iso: string;
@@ -10,13 +12,14 @@ export type Evento = {
   governo: string | null;
   causa: string;
   expiracao: boolean;
-  pendente: boolean;
   frase: string;
   valor: string;
+  valor_antes: string | null;
   trecho: string;
   nota: string | null;
   ato: Ref;
   origem: Ref | null;
+  correcoes: Correcao[];
 };
 
 export type Serie = {
@@ -25,22 +28,23 @@ export type Serie = {
   descricao: string;
   unidade: string;
   grafico: string;
-  interrompida: boolean;
   levantado_ate: string | null;
   valor_atual: string | null;
   eventos: Evento[];
 };
 
 export type Orcamento = {
-  liberado: boolean;
+  tem_dados: boolean;
   destaque: { ano: number; pago: string } | null;
   ipca_referencia: string;
   grafico_nominal: string;
   grafico_corrigido: string;
+  mini: string;
+  anos_mini: string | null;
   frases: { ano: number; texto: string; divergente: boolean }[];
   estagios: string[];
   tabela: { ano: string; valores: string[] }[];
-  acoes: { codigo: string; subfuncao: string | null; justificativa: string; pendente: boolean }[];
+  acoes: { codigo: string; subfuncao: string | null; justificativa: string }[];
   excluidas: { codigo: string; motivo: string }[];
   detalhe: { anos: number[]; linhas: { acao: string; nome: string; valores: string[] }[] } | null;
   divergencias: { ano: number; chave: string; estagio: string; siop: string; portal: string }[];
@@ -60,7 +64,6 @@ export type Ato = {
   titulo: string;
   tipo: string;
   ementa: string;
-  pendente: boolean;
   assinatura: string;
   publicacao: string;
   governo: string | null;
@@ -68,7 +71,23 @@ export type Ato = {
   vigencia_fim: string | null;
   url_oficial: string;
   sha256: string | null;
-  eventos: { id: string; frase: string; pendente: boolean; indicador: string; tema_id: string }[];
+  correcoes: Correcao[];
+  eventos: { id: string; frase: string; indicador: string; tema_id: string }[];
+};
+
+export type Prazo = {
+  ato: Ref;
+  data: string;
+  data_iso: string;
+  futuro: boolean;
+  itens: {
+    indicador: string;
+    tema_id: string;
+    evento_id: string;
+    frase: string;
+    depois: { id: string; data: string; frase: string } | null;
+    levantado_ate: string | null;
+  }[];
 };
 
 export type ItemBusca = { tipo: string; titulo: string; resumo: string; href: string; texto: string };
@@ -86,6 +105,9 @@ export type Site = {
   mandatos: { id: string; presidente: string; nome_curto: string; partido: string; inicio: string; fim: string }[];
   temas: Tema[];
   atos: Ato[];
+  prazos: Prazo[];
+  correcoes: (Correcao & { titulo: string; href: string })[];
+  glossario: { id: string; termo: string; definicao: string }[];
   metodologia: {
     tolerancia: string;
     ipca_referencia: string;

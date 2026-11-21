@@ -57,8 +57,15 @@ def status_revisao(revisoes: list[Revisao]) -> StatusRevisao:
     return StatusRevisao.PRIMEIRA_PASSAGEM
 
 
-def publicavel(status: StatusRevisao) -> bool:
-    return status in (StatusRevisao.REVISAO_INDIVIDUAL, StatusRevisao.REVISADO)
+@dataclass(frozen=True)
+class Correcao:
+    """Correção feita depois da publicação (princípio P7). O registro só cresce: nada é apagado."""
+
+    objeto: str  # "ato", "evento" ou "acao", como nas revisões
+    objeto_id: str
+    data: date
+    o_que_mudou: str
+    motivo: str
 
 
 @dataclass

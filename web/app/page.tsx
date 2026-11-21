@@ -29,13 +29,20 @@ function ResumoTema({ tema }: { tema: Tema }) {
       <>
         <div className="cartao__numero">{o.destaque.pago}</div>
         <p>pagos em {o.destaque.ano}, em valores da época</p>
+        {o.mini && (
+          <figure className="cartao__mini">
+            <div dangerouslySetInnerHTML={{ __html: o.mini }} />
+            <figcaption>Pago por ano, {o.anos_mini}, corrigido pela inflação</figcaption>
+          </figure>
+        )}
       </>
     );
   }
-  return <p>Mapeamento do orçamento em revisão.</p>;
+  return <p>Valores do orçamento ainda não coletados.</p>;
 }
 
 export default function Inicio() {
+  const proximo = site.prazos.find((p) => p.futuro);
   return (
     <>
       <section className="heroi" aria-labelledby="titulo-inicio">
@@ -72,6 +79,20 @@ export default function Inicio() {
           </ul>
         </section>
 
+        <section aria-labelledby="t-prazos" className="chamada-prazos">
+          <h2 id="t-prazos">Prazos escritos nos atos</h2>
+          {proximo ? (
+            <p>
+              Próximo prazo: <strong>{proximo.data}</strong> ({proximo.ato.titulo}).
+            </p>
+          ) : (
+            <p>Reduções de imposto que já nasceram com data para acabar, e o que aconteceu quando cada uma venceu.</p>
+          )}
+          <p>
+            <Link href="/prazos/">Ver todos os prazos</Link>
+          </p>
+        </section>
+
         <section aria-labelledby="t-como">
           <h2 id="t-como">Como cada número chega aqui</h2>
           <ol className="passos">
@@ -80,8 +101,8 @@ export default function Inicio() {
               <span>O texto vem do Diário Oficial da União e o orçamento, do SIOP e do Portal da Transparência.</span>
             </li>
             <li>
-              <strong>Revisão humana</strong>
-              <span>Cada item é conferido duas vezes, em dias diferentes, antes de ir ao ar.</span>
+              <strong>Conferência automática</strong>
+              <span>Cada valor traz o trecho do ato que o comprova, e o orçamento é comparado entre duas fontes oficiais.</span>
             </li>
             <li>
               <strong>Mesma regra para todos</strong>

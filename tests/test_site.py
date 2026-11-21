@@ -27,42 +27,38 @@ def _tema(dados: dict, id_: str) -> dict:
     return next(t for t in dados["temas"] if t["id"] == id_)
 
 
-def test_previa_mostra_pendentes_marcados(banco_teste, pasta_curadoria, tmp_path):
+def test_previa_mostra_todos_os_eventos(banco_teste, pasta_curadoria, tmp_path):
     dados = _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
     assert dados["previa"]
     eventos = _tema(dados, "combustiveis")["series"][0]["eventos"]
-    assert any(e["pendente"] for e in eventos)
     assert any(e["causa"] == "Prazo previsto no ato original terminou" and e["expiracao"] for e in eventos)
     assert "mp-teste-2" in {a["id"] for a in dados["atos"]}
 
 
-def test_publicacao_para_no_primeiro_evento_pendente(banco_teste, pasta_curadoria, tmp_path):
+def test_publicacao_nao_depende_de_revisao(banco_teste, pasta_curadoria, tmp_path):
     dados = _exportar("publicacao", banco_teste, pasta_curadoria, tmp_path)
     serie = _tema(dados, "combustiveis")["series"][0]
     assert not dados["previa"]
-    assert [e["valor"] for e in serie["eventos"]] == ["R$ 0,5000"]  # valor inicial, revisado duas vezes
-    assert serie["interrompida"]  # eventos seguintes ainda pendentes
-    assert "mp-teste-2" not in {a["id"] for a in dados["atos"]}
-    assert "Medida Provisória nº 2.000/2022" not in json.dumps(dados, ensure_ascii=False)
+    # Só o valor inicial tem revisão registrada; os eventos seguintes aparecem do mesmo jeito.
+    assert len(serie["eventos"]) > 1
+    assert "mp-teste-2" in {a["id"] for a in dados["atos"]}
 
 
-def test_publicacao_esconde_orcamento_com_mapeamento_pendente(banco_teste, pasta_curadoria, tmp_path):
+def test_publicacao_mostra_orcamento_sem_revisao(banco_teste, pasta_curadoria, tmp_path):
     o = _tema(_exportar("publicacao", banco_teste, pasta_curadoria, tmp_path), "politica-y")["orcamento"]
-    assert not o["liberado"]
-    assert o["grafico_corrigido"] == "" and o["tabela"] == [] and o["frases"] == []
+    assert o["tem_dados"]
+    assert "<svg" in o["grafico_corrigido"] and o["tabela"]
 
 
-def test_publicacao_bloqueia_ano_com_divergencia(tmp_path, pasta_curadoria, orcamento_sintetico):
-    cur.registrar_revisao("acao", "politica-y:AAAA", "Curador", date(2026, 1, 1), pasta_curadoria)
-    cur.registrar_revisao("acao", "politica-y:AAAA", "Curador", date(2026, 1, 2), pasta_curadoria)
-    siop, portal, ipca = orcamento_sintetico
-    caminho = banco.construir(cur.carregar(pasta_curadoria), siop, portal, ipca, tmp_path / "b.sqlite")
-    o = _tema(_exportar("publicacao", caminho, pasta_curadoria, tmp_path), "politica-y")["orcamento"]
+def test_publicacao_bloqueia_ano_com_divergencia(banco_teste, pasta_curadoria, tmp_path):
+    o = _tema(_exportar("publicacao", banco_teste, pasta_curadoria, tmp_path), "politica-y")["orcamento"]
     assert "<svg" in o["grafico_corrigido"]
     textos_ = [f["texto"] for f in o["frases"]]
     assert "2022: valores em conferência (as fontes oficiais divergem)." in textos_  # pago de 2022 diverge
     assert any(t.startswith("Em 2021, o orçamento autorizou") for t in textos_)
     assert o["divergencias"] == []  # a lista detalhada só aparece na prévia
+    assert "<svg" in o["mini"] and "2021: R$" in o["mini"]
+    assert "2022:" not in o["mini"]  # ano em conferência fica como lacuna no minigráfico
 
 
 def test_publicacao_recusa_campos_a_preencher(banco_teste, pasta_curadoria, tmp_path):
@@ -86,11 +82,83 @@ def test_indice_de_busca_aponta_para_paginas_existentes(banco_teste, pasta_curad
     dados = _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
     temas = {t["id"] for t in dados["temas"]}
     atos = {a["id"] for a in dados["atos"]}
+    eventos = {e["id"] for t in dados["temas"] for s in t.get("series", []) for e in s["eventos"]}
     assert dados["sugestoes"]
     for item in dados["busca"]:
         partes = item["href"].strip("/").split("/")
-        assert (partes[0] == "tema" and partes[1] in temas) or (partes[0] == "ato" and partes[1] in atos), item
+        assert ((partes[0] == "tema" and partes[1] in temas) or (partes[0] == "ato" and partes[1] in atos)
+                or (partes[0] == "mudanca" and partes[1] in eventos)), item
     assert any(i["tipo"] == "Ato oficial" for i in dados["busca"])
+    assert any(i["href"] == "/mudanca/tributo-x-zerado/" for i in dados["busca"])
+
+
+def test_prazo_vencido_mostra_o_que_veio_depois(banco_teste, pasta_curadoria, tmp_path):
+    dados = _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
+    [prazo] = dados["prazos"]
+    assert prazo["ato"]["id"] == "mp-teste-2" and not prazo["futuro"]
+    [item] = prazo["itens"]
+    assert item["evento_id"] == "tributo-x-zerado"
+    assert item["frase"] == ("O valor de Tributo X sobre a gasolina foi fixado em R$ 0,0000 até 31 de dezembro de 2022 "
+                             "pela Medida Provisória nº 2.000/2022.")
+    assert item["depois"]["id"] == "tributo-x-volta"
+    assert "terminou o prazo" in item["depois"]["frase"]
+
+
+def test_prazo_futuro(banco_teste, pasta_curadoria, tmp_path):
+    caminho = exportar("previa", banco=banco_teste, saida=tmp_path, curadoria=pasta_curadoria, hoje=date(2022, 7, 1))
+    [prazo] = json.loads(caminho.read_text(encoding="utf-8"))["prazos"]
+    assert prazo["futuro"] and prazo["data"] == "31 de dezembro de 2022"
+
+
+def test_publicacao_mostra_prazo_sem_revisao(banco_teste, pasta_curadoria, tmp_path):
+    [prazo] = _exportar("publicacao", banco_teste, pasta_curadoria, tmp_path)["prazos"]
+    assert prazo["ato"]["id"] == "mp-teste-2"
+
+
+def test_evento_traz_valor_anterior(banco_teste, pasta_curadoria, tmp_path):
+    eventos = _tema(_exportar("previa", banco_teste, pasta_curadoria, tmp_path), "combustiveis")["series"][0]["eventos"]
+    por_id = {e["id"]: e for e in eventos}
+    assert por_id["tributo-x-inicial"]["valor_antes"] is None
+    assert (por_id["tributo-x-zerado"]["valor_antes"], por_id["tributo-x-zerado"]["valor"]) == ("R$ 0,5000", "R$ 0,0000")
+
+
+def _com_correcoes(pasta_curadoria, orcamento_sintetico, tmp_path):
+    cur.registrar_correcao("evento", "tributo-x-inicial", "Trecho do ato corrigido", "Citação incompleta",
+                           date(2026, 3, 1), pasta_curadoria)
+    cur.registrar_correcao("evento", "tributo-x-zerado", "Valor corrigido", "Erro de digitação",
+                           date(2026, 3, 2), pasta_curadoria)
+    siop, portal, ipca = orcamento_sintetico
+    return banco.construir(cur.carregar(pasta_curadoria), siop, portal, ipca, tmp_path / "b.sqlite")
+
+
+def test_correcoes_aparecem_no_evento_e_no_historico(tmp_path, pasta_curadoria, orcamento_sintetico):
+    caminho = _com_correcoes(pasta_curadoria, orcamento_sintetico, tmp_path)
+    dados = _exportar("previa", caminho, pasta_curadoria, tmp_path)
+    eventos = {e["id"]: e for e in _tema(dados, "combustiveis")["series"][0]["eventos"]}
+    assert eventos["tributo-x-zerado"]["correcoes"] == [
+        {"data": "02/03/2026", "o_que_mudou": "Valor corrigido", "motivo": "Erro de digitação"}
+    ]
+    assert [x["href"] for x in dados["correcoes"]] == ["/mudanca/tributo-x-zerado/", "/mudanca/tributo-x-inicial/"]
+
+
+def test_publicacao_inclui_correcoes_nos_dados_abertos(tmp_path, pasta_curadoria, orcamento_sintetico):
+    caminho = _com_correcoes(pasta_curadoria, orcamento_sintetico, tmp_path)
+    dados = _exportar("publicacao", caminho, pasta_curadoria, tmp_path)
+    assert [x["href"] for x in dados["correcoes"]] == ["/mudanca/tributo-x-zerado/", "/mudanca/tributo-x-inicial/"]
+    csv_ = (tmp_path / "publicacao" / "public" / "dados" / "correcoes.csv").read_text(encoding="utf-8")
+    assert "tributo-x-inicial" in csv_ and "tributo-x-zerado" in csv_
+
+
+def test_glossario(banco_teste, pasta_curadoria, tmp_path):
+    assert _exportar("previa", banco_teste, pasta_curadoria, tmp_path)["glossario"] == [
+        {"id": "pago", "termo": "Pago", "definicao": "Dinheiro que saiu do caixa."}
+    ]
+    (pasta_curadoria / "glossario.yaml").write_text(
+        "termos:\n  - {id: pago, termo: Pago, definicao: a}\n  - {id: pago, termo: Pago, definicao: b}\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(ErroPublicacao, match="repetido"):
+        _exportar("previa", banco_teste, pasta_curadoria, tmp_path)
 
 
 def test_formatos_brasileiros():
@@ -112,6 +180,22 @@ def test_frase_de_expiracao_atribui_ao_ato_de_origem():
     assert "na Medida Provisória nº 2.000/2022, assinada em 1º de junho de 2022" in frase
     assert "(governo A)" in frase
     assert "Nenhum ato novo" in frase
+
+
+def test_nome_do_tema_no_meio_da_frase_preserva_nomes_proprios():
+    assert textos.nome_no_meio_da_frase("Educação básica") == "educação básica"
+    assert textos.nome_no_meio_da_frase("Combustíveis") == "combustíveis"
+    assert textos.nome_no_meio_da_frase("Bolsa Família") == "Bolsa Família"
+    assert textos.nome_no_meio_da_frase("FIES") == "FIES"
+    assert textos.nome_no_meio_da_frase("Pé-de-Meia") == "Pé-de-Meia"
+
+
+def test_mini_barras_escala_pelo_maior_pago():
+    mini = svg.mini_barras([svg.Barra(2020, 10, 4), svg.Barra(2021, 10, 8), svg.Barra(2022, 10, 2, em_andamento=True)],
+                           "Teste", largura=90, altura=40)
+    assert mini.count("<rect") == 3
+    assert 'y="0.0"' not in mini and 'height="38.0"' in mini  # a maior barra ocupa a altura útil
+    assert 'class="pago andamento"' in mini and "2022*:" in mini
 
 
 def test_topo_do_eixo():

@@ -11,10 +11,10 @@ Linha do tempo verificável de tributos e políticas públicas federais: o que m
 Requer [uv](https://docs.astral.sh/uv/).
 
 ```sh
-uv run goveye validar               # confere a curadoria e mostra quantos itens faltam revisar
+uv run goveye validar               # confere a curadoria
 uv run goveye carregar              # monta data/goveye.sqlite a partir da curadoria e de data/coletas
-uv run goveye site                  # exporta a prévia para web/dados/site.json (itens pendentes marcados)
-uv run goveye site --modo publicacao  # só itens revisados; recusa se site.yaml tiver PREENCHER
+uv run goveye site                  # exporta a prévia para web/dados/site.json
+uv run goveye site --modo publicacao  # recusa se site.yaml tiver PREENCHER; esconde anos com divergência SIOP × Portal
 cd web && npm install && npm run dev  # abre o site em http://localhost:3000
 cd web && npm run build             # site estático em web/out/
 uv run pytest                       # testes (sem rede)
@@ -29,9 +29,9 @@ uv run goveye candidatos-dou --busca gasolina     # lista os atos filtrados para
 uv run goveye fase0                               # verifica todas as fontes oficiais
 ```
 
-## Revisão (só o curador)
+## Revisão (opcional)
 
-Nada vai ao ar sem duas revisões em dias diferentes (ou dois revisores).
+A publicação não depende de revisão humana (especificação, seção 7). Quem revisar um item pode registrar:
 
 ```sh
 uv run goveye pendentes
@@ -41,6 +41,14 @@ uv run goveye revisar ato mp-1157-2023 --revisor "Seu Nome"
 ```
 
 Cada revisão é acrescentada a `data/curadoria/revisoes.yaml`.
+
+Correção de algo já publicado (fica pública na página do item e em `/correcoes/`; nada é apagado):
+
+```sh
+uv run goveye corrigir evento pis-cofins-gasolina-2023-03 --o-que-mudou "Data de efeito corrigida de 01/03 para 02/03/2023" --motivo "Aviso de leitor; conferido no DOU"
+```
+
+Cada correção é acrescentada a `data/curadoria/correcoes.yaml`. Ajustes feitos antes da primeira publicação não são correções e não precisam ser registrados.
 
 ## Estrutura
 
