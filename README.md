@@ -59,4 +59,5 @@ tests/               testes com fixtures fictícias
 
 ## Licença
 
-Código: todos os direitos reservados. Dados publicados: CC BY-NC 4.0.
+Código: [AGPL-3.0](LICENSE). Quem publicar uma versão alterada, inclusive como site, precisa abrir o código dela.
+Dados publicados: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-br), uso livre com crédito ao gov-eye.

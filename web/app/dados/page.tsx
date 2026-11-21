@@ -13,8 +13,7 @@ export default function Dados() {
         <a href={site.url_licenca} rel="license">
           {site.licenca}
         </a>
-        : uso livre com crédito ao gov-eye e sem fins comerciais. Imprensa e agências de checagem podem pedir
-        autorização gratuita para outros usos.
+        : uso livre, inclusive comercial, com crédito ao gov-eye e indicação das alterações.
       </p>
       <div className="rolagem">
         <table>

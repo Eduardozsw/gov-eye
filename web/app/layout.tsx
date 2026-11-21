@@ -59,7 +59,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <a href={site.url_licenca} rel="license">
                   {site.licenca}
                 </a>
-                .
+                . Código aberto sob AGPL-3.0 no <a href="https://github.com/Eduardozsw/gov-eye">GitHub</a>.
               </p>
             </div>
             <div>

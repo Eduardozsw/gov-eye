@@ -31,8 +31,8 @@ from . import formato, svg, textos
 
 MODOS = ("previa", "publicacao")
 MARCADOR_A_PREENCHER = "PREENCHER"
-LICENCA_DADOS = "CC BY-NC 4.0"
-URL_LICENCA = "https://creativecommons.org/licenses/by-nc/4.0/deed.pt-br"
+LICENCA_DADOS = "CC BY 4.0"
+URL_LICENCA = "https://creativecommons.org/licenses/by/4.0/deed.pt-br"
 
 # Frases que o campo de busca da página inicial escreve e apaga, como exemplo.
 SUGESTOES_BUSCA = (

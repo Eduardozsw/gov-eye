@@ -33,7 +33,7 @@ O cidadão não precisa confiar no gov-eye: ele pode conferir cada informação 
 | P3 | **Mesmo critério para todos** | As regras de coleta, classificação e exibição não dependem de partido ou governo. Qualquer exceção é documentada publicamente. |
 | P4 | **Causa explícita** | Toda mudança informa sua causa (seção 5.3). "Voltou ao valor anterior porque o prazo expirou" é diferente de "foi aumentado". |
 | P5 | **Valores comparáveis** | Valores monetários são exibidos nominais **e** corrigidos pela inflação (IPCA), com a data-base indicada. |
-| P6 | **Verificável** | Dados, metodologia e histórico de revisão abertos (CC BY-NC 4.0). O código é privado, então a verificação acontece pelos dados: cada número publicado pode ser conferido na fonte oficial. |
+| P6 | **Verificável** | Dados, metodologia e histórico de revisão abertos (CC BY 4.0) e código aberto (AGPL-3.0). Cada número publicado pode ser conferido na fonte oficial, e qualquer pessoa pode ler no código como ele foi coletado e calculado. |
 | P7 | **Erros corrigidos às claras** | Correções ficam registradas num histórico público por evento. Nada é apagado em silêncio. |
 
 ## 4. Público e perguntas que o sistema responde
@@ -183,13 +183,13 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Camada | Escolha proposta | Motivo |
 |---|---|---|
 | Coleta e ETL | Python (httpx, lxml, pandas) | Ecossistema forte para dados públicos |
-| Repositório | GitHub, privado permanentemente | Seção 13 |
-| Agendamento | GitHub Actions (cron) | Gratuito dentro da cota mensal de minutos para repositórios privados; a coleta diária do MVP cabe nela |
+| Repositório | GitHub, público, código sob AGPL-3.0 | Seção 13 |
+| Agendamento | GitHub Actions (cron) | Gratuito e sem cota de minutos para repositórios públicos |
 | Armazenamento | YAML de curadoria e instantâneos JSON das coletas, versionados; SQLite derivado, reconstruído a cada carga (ADR 0001) | Simples, auditável, histórico via git |
 | Revisão humana | Fila de eventos pendentes em arquivos YAML revisados via pull request | Toda aprovação fica registrada; o histórico de revisão de cada evento é publicado junto com os dados |
 | Site | Next.js com exportação estática; regras, frases e gráficos SVG continuam no Python, que exporta `site.json` (ADR 0002) | Identidade visual e busca no navegador sem perder as regras num lugar só; hospedagem sem servidor |
-| Hospedagem | Cloudflare Pages | Custo zero com repositório privado (o GitHub Pages exige plano pago nesse caso) e permite uso comercial (o plano gratuito da Vercel é só para uso não comercial) |
-| Dados abertos | CSV e JSON publicados junto com o site, licença CC BY-NC 4.0 | Princípio P6 |
+| Hospedagem | Cloudflare Pages | Custo zero e permite uso comercial (o plano gratuito da Vercel é só para uso não comercial). Com o repositório público, o GitHub Pages também passou a ser gratuito |
+| Dados abertos | CSV e JSON publicados junto com o site, licença CC BY 4.0 | Princípio P6 |
 
 ## 11. Escopo e fases
 
@@ -222,8 +222,8 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 | Risco | Mitigação |
 |---|---|
 | Ser acusado de favorecer um lado | Princípios P2/P3, textos por modelo, metodologia pública, histórico de correções aberto, página "Quem faz" com o responsável identificado |
-| Código privado gerar desconfiança | Dados, metodologia, histórico de revisão e link da fonte oficial em cada evento são públicos |
-| Terceiros se passarem pelo gov-eye ou divulgarem dados adulterados em nome dele | Domínio oficial único; registro da marca no INPI quando o projeto ganhar alcance; arquivos de dados publicados com hash e assinatura digital para qualquer pessoa conferir a origem; cada evento aponta para o documento oficial, o que expõe números inventados; a licença CC BY-NC 4.0 exige indicar alterações e proíbe sugerir endosso do gov-eye |
+| Alguém publicar uma cópia alterada do código | A AGPL-3.0 obriga quem publicar uma versão alterada, inclusive como site, a abrir o código dela e indicar as mudanças. A licença não protege o nome: contra quem se passar pelo gov-eye valem as medidas da linha abaixo |
+| Terceiros se passarem pelo gov-eye ou divulgarem dados adulterados em nome dele | Domínio oficial único; registro da marca no INPI quando o projeto ganhar alcance; arquivos de dados publicados com hash e assinatura digital para qualquer pessoa conferir a origem; cada evento aponta para o documento oficial, o que expõe números inventados; a licença CC BY 4.0 exige indicar alterações e proíbe sugerir endosso do gov-eye |
 | Erro de dado viralizar | Revisão humana obrigatória para alíquotas; botão "reportar erro" em cada evento; correções visíveis (P7) |
 | Mudança ou queda de APIs públicas | Arquivo bruto guardado na coleta; testes de contrato por fonte no agendamento |
 | Mapeamento de programas contestável | Justificativa pública para cada ligação ação → tema |
@@ -238,8 +238,8 @@ Todo texto de evento é gerado por um modelo fixo, por exemplo:
 - **Orientação de bancada por partido:** fica para a Fase 3, junto com as votações.
 - **Temas do MVP:** povos indígenas, mulheres / enfrentamento à violência, Bolsa Família e Minha Casa Minha Vida (seção 11).
 - **Responsável:** pessoa física. O site terá uma página "Quem faz" com o nome do responsável, um contato e uma declaração sobre filiação partidária.
-- **Código:** privado permanentemente, de uso exclusivo do autor, sem licença para terceiros. Chaves de API ficam só nos secrets do GitHub, nunca no código.
-- **Dados:** CC BY-NC 4.0. Uso comercial só com licença negociada com o autor. A página de dados informa como pedir autorização, e veículos de imprensa e agências de checagem podem receber autorização gratuita.
+- **Código:** aberto, sob AGPL-3.0, em repositório público. Qualquer pessoa pode usar, estudar e modificar; quem publicar uma versão alterada, inclusive como site, precisa abrir o código dela. Chaves de API ficam só nos secrets do GitHub, nunca no código.
+- **Dados:** CC BY 4.0. Uso livre, inclusive comercial, com crédito ao gov-eye e indicação das alterações.
 
 ### Em aberto
 
